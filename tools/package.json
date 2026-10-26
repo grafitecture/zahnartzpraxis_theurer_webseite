@@ -1,0 +1,13 @@
+{
+  "name": "theurer-website-tools",
+  "private": true,
+  "description": "Werkzeuge für Bilder, Karte und Prüfung. Nicht Teil des Deployments.",
+  "scripts": {
+    "images": "node images.cjs ../legacy/media",
+    "map": "python3 map/build_map.py && python3 inject_map.py",
+    "check": "python3 check_site.py"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

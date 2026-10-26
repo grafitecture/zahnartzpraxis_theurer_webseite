@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 777 777">
+  <defs>
+    <mask id="smile-gap">
+      <rect width="777" height="777" fill="#fff"/>
+      <path d="M52 321 A483 483 0 0 0 725 321" fill="none" stroke="#000" stroke-width="150" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <g fill="#0087cb" mask="url(#smile-gap)">
+    <rect x="126" y="86" width="126" height="607"/>
+    <rect x="507" y="86" width="126" height="607"/>
+  </g>
+  <path d="M52 321 A483 483 0 0 0 725 321" fill="none" stroke="#acb8bf" stroke-width="72" stroke-linecap="round"/>
+</svg>
