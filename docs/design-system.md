@@ -31,7 +31,8 @@ abgeleitete Tiefblau `#006da3` im gleichen Farbton.
   Überschriften (h5, h6, Namen, Listentitel) im dunkleren `#006da3`, damit auch
   sie AA erfüllen.
 - **Flächen im Wechsel:** Verlauf `--c-grad-top` → Weiß (von oben nach unten),
-  dazwischen weiße Abschnitte. Reihenfolge der Startseite: Hero + Auf einen
+  dazwischen weiße Abschnitte. Der Hero-Verlauf ist umgedreht (oben Weiß,
+  unten Hellblau). Reihenfolge der Startseite: Hero + Auf einen
   Blick (Verlauf) · Frau Theurer (weiß) · Leistungen (Verlauf) · Team (weiß) ·
   Praxis (Verlauf) · Anfahrt (weiß) · Kontakt (Verlauf) · Fußzeile (weiß mit
   Zahn-Grafik). Der Verlaufsstart ist so gewählt, dass Praxisblau darauf noch
@@ -43,8 +44,12 @@ abgeleitete Tiefblau `#006da3` im gleichen Farbton.
 
 - Logo in Kopf- und Fußzeile immer gleich groß: `--logo-h`, fluide von
   4,25 rem (360 px) bis 6 rem (1440 px).
-- Die Kopfzeile ist oben transparent über dem Verlauf, blendet sich beim
-  Herunterscrollen aus und beim Hochscrollen wieder ein. Das Logo schrumpft nie.
+- Die Kopfzeile ist oben transparent, blendet sich beim Herunterscrollen aus
+  und beim Hochscrollen wieder ein. Das Logo schrumpft nie.
+- Navigationspunkte (Kopf- und Fußzeile): Schrift in h6-Größe, keine
+  Unterstreichung, Fläche mit Verlauf Hellblau → Weiß, runde Ecken
+  (`--radius-m`), Rahmen `--c-chip-line`. Aktiver Punkt: Verlauf
+  Himmelblau → Hellblau.
 
 ## Schrift
 
@@ -92,7 +97,8 @@ Schriftgröße im Browser erhöhen.
 | Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
 | `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
-| `64em` | 1024 | volle Navigation statt Menü, 12-Spalten-Raster, Team vierspaltig | Logo, fünf Menüpunkte und Telefon-Button passen in eine Zeile |
+| `64em` | 1024 | 12-Spalten-Raster, Team vierspaltig, Hero zweispaltig | vier Porträts à ~ 14 rem passen nebeneinander |
+| `70em` | 1120 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt | Logo, fünf Navigationsflächen in h6-Größe und Telefon-Button brauchen ~ 970 px, mit Reserve für Corporate S |
 | `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
 
