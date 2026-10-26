@@ -67,7 +67,7 @@
     document.addEventListener('click', function (event) {
       if (nav.hasAttribute('data-open') && !nav.contains(event.target)) setMenu(false);
     });
-    window.matchMedia('(min-width: 70em)').addEventListener('change', function () { setMenu(false); });
+    window.matchMedia('(min-width: 64em)').addEventListener('change', function () { setMenu(false); });
   }
 
   /* ---------------------------------------------------------------------

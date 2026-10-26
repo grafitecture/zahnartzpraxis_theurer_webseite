@@ -5,8 +5,7 @@
    Breakpoints (inhaltsbasiert, in em, damit sie mit der Schriftgröße skalieren):
      30em  (480 px)  Zwei Spalten für kurze Inhalte (Fakten)
      48em  (768 px)  Text und Bild nebeneinander, Team zweispaltig
-     64em  (1024 px) 12-Spalten-Raster, Team vierspaltig
-     70em  (1120 px) Volle Navigation in der Kopfzeile (Navigation in h6-Größe + Telefon brauchen ~970 px)
+     64em  (1024 px) Volle Navigation, 12-Spalten-Raster, Team vierspaltig
      80em  (1280 px) Inhaltsbreite erreicht ihr Maximum (75rem + Rand)
    Die fluide Typo- und Abstandsskala läuft von 360 px bis 1440 px Viewport.
    ========================================================================== */
@@ -390,33 +389,31 @@ body::before {
   list-style: none;
 }
 
-/* Navigationspunkte in Kopf- und Fußzeile: Fläche mit Verlauf, runde Ecken, keine Unterstreichung */
+/* Navigationspunkte in Kopf- und Fußzeile: 16 px, ohne Rahmen und Unterstreichung.
+   Die Fläche (Verlauf Hellblau, Rundung 2 px) erscheint nur bei Mouseover und beim aktiven Punkt. */
 .nav__menu a,
 .footer__nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 2.75rem;
-  padding: 0.45rem 1rem;
-  border: 1px solid var(--c-chip-line);
-  border-radius: var(--radius-m);
-  background: linear-gradient(180deg, var(--c-grad-top) 0%, var(--c-white) 100%);
+  min-height: 2.25rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+  background: transparent;
   color: var(--c-ink);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .nav__menu a:hover,
 .footer__nav a:hover {
-  border-color: var(--c-sky);
-  background: linear-gradient(180deg, var(--c-chip-line) 0%, var(--c-white) 100%);
+  background: linear-gradient(180deg, var(--c-chip-line) 0%, var(--c-sky-50) 100%);
   color: var(--c-blue-deep);
 }
 .nav__menu a[aria-current],
 .footer__nav a[aria-current] {
-  border-color: var(--c-sky);
   background: linear-gradient(180deg, var(--c-sky) 0%, var(--c-grad-top) 100%);
   color: var(--c-ink);
 }
@@ -424,7 +421,7 @@ body::before {
 /* Mobil: Menü klappt unter der Kopfzeile auf */
 .nav[data-open] .nav__menu {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.25rem;
   position: absolute;
   left: 0;
   right: 0;
@@ -435,26 +432,25 @@ body::before {
 }
 .nav[data-open] .nav__menu a {
   display: flex;
-  min-height: 3.25rem;
-  padding-inline: 1.1rem;
-  font-size: var(--step-2);
+  min-height: 3rem;
+  padding-inline: 0.75rem;
 }
 
 .header__phone { display: none; }
 
-@media (min-width: 70em) {
+@media (min-width: 64em) {
   .nav__toggle { display: none; }
   .nav__menu,
   .nav[data-open] .nav__menu {
     position: static;
     display: flex;
-    gap: 0.5rem;
+    gap: 0.25rem;
     padding: 0;
     box-shadow: none;
     background: none;
   }
-  .nav[data-open] .nav__menu a { min-height: 2.75rem; padding-inline: 1rem; font-size: var(--step-1); }
-  .header__phone { display: inline-flex; font-size: var(--step-1); }
+  .nav[data-open] .nav__menu a { min-height: 2.25rem; padding-inline: 0.7rem; }
+  .header__phone { display: inline-flex; }
 }
 
 /* Schnellkontakt-Leiste (mobil) */
@@ -495,7 +491,7 @@ body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
   /* Tablet: Leiste mittig statt über die volle Breite */
   .action-bar { padding-inline: max(1rem, calc((100vw - 40rem) / 2)); }
 }
-@media (min-width: 70em) {
+@media (min-width: 64em) {
   .action-bar { display: none; }
   body { padding-bottom: 0; }
 }

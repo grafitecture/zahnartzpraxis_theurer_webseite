@@ -46,10 +46,10 @@ abgeleitete Tiefblau `#006da3` im gleichen Farbton.
   4,25 rem (360 px) bis 6 rem (1440 px).
 - Die Kopfzeile ist oben transparent, blendet sich beim Herunterscrollen aus
   und beim Hochscrollen wieder ein. Das Logo schrumpft nie.
-- Navigationspunkte (Kopf- und Fußzeile): Schrift in h6-Größe, keine
-  Unterstreichung, Fläche mit Verlauf Hellblau → Weiß, runde Ecken
-  (`--radius-m`), Rahmen `--c-chip-line`. Aktiver Punkt: Verlauf
-  Himmelblau → Hellblau.
+- Navigationspunkte (Kopf- und Fußzeile): 16 px, keine Unterstreichung, kein
+  Rahmen. Eine Fläche mit Verlauf (Rundung 2 px) erscheint nur bei
+  Mouseover (`#c8e0f3` → `#edf5fb`) und beim aktiven Punkt
+  (Himmelblau `#a3cbeb` → `#daeaf7`).
 
 ## Schrift
 
@@ -97,8 +97,7 @@ Schriftgröße im Browser erhöhen.
 | Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
 | `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
-| `64em` | 1024 | 12-Spalten-Raster, Team vierspaltig, Hero zweispaltig | vier Porträts à ~ 14 rem passen nebeneinander |
-| `70em` | 1120 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt | Logo, fünf Navigationsflächen in h6-Größe und Telefon-Button brauchen ~ 970 px, mit Reserve für Corporate S |
+| `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, 12-Spalten-Raster, Team vierspaltig | Logo, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (~ 810 von 960 px) |
 | `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
 
