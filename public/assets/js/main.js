@@ -190,7 +190,7 @@
     var result = { day: DAY_NAMES[dow], dow: dow, hours: '', state: 'closed', text: '' };
 
     if (reason) {
-      result.hours = 'Heute geschlossen (' + reason + ')';
+      result.hours = 'Geschlossen (' + reason + ')';
       result.text = 'Heute geschlossen (' + reason + ')' + nextText;
       return result;
     }
@@ -201,7 +201,7 @@
       return result;
     }
     if (!ranges.length) {
-      result.hours = 'Heute geschlossen';
+      result.hours = 'Geschlossen';
       result.text = 'Heute geschlossen' + nextText;
       return result;
     }
