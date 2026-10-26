@@ -1,0 +1,5 @@
+nominatim-structured.json -> [('2, Schützenstraße, Oldendorf, Samtgemeinde Oldendorf-Himmelpforten, Landkreis Stade, Niedersachsen, 21726, Deutschland', '53.5896265', '9.2538840')]
+nominatim-free.json -> [('2, Schützenstraße, Oldendorf, Samtgemeinde Oldendorf-Himmelpforten, Landkreis Stade, Niedersachsen, 21726, Deutschland', '53.5896265', '9.2538840')]
+nominatim-dentist.json -> []
+Praxis: 53.5896265 9.253884
+Overpass: https://overpass-api.de/api/interpreter 5620 Elemente
