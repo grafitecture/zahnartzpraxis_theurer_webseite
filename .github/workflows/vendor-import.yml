@@ -1,0 +1,38 @@
+name: Fallback-Schrift laden (einmalig)
+
+on:
+  push:
+    branches: [vendor-import]
+    paths:
+      - ".github/workflows/vendor-import.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fonts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source Sans 3 (Fontsource, OFL) laden
+        run: |
+          set -e
+          mkdir -p vendor/source-sans-3 && cd vendor/source-sans-3
+          npm pack @fontsource-variable/source-sans-3@5.1.1 --silent
+          tar -xzf fontsource-variable-source-sans-3-5.1.1.tgz
+          cp package/files/source-sans-3-latin-wght-normal.woff2 .
+          cp package/files/source-sans-3-latin-ext-wght-normal.woff2 .
+          cp package/files/source-sans-3-latin-wght-italic.woff2 . || true
+          cp package/LICENSE LICENSE-OFL.txt || true
+          cp package/index.css fontsource-index.css || true
+          rm -rf package *.tgz
+          ls -la
+      - name: Ergebnis committen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vendor
+          git commit -m "Fallback-Schrift Source Sans 3 (OFL)" || exit 0
+          git push
