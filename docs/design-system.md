@@ -1,7 +1,8 @@
 # Designsystem – Zahnarztpraxis Theurer
 
-Frisch, modern, viel Weißraum. Weißer Grund, eine klare Hierarchie über die
-Schriftgröße, Praxisblau als Signal. Alle Werte sind als CSS-Variablen in
+Frisch, modern, viel Weißraum. Weiße Flächen im Wechsel mit Verläufen von
+Hellblau zu Weiß, Überschriften in Praxisblau, eine klare Hierarchie über die
+Schriftgröße. Alle Werte sind als CSS-Variablen in
 `public/assets/css/main.css` (Abschnitt „Tokens“) hinterlegt.
 
 ## Farben
@@ -13,14 +14,37 @@ Schriftgröße, Praxisblau als Signal. Alle Werte sind als CSS-Variablen in
 | `--c-silver` | `#b5bfc5` | Silbergrau (Marke): Linien, Status „geschlossen“ | 1,9 : 1 (nur Linie) |
 | `--c-blue-ink` | `#006da3` | Abgeleitet: Links, Buttons, kleine blaue Schrift | 5,6 : 1 |
 | `--c-blue-deep` | `#00517a` | Abgeleitet: Hover und aktiv | 8,5 : 1 |
-| `--c-sky-50` | `#edf5fb` | 20 % Himmelblau: Bühnen hinter Porträts, Kontaktbereich | – |
-| `--c-ink` | `#1a2933` | Überschriften | 14,9 : 1 |
+| `--c-grad-top` | `#daeaf7` | Start der Verlaufsflächen (Himmelblau mit 60 % Weiß) | Praxisblau darauf 3,2 : 1 |
+| `--c-stage` | `#d6e8f6` | Bühnen hinter freigestellten Fotos (Hero, Zahnärztin) | – |
+| `--c-sky-50` | `#edf5fb` | Kacheln hinter den Team-Porträts | – |
+| `--c-ink` | `#1a2933` | Auszeichnungen, Rollen, Tabellenköpfe | 14,9 : 1 |
 | `--c-text` | `#33434d` | Fließtext | 10,2 : 1 |
 | `--c-muted` | `#56646d` | Nebeninformationen | 6,1 : 1 |
 
 Praxisblau `#0087cb` erreicht auf Weiß 3,9 : 1. Das genügt WCAG AA nur für
 große Schrift. Für Buttons, Links und kleine blaue Texte gibt es deshalb das
 abgeleitete Tiefblau `#006da3` im gleichen Farbton.
+
+## Überschriften und Flächen
+
+- **Überschriften blau:** h1–h4 (ab 24 px) in Praxisblau `#0087cb`, kleinere
+  Überschriften (h5, h6, Namen, Listentitel) im dunkleren `#006da3`, damit auch
+  sie AA erfüllen.
+- **Flächen im Wechsel:** Verlauf `--c-grad-top` → Weiß (von oben nach unten),
+  dazwischen weiße Abschnitte. Reihenfolge der Startseite: Hero + Auf einen
+  Blick (Verlauf) · Frau Theurer (weiß) · Leistungen (Verlauf) · Team (weiß) ·
+  Praxis (Verlauf) · Anfahrt (weiß) · Kontakt (Verlauf) · Fußzeile (weiß mit
+  Zahn-Grafik). Der Verlaufsstart ist so gewählt, dass Praxisblau darauf noch
+  3,2 : 1 erreicht.
+- **Fußzeile:** Zahn-Grafik (`zahn-hintergrund-1920`) im Hintergrund, oben
+  angesetzt, mindestens 60 rem breit.
+
+## Logo und Kopfzeile
+
+- Logo in Kopf- und Fußzeile immer gleich groß: `--logo-h`, fluide von
+  4,25 rem (360 px) bis 6 rem (1440 px).
+- Die Kopfzeile ist oben transparent über dem Verlauf, blendet sich beim
+  Herunterscrollen aus und beim Hochscrollen wieder ein. Das Logo schrumpft nie.
 
 ## Schrift
 

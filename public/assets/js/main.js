@@ -71,19 +71,42 @@
   }
 
   /* ---------------------------------------------------------------------
-   * 2. Kopfzeile: feine Linie und kompaktere Höhe nach dem Scrollen,
-   *    aktiver Navigationspunkt je Abschnitt
+   * 2. Kopfzeile: oben transparent über dem Verlauf, beim Runterscrollen
+   *    ausgeblendet, beim Hochscrollen wieder da – das Logo bleibt immer
+   *    gleich groß. Dazu der aktive Navigationspunkt je Abschnitt.
    * ------------------------------------------------------------------ */
   var header = document.querySelector('.site-header');
-  if (header && 'IntersectionObserver' in window) {
-    var sentinel = document.createElement('div');
-    sentinel.className = 'scroll-sentinel';
-    sentinel.setAttribute('aria-hidden', 'true');
-    document.body.prepend(sentinel);
-    new IntersectionObserver(function (entries) {
-      header.classList.toggle('is-scrolled', !entries[0].isIntersecting);
-    }).observe(sentinel);
+  if (header) {
+    var lastY = window.scrollY;
+    var ticking = false;
 
+    var updateHeader = function () {
+      var y = Math.max(0, window.scrollY);
+      var height = header.offsetHeight;
+      var menuOpen = nav && nav.hasAttribute('data-open');
+      var focusInside = header.contains(document.activeElement) && document.activeElement !== document.body;
+
+      header.classList.toggle('is-top', y < 8);
+      if (y <= height || menuOpen || focusInside || y < lastY - 4) {
+        header.classList.remove('is-hidden');
+      } else if (y > lastY + 4) {
+        header.classList.add('is-hidden');
+      }
+      lastY = y;
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateHeader);
+      }
+    }, { passive: true });
+    header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
+    updateHeader();
+  }
+
+  if (header && 'IntersectionObserver' in window) {
     var links = menu ? Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]')) : [];
     var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
     if (sections.length) {
