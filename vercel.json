@@ -4,6 +4,7 @@
   "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": true,
+  "regions": ["fra1"],
   "redirects": [
     {
       "source": "/startseite",

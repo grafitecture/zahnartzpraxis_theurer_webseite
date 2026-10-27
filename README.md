@@ -42,8 +42,37 @@ GitHub → Vercel. In Vercel das Repository importieren; `vercel.json` setzt
 `public/` als Ausgabeordner, es gibt keinen Build. Jeder Push auf `main`
 geht live, jeder andere Branch bekommt eine Vorschau-URL.
 
-Vor dem Livegang: Domain `www.zahnarztpraxis-theurer.de` in Vercel hinzufügen
-und die DNS-Einträge beim bisherigen Anbieter umstellen.
+### Vercel datenschutzkonform einrichten
+
+Die Datenschutzerklärung (`public/datenschutz/`) beschreibt genau dieses
+Setup. Wer daran etwas ändert, passt sie mit an.
+
+- **Tarif Pro (oder Enterprise).** Hobby ist laut Vercel nur für private,
+  nicht-kommerzielle Nutzung erlaubt, und der Auftragsverarbeitungsvertrag
+  ([Data Processing Addendum](https://vercel.com/legal/dpa), mit
+  EU-Standardvertragsklauseln) gilt nur für Pro und Enterprise.
+- **Auftragsverarbeitung:** Liegt das Projekt im Vercel-Team von
+  grafitecture, braucht es zusätzlich einen AVV zwischen Praxis und
+  grafitecture, mit Vercel als Unterauftragsverarbeiter. Alternative: ein
+  eigenes Pro-Team der Praxis.
+- **Ausgeschaltet lassen:** Web Analytics, Speed Insights, Observability Plus
+  und Log Drains. Die Datenschutzerklärung nennt keine Analyse und eine
+  Protokoll-Aufbewahrung von einem Tag (Pro); mit Observability Plus wären es
+  30 Tage.
+- **Funktionsregion `fra1`** (Frankfurt) ist in `vercel.json` gesetzt. Sie
+  gilt nur für Vercel Functions, die Seite hat derzeit keine; statische
+  Dateien liefert das weltweite CDN aus.
+- **Vorschau-Deployments** geschützt lassen (Deployment Protection, Standard).
+- **Attack Mode** nur bei einem Angriff einschalten (Sicherheitsabfrage, siehe
+  Datenschutzerklärung, Abschnitt 2).
+
+### Domain
+
+Die Domain wurde im August 2025 von comvos zu IONOS umgezogen. Für den
+Livegang `www.zahnarztpraxis-theurer.de` (und die Domain ohne `www`) in Vercel
+hinzufügen und bei IONOS nur die Einträge für die Website auf die Werte
+umstellen, die Vercel unter „Domains“ anzeigt. MX- und andere
+E-Mail-Einträge nicht ändern, sonst kommt keine E-Mail mehr an.
 
 ## Pflege
 
@@ -88,12 +117,21 @@ Für den Livegang wird eine **Webfont-Lizenz** für Corporate S benötigt
 ## Vor dem Livegang klären
 
 - Corporate-S-Webfontlizenz (siehe oben)
-- Datenschutzerklärung: auf Vercel-Hosting, WhatsApp und den Wegfall von
-  Kontaktformular, Google Maps und Cookie-Banner angepasst – bitte von der
-  Praxis bzw. ihrem Datenschutzbeauftragten prüfen lassen, inkl.
-  Auftragsverarbeitungsvertrag für das Hosting
-- Impressum: „§ 5 TMG“ wurde auf „§ 5 DDG“ aktualisiert; die Faxnummer
-  lautete dort 04144 673, auf der übrigen Seite 04144 6730 – verwendet ist 6730
+- Datenschutzerklärung (Stand Oktober 2026, eigener Text statt der
+  e-recht24-Vorlage von comvos): Vercel-Pro-Tarif und AVV-Kette (siehe
+  Deployment) vor dem Livegang erledigen und den Text von der Praxis
+  freigeben lassen. Falls die Praxis einen Datenschutzbeauftragten benannt
+  hat, dessen Kontaktdaten ergänzen.
+- E-Mail: `info@` wurde 2023 an ein privates Postfach weitergeleitet. Für
+  Patientenanfragen besser ein Praxispostfach bei einem Anbieter mit AVV.
+- Impressum (geprüft Oktober 2026): § 5 DDG; Faxnummer 04144 6730 (alte
+  Seite: 04144 673, Tippfehler); Approbationsbehörde ist heute der NiZzA;
+  Gesetzesnamen auf die amtlichen Titel korrigiert. Offen: Hat die Praxis
+  eine Wirtschafts-Identifikationsnummer (W-IdNr, steht im ELSTER-Postfach)
+  oder eine USt-IdNr, muss sie ins Impressum. Rechtsform Einzelpraxis
+  bestätigen. Berufshaftpflichtversicherung: für Zahnärzte keine Pflicht im
+  Impressum (DL-InfoV gilt nicht für Gesundheitsdienstleistungen), kann aber
+  ergänzt werden.
 - Bushaltestelle: laut Fahrplan- und Kartendaten „Lämmerhof“ (alte Seite:
   „Lämmershof“); Fußweg laut Karte rund 200 m bzw. etwa 3 Minuten
 - Fachgesellschaften (DGZMK, DGKiZ, DG PARO, DGOI, APW): Mitgliedschaften bestätigen
@@ -102,6 +140,7 @@ Für den Livegang wird eine **Webfont-Lizenz** für Corporate S benötigt
 
 ## Herkunft der Inhalte
 
-Texte, Bilder und Rechtstexte stammen von der bisherigen Website
-(Branch `legacy-import`, per GitHub Action gesichert). Kartendaten:
+Texte und Bilder stammen von der bisherigen Website (Branch `legacy-import`,
+per GitHub Action gesichert). Impressum und Datenschutzerklärung wurden im
+Oktober 2026 für das Vercel-Hosting neu geschrieben. Kartendaten:
 © OpenStreetMap-Mitwirkende, ODbL (Branch `osm-import`).

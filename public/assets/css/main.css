@@ -1038,6 +1038,23 @@ body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
   .prose dd { margin: 0; }
 }
 
+/* Hinweisbox (z. B. „Kurz gesagt“, Widerspruchsrecht) und Inhaltsverzeichnis */
+.callout {
+  padding: var(--space-m);
+  border: 1px solid var(--c-chip-line);
+  border-radius: var(--radius-m);
+  background: var(--c-white);
+}
+.callout > * + * { margin-top: 0.75em; }
+.prose .callout h3 { margin-top: 0; }
+
+.toc ol { margin: 0; padding-left: 1.4em; }
+.toc li { break-inside: avoid; padding-block: 0.15rem; }
+.prose .toc li + li { margin-top: 0; }
+@media (min-width: 48em) {
+  .toc ol { columns: 2; column-gap: var(--space-l); }
+}
+
 /* Einfache Kopfzeile der Unterseiten */
 .back-link { font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
 .back-link:hover { text-decoration: underline; }

@@ -107,6 +107,8 @@ Schriftgröße im Browser erhöhen.
 - Fotos: `--radius-m` (0,875 rem)
 - Bühnen hinter freigestellten Porträts: oben `--radius-l` (1,75 rem), unten gerade
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten
+- Hinweisboxen in Rechtstexten (`.callout`): weiße Fläche, 1 px Linie
+  `--c-chip-line`, Rundung `--radius-m`
 
 ## Bildsprache
 
