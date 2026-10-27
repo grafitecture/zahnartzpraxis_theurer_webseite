@@ -38,9 +38,15 @@ cd public && python3 -m http.server 8000
 
 ## Deployment
 
-GitHub → Vercel. In Vercel das Repository importieren; `vercel.json` setzt
-`public/` als Ausgabeordner, es gibt keinen Build. Jeder Push auf `main`
-geht live, jeder andere Branch bekommt eine Vorschau-URL.
+GitHub → Vercel. Repo `grafitecture/zahnartzpraxis_theurer_webseite` und
+Vercel-Projekt `zahnartzpraxis_theurer_webseite` (Team Grafitecture) sind
+verbunden; `vercel.json` setzt `public/` als Ausgabeordner, es gibt keinen
+Build. Jeder Push auf `main` geht als Production-Deployment raus, jeder andere
+Branch bekommt eine Vorschau-URL. Bis zum Domain-Umzug sind alle Deployments
+nur für Team-Mitglieder sichtbar (Vercel Authentication).
+
+Das frühere Repo `grafitecture/zahnartzpraxis_theurer` gibt es nicht mehr;
+seine Historie ist in `main` zusammengeführt.
 
 ### Vercel datenschutzkonform einrichten
 
@@ -55,11 +61,6 @@ Setup. Wer daran etwas ändert, passt sie mit an.
   grafitecture, braucht es zusätzlich einen AVV zwischen Praxis und
   grafitecture, mit Vercel als Unterauftragsverarbeiter. Alternative: ein
   eigenes Pro-Team der Praxis.
-- **Repo verbinden:** Das Vercel-Projekt `zahnartzpraxis_theurer_webseite`
-  (Team Grafitecture, angelegt am 26.10.2026 über vercel.com/new) ist mit
-  einem dabei neu erzeugten Repo `grafitecture/zahnartzpraxis_theurer_webseite`
-  verbunden, nicht mit diesem. Unter Settings → Git trennen und
-  `grafitecture/zahnartzpraxis_theurer` verbinden; das leere Repo kann weg.
 - **Observability Plus** ist für Teams, die ab dem 3. April 2026 auf Pro
   gewechselt sind, automatisch an. Dieses Projekt unter Billing →
   Observability Plus → Manage projects ausschließen (oder Plus ganz
