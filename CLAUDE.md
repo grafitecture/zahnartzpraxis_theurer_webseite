@@ -9,7 +9,8 @@ Designsystem: `docs/design-system.md`.
 1. Prüfen: `python3 tools/check_site.py` (Tags, IDs, Links, Anker, alt-Texte)
 2. Committen und auf `main` pushen – **immer auf GitHub und Vercel**.
    Sobald das Vercel-Projekt mit diesem Repo verbunden ist (Team „grafitecture“,
-   Stand 26.10.2026: noch nicht verbunden), geht jeder Push auf `main`
+   Projekt `zahnartzpraxis_theurer_webseite`; Stand 27.10.2026 noch mit einem
+   Vorlagen-Repo statt mit diesem verbunden), geht jeder Push auf `main`
    automatisch live, andere Branches bekommen eine Vorschau-URL.
 3. Nach dem Push den Vercel-Deploy kontrollieren (Status „Ready“).
 

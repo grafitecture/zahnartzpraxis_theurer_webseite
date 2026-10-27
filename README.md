@@ -55,10 +55,17 @@ Setup. Wer daran etwas ändert, passt sie mit an.
   grafitecture, braucht es zusätzlich einen AVV zwischen Praxis und
   grafitecture, mit Vercel als Unterauftragsverarbeiter. Alternative: ein
   eigenes Pro-Team der Praxis.
-- **Ausgeschaltet lassen:** Web Analytics, Speed Insights, Observability Plus
-  und Log Drains. Die Datenschutzerklärung nennt keine Analyse und eine
-  Protokoll-Aufbewahrung von einem Tag (Pro); mit Observability Plus wären es
-  30 Tage.
+- **Repo verbinden:** Das Vercel-Projekt `zahnartzpraxis_theurer_webseite`
+  (Team Grafitecture, angelegt am 26.10.2026 über vercel.com/new) ist mit
+  einem dabei neu erzeugten Repo `grafitecture/zahnartzpraxis_theurer_webseite`
+  verbunden, nicht mit diesem. Unter Settings → Git trennen und
+  `grafitecture/zahnartzpraxis_theurer` verbinden; das leere Repo kann weg.
+- **Observability Plus** ist für Teams, die ab dem 3. April 2026 auf Pro
+  gewechselt sind, automatisch an. Dieses Projekt unter Billing →
+  Observability Plus → Manage projects ausschließen (oder Plus ganz
+  ausschalten). Sonst bleiben Protokolle 30 statt 1 Tag gespeichert, und die
+  Angabe in der Datenschutzerklärung stimmt nicht mehr.
+- **Ausgeschaltet lassen:** Web Analytics, Speed Insights und Log Drains.
 - **Funktionsregion `fra1`** (Frankfurt) ist in `vercel.json` gesetzt. Sie
   gilt nur für Vercel Functions, die Seite hat derzeit keine; statische
   Dateien liefert das weltweite CDN aus.
@@ -123,7 +130,14 @@ Für den Livegang wird eine **Webfont-Lizenz** für Corporate S benötigt
   freigeben lassen. Falls die Praxis einen Datenschutzbeauftragten benannt
   hat, dessen Kontaktdaten ergänzen.
 - E-Mail: `info@` wurde 2023 an ein privates Postfach weitergeleitet. Für
-  Patientenanfragen besser ein Praxispostfach bei einem Anbieter mit AVV.
+  Patientenanfragen und Bewerbungen ein Praxispostfach bei einem EU-Anbieter
+  mit AVV einrichten und die Weiterleitung beenden.
+- Die Datenschutzerklärung verweist für die Behandlung auf die
+  Patienteninformation zum Datenschutz in der Praxis – die muss es geben.
+- WhatsApp: nur mit WhatsApp Business auf einem Praxis-Handy, ohne Zugriff
+  auf Patientenkontakte im Adressbuch und ohne Chat-Backup in der Cloud.
+- Einwilligungen des Teams für Fotos und Namen auf der Website schriftlich
+  vorhalten.
 - Impressum (geprüft Oktober 2026): § 5 DDG; Faxnummer 04144 6730 (alte
   Seite: 04144 673, Tippfehler); Approbationsbehörde ist heute der NiZzA;
   Gesetzesnamen auf die amtlichen Titel korrigiert. Offen: Hat die Praxis
