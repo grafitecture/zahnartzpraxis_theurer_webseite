@@ -339,7 +339,7 @@ body::before {
   -webkit-backdrop-filter: saturate(1.4) blur(10px);
   backdrop-filter: saturate(1.4) blur(10px);
   box-shadow: 0 1px 0 var(--c-line);
-  transition: transform 0.35s var(--ease), background-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  transition: background-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .site-header.is-top {
   background: transparent;
@@ -347,8 +347,7 @@ body::before {
   backdrop-filter: none;
   box-shadow: none;
 }
-.site-header.is-hidden { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px))); }
-.site-header:has(.nav[data-open]) { background: var(--c-white); transform: none; }
+.site-header:has(.nav[data-open]) { background: var(--c-white); }
 
 .header__inner {
   display: flex;
@@ -1014,11 +1013,14 @@ body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
    -------------------------------------------------------------------------- */
 .legal {
   margin-top: calc(-1 * var(--header-h));
-  padding-top: calc(var(--header-h) + var(--space-2xl));
   padding-bottom: var(--space-3xl);
-  background: linear-gradient(180deg, var(--c-grad-top) 0, var(--c-white) 36rem);
 }
-.legal__head { margin-bottom: var(--space-xl); }
+/* Kopf wie der Hero der Startseite: Verlauf oben Weiß, unten Hellblau */
+.legal__intro {
+  padding-top: calc(var(--header-h) + var(--space-2xl));
+  padding-bottom: var(--space-xl);
+}
+.legal__intro + .wrap { padding-top: var(--space-xl); }
 .legal__head p { margin-top: var(--space-s); color: var(--c-muted); }
 
 .prose { max-width: 46rem; }
@@ -1081,7 +1083,7 @@ body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
 @media print {
   .site-header, .action-bar, .nav, .hero__actions, .route-links, .gallery, .skip-link { display: none !important; }
   body { padding: 0; color: #000; }
-  .section, .contact, .intro, .legal { padding-block: 1.5rem; margin-top: 0; background: none; }
+  .section, .contact, .intro, .legal, .legal__intro { padding-block: 1.5rem; margin-top: 0; background: none; }
   .site-footer { background: none; }
   a { color: #000; }
 }

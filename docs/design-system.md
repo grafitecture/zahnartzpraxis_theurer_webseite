@@ -37,6 +37,9 @@ abgeleitete Tiefblau `#006da3` im gleichen Farbton.
   Praxis (Verlauf) · Anfahrt (weiß) · Kontakt (Verlauf) · Fußzeile (weiß mit
   Zahn-Grafik). Der Verlaufsstart ist so gewählt, dass Praxisblau darauf noch
   3,2 : 1 erreicht.
+- **Unterseiten** (Impressum, Datenschutz, 404): Der Kopf mit der Überschrift
+  hat wie der Hero den umgedrehten Verlauf (oben Weiß, unten Hellblau), der
+  Text darunter steht auf Weiß.
 - **Fußzeile:** Zahn-Grafik (`zahn-hintergrund-1920`) im Hintergrund, oben
   angesetzt, mindestens 60 rem breit.
 
@@ -44,8 +47,9 @@ abgeleitete Tiefblau `#006da3` im gleichen Farbton.
 
 - Logo in Kopf- und Fußzeile immer gleich groß: `--logo-h`, fluide von
   4,25 rem (360 px) bis 6 rem (1440 px).
-- Die Kopfzeile ist oben transparent, blendet sich beim Herunterscrollen aus
-  und beim Hochscrollen wieder ein. Das Logo schrumpft nie.
+- Die Kopfzeile ist oben transparent und bleibt beim Scrollen immer oben
+  angeheftet (dann mit heller, leicht transparenter Fläche und feiner Linie).
+  Das Logo schrumpft nie.
 - Navigationspunkte (Kopf- und Fußzeile): 16 px, keine Unterstreichung, kein
   Rahmen. Eine Fläche mit Verlauf (Rundung 2 px) erscheint nur bei
   Mouseover (`#c8e0f3` → `#edf5fb`) und beim aktiven Punkt

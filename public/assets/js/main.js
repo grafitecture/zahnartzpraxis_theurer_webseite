@@ -71,28 +71,16 @@
   }
 
   /* ---------------------------------------------------------------------
-   * 2. Kopfzeile: oben transparent über dem Verlauf, beim Runterscrollen
-   *    ausgeblendet, beim Hochscrollen wieder da – das Logo bleibt immer
-   *    gleich groß. Dazu der aktive Navigationspunkt je Abschnitt.
+   * 2. Kopfzeile: oben transparent über dem Verlauf, beim Scrollen immer
+   *    oben angeheftet (mit heller Fläche) – das Logo bleibt immer gleich
+   *    groß. Dazu der aktive Navigationspunkt je Abschnitt.
    * ------------------------------------------------------------------ */
   var header = document.querySelector('.site-header');
   if (header) {
-    var lastY = window.scrollY;
     var ticking = false;
 
     var updateHeader = function () {
-      var y = Math.max(0, window.scrollY);
-      var height = header.offsetHeight;
-      var menuOpen = nav && nav.hasAttribute('data-open');
-      var focusInside = header.contains(document.activeElement) && document.activeElement !== document.body;
-
-      header.classList.toggle('is-top', y < 8);
-      if (y <= height || menuOpen || focusInside || y < lastY - 4) {
-        header.classList.remove('is-hidden');
-      } else if (y > lastY + 4) {
-        header.classList.add('is-hidden');
-      }
-      lastY = y;
+      header.classList.toggle('is-top', window.scrollY < 8);
       ticking = false;
     };
 
@@ -102,7 +90,6 @@
         window.requestAnimationFrame(updateHeader);
       }
     }, { passive: true });
-    header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
     updateHeader();
   }
 
