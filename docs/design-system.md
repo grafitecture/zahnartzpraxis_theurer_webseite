@@ -121,6 +121,9 @@ himmelblauen Bühne (`--c-sky-50`); die Köpfe ragen über deren Oberkante.
 Praxisfotos hell, ohne Filter. Die Anfahrtskarte ist eine eigene Grafik in den
 Hausfarben (Daten: OpenStreetMap).
 
+Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
+Überschrift, vor dem Einleitungstext; ab `48em` unter Text und Buttons.
+
 ## Barrierefreiheit
 
 - Textkontraste nach WCAG AA (automatisch geprüft, 0 Fehler)

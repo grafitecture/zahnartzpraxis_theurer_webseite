@@ -554,11 +554,16 @@ body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
 .stage img { width: 100%; }
 
 @media (max-width: 47.99em) {
+  /* Smartphone: Teamfoto zwischen Überschrift und Einleitungstext */
+  .hero > .wrap { display: flex; flex-direction: column; }
   .hero .stage {
+    order: 1;
+    margin-top: var(--space-l);
     margin-left: calc(-1 * max(var(--gutter), env(safe-area-inset-left, 0px)));
     margin-right: calc(-1 * max(var(--gutter), env(safe-area-inset-right, 0px)));
   }
   .hero .stage::before { border-radius: 0; }
+  .hero__intro { order: 2; }
 }
 
 /* Auf einen Blick */
