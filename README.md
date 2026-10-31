@@ -19,6 +19,7 @@ public/                    Web-Root (wird von Vercel ausgeliefert)
   assets/img/              Optimierte Bilder (AVIF + WebP)
   assets/fonts/            Selbst gehostete Schriften
 docs/design-system.md      Farben, Typo-Skala, Abstände, Breakpoints
+kit/grafitecture-credit/   Grafitecture-Feld für Impressum und Datenschutz (Kit, nicht online)
 tools/                     Werkzeuge für Bilder, Karte und Prüfung (nicht online)
 vercel.json                Auslieferung, Sicherheits-Header, Caching
 ```
@@ -105,6 +106,17 @@ Die Karte wird aus OpenStreetMap-Daten (`tools/map/osm-umgebung.json`) selbst
 gezeichnet und direkt in die Seite eingebettet.
 
 **Prüfen** – `python3 tools/check_site.py` (Tags, IDs, Links, Anker, alt-Texte).
+
+**Grafitecture-Feld** – ganz unten in Impressum und Datenschutz steht das
+Feld der Agentur (Lime-Fläche, Logo, „Marken mit KI.“, Link auf
+https://www.grafitecture.de/ in neuem Fenster). Es kommt unverändert aus dem
+Kit `kit/grafitecture-credit/` (Kit v1.2, Original im Repo
+`grafitecture/lannee_webseite`): das Markup ist der Inhalt von
+`snippet.de.html` (letztes Element von `.prose`), das CSS ist als Abschnitt 10
+an `public/assets/css/main.css` angehängt. **Ausnahme vom Designsystem:**
+Farben (#dafd55, #435960, Weiß) und Größe des Feldes gehören Grafitecture und
+folgen nicht den Tokens der Praxis. Nichts daran anpassen; bei einer neuen
+Kit-Version Ordner, Schnipsel und CSS neu übernehmen.
 
 ## Schrift: Corporate S
 

@@ -26,3 +26,13 @@ Designsystem: `docs/design-system.md`.
   und die Tabelle `#sprechzeiten` in `public/index.html`
 - Karte: `python3 tools/map/build_map.py && python3 tools/inject_map.py`
 - Keine externen Dienste, Cookies oder Tracker einbinden (Datenschutz, CSP in `vercel.json`)
+- **Grafitecture-Feld** (Lime-Fläche mit Logo, „Marken mit KI.“, Link auf
+  `https://www.grafitecture.de/` in neuem Fenster): steht ganz unten in
+  Impressum und Datenschutz, als letztes Element von `.prose` direkt vor der
+  Fußzeile. Quelle ist das Kit `kit/grafitecture-credit/` (README dort,
+  Original in `grafitecture/lannee_webseite`): Markup = Inhalt von
+  `snippet.de.html`, CSS = Abschnitt 10 am Ende von `main.css`, beides
+  unverändert. Farben (#dafd55, #435960, Weiß) und Größe des Feldes gehören
+  der Agentur und sind die **einzige Ausnahme** von „Farben nur über die
+  Tokens“; am Feld nichts an das Designsystem der Praxis anpassen.
+  Änderungen nur im Kit machen und neu kopieren.

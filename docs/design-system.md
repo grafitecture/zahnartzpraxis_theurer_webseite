@@ -25,6 +25,11 @@ Praxisblau `#0087cb` erreicht auf Weiß 3,9 : 1. Das genügt WCAG AA nur für
 große Schrift. Für Buttons, Links und kleine blaue Texte gibt es deshalb das
 abgeleitete Tiefblau `#006da3` im gleichen Farbton.
 
+**Ausnahme:** Das Grafitecture-Feld ganz unten in Impressum und Datenschutz
+behält Farben und Größe der Agentur (Lime `#dafd55`, Schrift `#435960`, Linie
+Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
+`kit/grafitecture-credit/` und folgt nicht den Tokens dieser Website.
+
 ## Überschriften und Flächen
 
 - **Überschriften blau:** h1–h4 (ab 24 px) in Praxisblau `#0087cb`, kleinere
