@@ -110,9 +110,9 @@ Schriftgröße im Browser erhöhen.
 |---|---|---|---|
 | Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
-| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster, Dreierblock nebeneinander (Symbol über dem Text) | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
+| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster, Dreierblock nebeneinander | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
 | `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, 12-Spalten-Raster, Team vierspaltig | Logo, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (~ 810 von 960 px) |
-| `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig, Dreierblock mit Symbol links neben dem Text | darüber wachsen nur noch die Ränder |
+| `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
 
 ## Formen und Linien
@@ -122,12 +122,14 @@ Schriftgröße im Browser erhöhen.
   Anrufen / WhatsApp / Anfahrt, Icon mittig über dem Text, Rundung `--radius-m`,
   Höhe 60 px; „Anrufen“ gefüllt in `--c-blue-ink`, die anderen auf `--c-sky-50`
 - Dreierblock im Hero (`.reach`): Telefon / WhatsApp / Anfahrt als drei
-  gleich breite Kacheln, die ganze Kachel ist ein Link. Aufbau: rundes Symbol
-  (3 rem), kleine Bezeichnung, Nummer bzw. Adresse groß (`--step-1`, ab 64em
-  `--step-2`, Demi), eine Zeile Hinweis, Pfeil. Telefon gefüllt in
-  `--c-blue-ink` (mit Live-Status der Sprechzeiten), die anderen weiß mit 1 px
-  Linie `--c-chip-line`, Hover Linie `--c-blue-ink` auf `--c-sky-25`. Rundung
-  `--radius-m`. Mobil untereinander, ab `48em` nebeneinander.
+  gleich breite, kompakte Kacheln, bewusst zurückhaltend; die ganze Kachel ist
+  ein Link. Aufbau: rundes Symbol (2,5 rem), Bezeichnung klein (`--step-n1`),
+  Nummer bzw. Adresse in Tiefblau, Demi (`--step-0`, ab 64em `--step-1`),
+  Hinweis klein (`--step-n1`). Alle drei weiß mit 1 px Linie
+  `--c-chip-line`, Hover Linie `--c-blue-ink` auf `--c-sky-25`, Rundung
+  `--radius-m`. Das Telefon ist nur über sein gefülltes Symbol
+  (`--c-blue-ink`) hervorgehoben und zeigt den Live-Status der Sprechzeiten.
+  Mobil untereinander, ab `48em` nebeneinander.
 - Fotos: `--radius-m` (0,875 rem)
 - Bühnen hinter freigestellten Porträts: oben `--radius-l` (1,75 rem), unten gerade
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten
