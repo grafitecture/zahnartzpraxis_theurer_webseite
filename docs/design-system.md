@@ -148,7 +148,7 @@ Zeichnungen auf Basis derselben Zahnform – Schild mit Zahn, Zahn mit Herz,
 Krone auf Implantat, Zahn mit Glanz. **Keine Linien, nur Flächen mit
 Verläufen:** Kreis mit Verlauf Weiß → `--c-sky-50` (ohne Rand); die blauen
 Formen teilen sich einen durchgehenden Verlauf Himmelblau (oben links) →
-Praxisblau (unten rechts); Innenformen (Zahn im Schild, Herz, Glanz) sind
+aufgehelltes Praxisblau (unten rechts; 60 % Praxisblau, 40 % Himmelblau); Innenformen (Zahn im Schild, Herz, Glanz) sind
 helle Aussparungen mit Verlauf Weiß → `--c-sky-50`; das Implantat-Gewinde
 entsteht aus Lücken zwischen den Flächen. Größe 4 rem, ab `64em` 4,5 rem,
 über der Gruppenüberschrift. Die Symbole stehen im Sprite von `index.html`

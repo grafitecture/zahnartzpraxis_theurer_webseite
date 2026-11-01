@@ -784,7 +784,7 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
 .si-stop-white { stop-color: var(--c-white); }
 .si-stop-sky50 { stop-color: var(--c-sky-50); }
 .si-stop-sky { stop-color: var(--c-sky); }
-.si-stop-blue { stop-color: var(--c-blue); }
+.si-stop-blue { stop-color: color-mix(in srgb, var(--c-blue) 60%, var(--c-sky)); } /* Praxisblau, etwas aufgehellt */
 .si-stop-fade { stop-opacity: 0.15; }
 .service-list { margin: 0; }
 .service-list > div {
