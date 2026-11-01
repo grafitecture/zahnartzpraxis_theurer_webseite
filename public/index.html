@@ -63,6 +63,7 @@
   </script>
 </head>
 <body>
+  <span class="visually-hidden" id="hinweis-neues-fenster">öffnet in neuem Fenster</span>
   <svg class="visually-hidden" aria-hidden="true" focusable="false">
     <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5.1 3.5h3.3l1.7 4.3-2.2 1.5a11.5 11.5 0 0 0 6.8 6.8l1.5-2.2 4.3 1.7v3.3a1.7 1.7 0 0 1-1.8 1.7C11 20.1 3.9 13 3.4 5.3a1.7 1.7 0 0 1 1.7-1.8Z"/></symbol>
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20 11.6a8 8 0 0 1-11.7 7.1L4 20l1.3-4.1A8 8 0 1 1 20 11.6Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/></symbol>
@@ -156,7 +157,7 @@
               </a>
             </li>
             <li>
-              <a class="reach__item" href="https://wa.me/4915142082774" rel="noopener">
+              <a class="reach__item" href="https://wa.me/4915142082774" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
                 <span class="reach__badge"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
                 <span class="reach__text">
                   <span class="reach__label">WhatsApp</span>
@@ -303,13 +304,53 @@
             <li><h4>Immer auf dem neuesten Stand</h4><p>Regelmäßige Fortbildungen für das gesamte Team.</p></li>
           </ul>
           <div class="memberships">
-            <p>Fortbildung und Austausch in den Fachgesellschaften</p>
-            <ul class="logo-row">
-              <li><a href="https://www.dgzmk.de/" rel="noopener"><img src="assets/img/fg-dgzmk.webp" width="140" height="104" loading="lazy" alt="DGZMK – Deutsche Gesellschaft für Zahn-, Mund- und Kieferheilkunde"></a></li>
-              <li><a href="https://www.dgkiz.de/" rel="noopener"><img src="assets/img/fg-dgkiz.webp" width="140" height="104" loading="lazy" alt="DGKiZ – Deutsche Gesellschaft für Kinderzahnmedizin"></a></li>
-              <li><a href="https://dgparo.de/" rel="noopener"><img src="assets/img/fg-dgparo.webp" width="140" height="104" loading="lazy" alt="DG PARO – Deutsche Gesellschaft für Parodontologie"></a></li>
-              <li><a href="https://www.dgoi.info/" rel="noopener"><img src="assets/img/fg-dgoi.webp" width="140" height="104" loading="lazy" alt="DGOI – Deutsche Gesellschaft für Orale Implantologie"></a></li>
-              <li><a href="https://www.apw.de/" rel="noopener"><img src="assets/img/fg-apw.webp" width="140" height="104" loading="lazy" alt="APW – Akademie Praxis und Wissenschaft"></a></li>
+            <p class="memberships__title">Fortbildung und Austausch in den Fachgesellschaften</p>
+            <ul class="societies">
+              <li>
+                <a class="society" href="https://www.dgzmk.de/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                  <img class="society__logo" src="assets/img/fg-dgzmk.webp" width="140" height="104" loading="lazy" alt="">
+                  <span class="society__text">
+                    <span class="society__name">Deutsche Gesellschaft für Zahn-, Mund- und Kieferheilkunde (DGZMK)</span>
+                    <span class="society__desc">Die wissenschaftliche Dachgesellschaft der Zahnmedizin in Deutschland, gegründet 1859.</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a class="society" href="https://www.dgkiz.de/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                  <img class="society__logo" src="assets/img/fg-dgkiz.webp" width="140" height="104" loading="lazy" alt="">
+                  <span class="society__text">
+                    <span class="society__name">Deutsche Gesellschaft für Kinderzahnmedizin (DGKiZ)</span>
+                    <span class="society__desc">Fachgesellschaft für die Zahngesundheit von Kindern, von Geburt an.</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a class="society" href="https://dgparo.de/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                  <img class="society__logo" src="assets/img/fg-dgparo.webp" width="140" height="104" loading="lazy" alt="">
+                  <span class="society__text">
+                    <span class="society__name">Deutsche Gesellschaft für Parodontologie (DG PARO)</span>
+                    <span class="society__desc">Fachgesellschaft für gesundes Zahnfleisch und festen Halt der Zähne, mit Wurzeln bis 1924.</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a class="society" href="https://www.dgoi.info/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                  <img class="society__logo" src="assets/img/fg-dgoi.webp" width="140" height="104" loading="lazy" alt="">
+                  <span class="society__text">
+                    <span class="society__name">Deutsche Gesellschaft für Orale Implantologie (DGOI)</span>
+                    <span class="society__desc">Fachgesellschaft für Zahnimplantate mit praxisnaher Fortbildung, gegründet 2004.</span>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a class="society" href="https://www.apw.de/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                  <img class="society__logo" src="assets/img/fg-apw.webp" width="140" height="104" loading="lazy" alt="">
+                  <span class="society__text">
+                    <span class="society__name">Akademie Praxis und Wissenschaft (APW)</span>
+                    <span class="society__desc">Die Fortbildungsakademie der DGZMK seit 1974: Wissen aus der Forschung für die Praxis.</span>
+                  </span>
+                </a>
+              </li>
             </ul>
           </div>
         </section>
@@ -501,7 +542,7 @@
 </svg>
 <!-- karte:end -->
             </div>
-            <figcaption>Kartendaten: © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap-Mitwirkende</a></figcaption>
+            <figcaption>Kartendaten: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">OpenStreetMap-Mitwirkende</a></figcaption>
           </figure>
           <div class="directions__info">
             <div class="ways">
@@ -522,11 +563,11 @@
               </section>
             </div>
             <div class="route-links">
-              <a class="button button--primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Zahnarztpraxis%20Theurer%2C%20Sch%C3%BCtzenstra%C3%9Fe%202%2C%2021726%20Oldendorf" rel="noopener">
+              <a class="button button--primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Zahnarztpraxis%20Theurer%2C%20Sch%C3%BCtzenstra%C3%9Fe%202%2C%2021726%20Oldendorf" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
                 <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>
                 Route planen
               </a>
-              <a class="button button--ghost" href="https://maps.apple.com/?daddr=Sch%C3%BCtzenstra%C3%9Fe%202%2C%2021726%20Oldendorf&amp;q=Zahnarztpraxis%20Theurer" rel="noopener">In Apple Karten öffnen</a>
+              <a class="button button--ghost" href="https://maps.apple.com/?daddr=Sch%C3%BCtzenstra%C3%9Fe%202%2C%2021726%20Oldendorf&amp;q=Zahnarztpraxis%20Theurer" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">In Apple Karten öffnen</a>
             </div>
           </div>
         </div>
@@ -548,7 +589,7 @@
               <div class="channel">
                 <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
                 <dt>WhatsApp</dt>
-                <dd><a href="https://wa.me/4915142082774" rel="noopener">0151 420 82774</a></dd>
+                <dd><a href="https://wa.me/4915142082774" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">0151 420 82774</a></dd>
               </div>
               <div class="channel">
                 <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
@@ -585,7 +626,7 @@
             <div class="emergency">
               <h3>Zahnschmerzen am Wochenende?</h3>
               <p>An Wochenenden und Feiertagen hilft Ihnen der zahnärztliche Notdienst in Niedersachsen.</p>
-              <a href="https://www.kzvn.de/patienten/notfallbereitschaft.html" rel="noopener">Notdienst in Ihrer Nähe finden</a>
+              <a href="https://www.kzvn.de/patienten/notfallbereitschaft.html" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">Notdienst in Ihrer Nähe finden</a>
             </div>
           </div>
         </div>
@@ -630,7 +671,7 @@
 
   <nav class="action-bar" aria-label="Schnellkontakt">
     <a href="tel:+4941446639"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>Anrufen</a>
-    <a href="https://wa.me/4915142082774" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
+    <a href="https://wa.me/4915142082774" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>WhatsApp</a>
     <a href="#anfahrt"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>Anfahrt</a>
   </nav>
 </body>

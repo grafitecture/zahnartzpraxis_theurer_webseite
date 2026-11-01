@@ -832,19 +832,49 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
 }
 
 .memberships { margin-top: var(--space-m); }
-.memberships p { color: var(--c-muted); font-size: var(--step-n1); }
-.logo-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-s) var(--space-l);
+.memberships__title { color: var(--c-muted); font-size: var(--step-n1); }
+
+/* Fachgesellschaften: Logo links, Name und kurze Beschreibung rechts.
+   Die ganze Zeile ist ein Link (neues Fenster). Ab 48em zweispaltig. */
+.societies {
+  display: grid;
+  gap: var(--space-m) var(--space-l);
   margin: var(--space-s) 0 0;
   padding: 0;
   list-style: none;
 }
-.logo-row a { display: block; border-radius: var(--radius-s); }
-.logo-row img { height: 3.25rem; width: auto; opacity: 0.85; transition: opacity 0.2s; }
-.logo-row a:hover img { opacity: 1; }
+.society {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-s);
+  border-radius: var(--radius-s);
+  color: var(--c-muted);
+  text-decoration: none;
+}
+.society__logo {
+  flex: none;
+  width: 4.5rem;
+  height: auto;
+  opacity: 0.85;
+  transition: opacity 0.2s var(--ease);
+}
+.society__text { display: grid; gap: 0.2rem; min-width: 0; padding-top: 0.25rem; }
+.society__name {
+  color: var(--c-ink);
+  font-weight: 600;
+  line-height: 1.35;
+  hyphens: manual;   /* lange Namen nicht mitten im Wort trennen */
+  text-wrap: pretty;
+  transition: color 0.2s var(--ease);
+}
+.society__desc { font-size: var(--step-n1); line-height: 1.45; text-wrap: pretty; }
+.society:hover { color: var(--c-muted); }
+.society:hover .society__logo { opacity: 1; }
+.society:hover .society__name { color: var(--c-blue-deep); }
+
+@media (min-width: 48em) {
+  .societies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 /* Team */
 .team-grid {

@@ -26,6 +26,9 @@ Designsystem: `docs/design-system.md`.
   und die Tabelle `#sprechzeiten` in `public/index.html`
 - Karte: `python3 tools/map/build_map.py && python3 tools/inject_map.py`
 - Keine externen Dienste, Cookies oder Tracker einbinden (Datenschutz, CSP in `vercel.json`)
+- Externe Links immer in neuem Fenster: `target="_blank" rel="noopener"
+  aria-describedby="hinweis-neues-fenster"` (der versteckte Hinweistext steht
+  direkt nach `<body>` jeder Seite; das Grafitecture-Feld bringt seinen eigenen mit)
 - **Grafitecture-Feld** (Lime-Fläche mit Logo, „Marken mit KI.“, Link auf
   `https://www.grafitecture.de/` in neuem Fenster): steht ganz unten in
   Impressum und Datenschutz, als letztes Element von `.prose` direkt vor der

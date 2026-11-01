@@ -135,6 +135,10 @@ Schriftgröße im Browser erhöhen.
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten
 - Hinweisboxen in Rechtstexten (`.callout`): weiße Fläche, 1 px Linie
   `--c-chip-line`, Rundung `--radius-m`
+- Fachgesellschaften (`.societies`): Logo (4,5 rem breit, Graustufen, 85 %
+  Deckkraft, bei Hover 100 %) links, rechts voller Name (Demi, `--c-ink`) und
+  eine Zeile Beschreibung (`--step-n1`, `--c-muted`); die ganze Zeile ist ein
+  Link in neuem Fenster. Mobil untereinander, ab `48em` zweispaltig.
 
 ## Bildsprache
 
@@ -165,3 +169,6 @@ Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
 - Bewegungen nur bei `prefers-reduced-motion: no-preference`
 - Telefon, WhatsApp und Anfahrt auf dem Handy jederzeit mit einem Tipp erreichbar
   (im Hero über den Dreierblock, sonst über die Schnellkontakt-Leiste)
+- Externe Links öffnen immer in einem neuen Fenster (`target="_blank"
+  rel="noopener"`); Screenreader hören über `aria-describedby` den Hinweis
+  „öffnet in neuem Fenster“ (versteckter Text `#hinweis-neues-fenster` je Seite)
