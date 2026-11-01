@@ -145,14 +145,15 @@ Hausfarben (Daten: OpenStreetMap).
 
 **Leistungs-Icons** (Vorsorge, Zähne erhalten, Zahnersatz, Ästhetik): eigene
 Zeichnungen auf Basis derselben Zahnform – Schild mit Zahn, Zahn mit Herz,
-Krone auf Implantat, Zahn mit Glanz. Weißer Kreis mit Verlauf Weiß →
-`--c-sky-50` und 1 px Linie `--c-chip-line`; Zahn mit Verlauf Weiß →
-`--c-grad-top` → `--c-sky`, Kontur in Praxisblau (fein, ca. 1,6 px);
-Akzente (Herz, Implantat, Glanzsterne) mit Verlauf Praxisblau → Himmelblau.
-Größe 4 rem, ab `64em` 4,5 rem, über der Gruppenüberschrift. Die Symbole
-stehen im Sprite von `index.html` (`#si-…`); Verlaufsstopps und Linien
-bekommen ihre Farben über Klassen (`.si-stop-*`, `.si-line`) aus den Tokens,
-weil die CSP keine Inline-Styles erlaubt.
+Krone auf Implantat, Zahn mit Glanz. **Keine Linien, nur Flächen mit
+Verläufen:** Kreis mit Verlauf Weiß → `--c-sky-50` (ohne Rand); die blauen
+Formen teilen sich einen durchgehenden Verlauf Himmelblau (oben links) →
+Praxisblau (unten rechts); Innenformen (Zahn im Schild, Herz, Glanz) sind
+helle Aussparungen mit Verlauf Weiß → `--c-sky-50`; das Implantat-Gewinde
+entsteht aus Lücken zwischen den Flächen. Größe 4 rem, ab `64em` 4,5 rem,
+über der Gruppenüberschrift. Die Symbole stehen im Sprite von `index.html`
+(`#si-…`); die Verlaufsstopps bekommen ihre Farben über Klassen
+(`.si-stop-*`) aus den Tokens, weil die CSP keine Inline-Styles erlaubt.
 
 Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
 Überschrift, vor dem Einleitungstext; ab `48em` unter Text und Dreierblock.

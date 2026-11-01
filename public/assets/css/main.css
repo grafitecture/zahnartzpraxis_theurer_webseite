@@ -770,8 +770,8 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
   border-bottom: 1px solid var(--c-ink);
 }
 
-/* Leistungs-Icons (Sprite-Symbole si-*): blau/weiß mit dezenten Verläufen.
-   Farben der Verlaufsstopps und Linien kommen aus den Tokens. */
+/* Leistungs-Icons (Sprite-Symbole si-*): keine Linien, nur Flächen mit
+   Verläufen in Blau/Weiß. Farben der Verlaufsstopps kommen aus den Tokens. */
 .service-icon {
   display: block;
   width: 4rem;
@@ -783,13 +783,9 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
 }
 .si-stop-white { stop-color: var(--c-white); }
 .si-stop-sky50 { stop-color: var(--c-sky-50); }
-.si-stop-gradtop { stop-color: var(--c-grad-top); }
 .si-stop-sky { stop-color: var(--c-sky); }
 .si-stop-blue { stop-color: var(--c-blue); }
-.si-bg { stroke: var(--c-chip-line); stroke-width: 1; }
-.si-line { stroke: var(--c-blue); stroke-width: 1.3; stroke-linejoin: round; }
-.si-thread { fill: none; stroke: var(--c-white); stroke-width: 1.3; stroke-linecap: round; }
-.si-shine { fill: none; stroke: var(--c-white); stroke-width: 1.6; stroke-linecap: round; }
+.si-stop-fade { stop-opacity: 0.15; }
 .service-list { margin: 0; }
 .service-list > div {
   padding-block: var(--space-xs);
