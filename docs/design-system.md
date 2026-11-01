@@ -113,6 +113,9 @@ Schriftgröße im Browser erhöhen.
 ## Formen und Linien
 
 - Buttons: Pillenform (`--radius-pill`), Mindesthöhe 48 px (Touch)
+- Schnellkontakt-Leiste (mobil, < 1024 px): drei gleich breite Buttons
+  Anrufen / WhatsApp / Anfahrt, Icon mittig über dem Text, Rundung `--radius-m`,
+  Höhe 60 px; „Anrufen“ gefüllt in `--c-blue-ink`, die anderen auf `--c-sky-50`
 - Fotos: `--radius-m` (0,875 rem)
 - Bühnen hinter freigestellten Porträts: oben `--radius-l` (1,75 rem), unten gerade
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten

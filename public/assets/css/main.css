@@ -460,7 +460,7 @@ body::before {
   bottom: 0;
   z-index: 40;
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* drei gleich breite Buttons */
   gap: 0.5rem;
   padding: 0.5rem max(1rem, env(safe-area-inset-right, 0px)) calc(0.5rem + env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
   background: color-mix(in srgb, var(--c-white) 96%, transparent);
@@ -469,22 +469,28 @@ body::before {
   border-top: 1px solid var(--c-line);
 }
 .action-bar a {
+  /* Icon mittig über dem Text */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  min-height: 3rem;
-  border-radius: var(--radius-pill);
+  gap: 0.25rem;
+  min-width: 0;
+  min-height: 3.75rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: var(--radius-m);
   color: var(--c-blue-ink);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  line-height: 1.1;
+  white-space: nowrap;
   text-decoration: none;
   background: var(--c-sky-50);
 }
 .action-bar a:first-child { background: var(--c-blue-ink); color: var(--c-white); }
-.action-bar .icon { width: 1.2rem; height: 1.2rem; }
+.action-bar .icon { width: 1.4rem; height: 1.4rem; flex: none; }
 
-body { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
 
 @media (min-width: 48em) {
   /* Tablet: Leiste mittig statt über die volle Breite */
