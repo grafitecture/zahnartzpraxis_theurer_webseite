@@ -55,6 +55,11 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
 - Die Kopfzeile ist oben transparent und bleibt beim Scrollen immer oben
   angeheftet (dann mit heller, leicht transparenter Fläche und feiner Linie).
   Das Logo schrumpft nie.
+- **Telefonnummer nur einmal im Bild:** Auf der Startseite steht die Nummer im
+  Dreierblock des Hero. Solange er sichtbar ist, sind der Telefon-Button der
+  Kopfzeile (Desktop) und die Schnellkontakt-Leiste (mobil) ausgeblendet; sie
+  erscheinen, sobald der Block aus dem Bild scrollt (Button klappt weich auf,
+  Leiste fährt von unten herein). Unterseiten zeigen den Telefon-Button immer.
 - Navigationspunkte (Kopf- und Fußzeile): 16 px, keine Unterstreichung, kein
   Rahmen. Eine Fläche mit Verlauf (Rundung 2 px) erscheint nur bei
   Mouseover (`#c8e0f3` → `#edf5fb`) und beim aktiven Punkt
@@ -105,9 +110,9 @@ Schriftgröße im Browser erhöhen.
 |---|---|---|---|
 | Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
-| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
+| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster, Dreierblock nebeneinander (Symbol über dem Text) | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
 | `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, 12-Spalten-Raster, Team vierspaltig | Logo, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (~ 810 von 960 px) |
-| `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
+| `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig, Dreierblock mit Symbol links neben dem Text | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
 
 ## Formen und Linien
@@ -116,6 +121,13 @@ Schriftgröße im Browser erhöhen.
 - Schnellkontakt-Leiste (mobil, < 1024 px): drei gleich breite Buttons
   Anrufen / WhatsApp / Anfahrt, Icon mittig über dem Text, Rundung `--radius-m`,
   Höhe 60 px; „Anrufen“ gefüllt in `--c-blue-ink`, die anderen auf `--c-sky-50`
+- Dreierblock im Hero (`.reach`): Telefon / WhatsApp / Anfahrt als drei
+  gleich breite Kacheln, die ganze Kachel ist ein Link. Aufbau: rundes Symbol
+  (3 rem), kleine Bezeichnung, Nummer bzw. Adresse groß (`--step-1`, ab 64em
+  `--step-2`, Demi), eine Zeile Hinweis, Pfeil. Telefon gefüllt in
+  `--c-blue-ink` (mit Live-Status der Sprechzeiten), die anderen weiß mit 1 px
+  Linie `--c-chip-line`, Hover Linie `--c-blue-ink` auf `--c-sky-25`. Rundung
+  `--radius-m`. Mobil untereinander, ab `48em` nebeneinander.
 - Fotos: `--radius-m` (0,875 rem)
 - Bühnen hinter freigestellten Porträts: oben `--radius-l` (1,75 rem), unten gerade
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten
@@ -130,7 +142,7 @@ Praxisfotos hell, ohne Filter. Die Anfahrtskarte ist eine eigene Grafik in den
 Hausfarben (Daten: OpenStreetMap).
 
 Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
-Überschrift, vor dem Einleitungstext; ab `48em` unter Text und Buttons.
+Überschrift, vor dem Einleitungstext; ab `48em` unter Text und Dreierblock.
 
 ## Barrierefreiheit
 
@@ -138,3 +150,4 @@ Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
 - sichtbarer Fokusrahmen, Skip-Link, Tastaturbedienung der Navigation
 - Bewegungen nur bei `prefers-reduced-motion: no-preference`
 - Telefon, WhatsApp und Anfahrt auf dem Handy jederzeit mit einem Tipp erreichbar
+  (im Hero über den Dreierblock, sonst über die Schnellkontakt-Leiste)

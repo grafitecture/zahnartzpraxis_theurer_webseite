@@ -93,6 +93,40 @@
     updateHeader();
   }
 
+  /* ---------------------------------------------------------------------
+   * 2a. Telefonnummer nur einmal im Bild: Solange der Dreierblock im Hero
+   *     (Telefon, WhatsApp, Anfahrt) sichtbar ist, blenden das Telefon in der
+   *     Kopfzeile (Desktop) und die Schnellkontakt-Leiste (mobil) aus.
+   *     Ohne JavaScript bleiben beide sichtbar.
+   * ------------------------------------------------------------------ */
+  var reach = document.querySelector('[data-reach]');
+  if (reach && 'IntersectionObserver' in window) {
+    var root = document.documentElement;
+    var bar = document.querySelector('.action-bar');
+    var reachObserver = null;
+    var resizeTimer = 0;
+
+    var watchReach = function () {
+      if (reachObserver) reachObserver.disconnect();
+      // „Im Bild“ heißt: nicht unter der angehefteten Kopfzeile und nicht hinter der Leiste
+      var top = header ? header.offsetHeight : 0;
+      var bottom = bar && window.getComputedStyle(bar).display !== 'none' ? bar.offsetHeight : 0;
+      var rect = reach.getBoundingClientRect();
+      root.classList.toggle('reach-in-view', rect.bottom > top && rect.top < window.innerHeight - bottom);
+
+      reachObserver = new IntersectionObserver(function (entries) {
+        root.classList.toggle('reach-in-view', entries[entries.length - 1].isIntersecting);
+      }, { rootMargin: (-top) + 'px 0px ' + (-bottom) + 'px 0px' });
+      reachObserver.observe(reach);
+    };
+
+    watchReach();
+    window.addEventListener('resize', function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(watchReach, 200);
+    });
+  }
+
   if (header && 'IntersectionObserver' in window) {
     var links = menu ? Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]')) : [];
     var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
