@@ -143,6 +143,17 @@ himmelblauen Bühne (`--c-sky-50`); die Köpfe ragen über deren Oberkante.
 Praxisfotos hell, ohne Filter. Die Anfahrtskarte ist eine eigene Grafik in den
 Hausfarben (Daten: OpenStreetMap).
 
+**Leistungs-Icons** (Vorsorge, Zähne erhalten, Zahnersatz, Ästhetik): eigene
+Zeichnungen auf Basis derselben Zahnform – Schild mit Zahn, Zahn mit Herz,
+Krone auf Implantat, Zahn mit Glanz. Weißer Kreis mit Verlauf Weiß →
+`--c-sky-50` und 1 px Linie `--c-chip-line`; Zahn mit Verlauf Weiß →
+`--c-grad-top` → `--c-sky`, Kontur in Praxisblau (fein, ca. 1,6 px);
+Akzente (Herz, Implantat, Glanzsterne) mit Verlauf Praxisblau → Himmelblau.
+Größe 4 rem, ab `64em` 4,5 rem, über der Gruppenüberschrift. Die Symbole
+stehen im Sprite von `index.html` (`#si-…`); Verlaufsstopps und Linien
+bekommen ihre Farben über Klassen (`.si-stop-*`, `.si-line`) aus den Tokens,
+weil die CSP keine Inline-Styles erlaubt.
+
 Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
 Überschrift, vor dem Einleitungstext; ab `48em` unter Text und Dreierblock.
 
