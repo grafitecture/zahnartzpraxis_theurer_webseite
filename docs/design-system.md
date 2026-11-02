@@ -46,13 +46,13 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
   hat wie der Hero den umgedrehten Verlauf (oben Weiß, unten Hellblau), der
   Text darunter steht auf Weiß.
 - **Zahn-Grafik** (`zahn-hintergrund-1920`, Silbergrau mit 30 % Deckkraft)
-  rahmt die Seite oben und unten, jeweils oben angesetzt, mittig, mindestens
-  60 rem breit:
-  - **Hero** (`.intro`): über dem umgedrehten Verlauf, hinter Kopfzeile und
-    Überschrift. Mischmodus `multiply`, damit der weiße Auslauf am unteren Rand
+  rahmt die Seite oben und unten, jeweils mittig, mindestens 60 rem breit:
+  - **Hero** (`.intro`): über dem umgedrehten Verlauf, beginnt erst unter der
+    Kopfzeile (um `--header-h` versetzt), damit Logo und Navigation frei
+    stehen; liegt hinter der Überschrift. Mischmodus `multiply`, damit der weiße Auslauf am unteren Rand
     der Grafik auf dem Hellblau keine Kante bildet. Praxisblau erreicht an der
     dunkelsten Stelle der Grafik noch 3,35 : 1 (AA große Schrift).
-  - **Fußzeile:** auf Weiß.
+  - **Fußzeile:** auf Weiß, oben angesetzt.
 
 ## Logo und Kopfzeile
 
