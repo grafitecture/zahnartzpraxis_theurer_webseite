@@ -46,7 +46,7 @@ C = {
     "label": "#56646d",
     "ink": "#1a2933",
     "blue": "#0087cb",
-    "blue_ink": "#006da3",
+    "blue_ink": "#00649a",
 }
 
 ROAD_STYLE = {  # Breite der Füllung in Einheiten, Rangfolge

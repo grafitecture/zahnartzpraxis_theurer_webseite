@@ -104,6 +104,10 @@ neu erzeugen.
 **Bilder** – `node tools/images.cjs <ordner-mit-originalen>` (benötigt `sharp`).
 Die Originale der alten Website liegen im Branch `legacy-import`.
 
+**Zahn-Grafik (mitwandernd)** – `node tools/zahn-schwebend.cjs THEURER_ZAHN_30.webp`
+erzeugt `zahn-schwebend-1920` (Silbergrau mit Transparenz, ohne weißen Auslauf).
+Wie stark sie beim Scrollen ausblendet, steuert `TOOTH_FADE` in `main.js`.
+
 **Karte** – `python3 tools/map/build_map.py && python3 tools/inject_map.py`.
 Die Karte wird aus OpenStreetMap-Daten (`tools/map/osm-umgebung.json`) selbst
 gezeichnet und direkt in die Seite eingebettet.

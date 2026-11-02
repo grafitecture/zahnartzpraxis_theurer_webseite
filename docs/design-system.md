@@ -12,7 +12,7 @@ Schriftgröße. Alle Werte sind als CSS-Variablen in
 | `--c-blue` | `#0087cb` | Praxisblau (Marke): große Schrift ab 24 px, Icons, Telefonnummer, Fokusrahmen | 3,9 : 1 |
 | `--c-sky` | `#a3cbeb` | Himmelblau (Marke): Akzentflächen, Hinweislinie | 1,7 : 1 (nur Fläche) |
 | `--c-silver` | `#b5bfc5` | Silbergrau (Marke): Linien, Status „geschlossen“ | 1,9 : 1 (nur Linie) |
-| `--c-blue-ink` | `#006da3` | Abgeleitet: Links, Buttons, kleine blaue Schrift | 5,6 : 1 |
+| `--c-blue-ink` | `#00649a` | Abgeleitet: Links, Buttons, kleine blaue Schrift | 6,4 : 1 (auf `--c-grad-top` 5,2 : 1) |
 | `--c-blue-deep` | `#00517a` | Abgeleitet: Hover und aktiv | 8,5 : 1 |
 | `--c-grad-top` | `#daeaf7` | Start der Verlaufsflächen (Himmelblau mit 60 % Weiß) | Praxisblau darauf 3,2 : 1 |
 | `--c-stage` | `#d6e8f6` | Bühnen hinter freigestellten Fotos (Hero, Zahnärztin) | – |
@@ -23,7 +23,9 @@ Schriftgröße. Alle Werte sind als CSS-Variablen in
 
 Praxisblau `#0087cb` erreicht auf Weiß 3,9 : 1. Das genügt WCAG AA nur für
 große Schrift. Für Buttons, Links und kleine blaue Texte gibt es deshalb das
-abgeleitete Tiefblau `#006da3` im gleichen Farbton.
+abgeleitete Tiefblau `#00649a` im gleichen Farbton. Es ist so dunkel gewählt
+(bis 02.11.2026: `#006da3`), dass kleine blaue Texte auch auf dem Hellblau der
+Verläufe mit der Zahn-Grafik darüber noch 4,5 : 1 erreichen.
 
 **Ausnahme:** Das Grafitecture-Feld ganz unten in Impressum und Datenschutz
 behält Farben und Größe der Agentur (Lime `#dafd55`, Schrift `#435960`, Linie
@@ -33,26 +35,35 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
 ## Überschriften und Flächen
 
 - **Überschriften blau:** h1–h4 (ab 24 px) in Praxisblau `#0087cb`, kleinere
-  Überschriften (h5, h6, Namen, Listentitel) im dunkleren `#006da3`, damit auch
+  Überschriften (h5, h6, Namen, Listentitel) im dunkleren `#00649a`, damit auch
   sie AA erfüllen.
 - **Flächen im Wechsel:** Verlauf `--c-grad-top` → Weiß (von oben nach unten),
   dazwischen weiße Abschnitte. Der Hero-Verlauf ist umgedreht (oben Weiß,
   unten Hellblau). Reihenfolge der Startseite: Hero + Auf einen
-  Blick (Verlauf mit Zahn-Grafik) · Frau Theurer (weiß) · Leistungen (Verlauf) · Team (weiß) ·
+  Blick (Verlauf) · Frau Theurer (weiß) · Leistungen (Verlauf) · Team (weiß) ·
   Praxis (Verlauf) · Anfahrt (weiß) · Kontakt (Verlauf) · Fußzeile (weiß mit
   Zahn-Grafik). Der Verlaufsstart ist so gewählt, dass Praxisblau darauf noch
   3,2 : 1 erreicht.
 - **Unterseiten** (Impressum, Datenschutz, 404): Der Kopf mit der Überschrift
   hat wie der Hero den umgedrehten Verlauf (oben Weiß, unten Hellblau), der
   Text darunter steht auf Weiß.
-- **Zahn-Grafik** (`zahn-hintergrund-1920`, Silbergrau mit 30 % Deckkraft)
-  rahmt die Seite oben und unten, jeweils mittig, mindestens 60 rem breit:
-  - **Hero** (`.intro`): über dem umgedrehten Verlauf, beginnt erst unter der
-    Kopfzeile (um `--header-h` versetzt), damit Logo und Navigation frei
-    stehen; liegt hinter der Überschrift. Mischmodus `multiply`, damit der weiße Auslauf am unteren Rand
-    der Grafik auf dem Hellblau keine Kante bildet. Praxisblau erreicht an der
-    dunkelsten Stelle der Grafik noch 3,35 : 1 (AA große Schrift).
-  - **Fußzeile:** auf Weiß, oben angesetzt.
+- **Zahn-Grafik** (Silbergrau mit höchstens 30 % Deckkraft), mittig,
+  mindestens 60 rem breit:
+  - **Startseite, mitwandernd** (`.intro__tooth`, `zahn-schwebend-1920`):
+    beginnt unter der Kopfzeile (um `--header-h` versetzt), bleibt beim
+    Scrollen fest im Fenster und blendet bis zum Seitenende aus: Deckkraft
+    = (1 − Scrollfortschritt)^1,5 (`TOOTH_FADE` in `main.js`). Sie liegt
+    über den Flächen und Verläufen der Abschnitte, aber hinter allen
+    Inhalten (`main .wrap` und `.site-footer .wrap` mit `z-index: 1`).
+    Ohne JavaScript und bei „Bewegung reduzieren“ steht sie fest oben im
+    Hero. Die Grafik ist reines Silbergrau `--c-silver` mit Transparenz
+    (`tools/zahn-schwebend.cjs`), damit sie auf Hellblau ohne weißen
+    Schleier ausläuft.
+  - **Fußzeile** (`zahn-hintergrund-1920`): auf Weiß, oben angesetzt.
+  - Kontrast: an jeder Scrollposition gemessen (390, 768, 1024, 1440 px),
+    alle Texte halten WCAG AA. Die Kurve 1,5 hält blaue Überschriften auf
+    `--c-grad-top` über 3 : 1, das Tiefblau `#00649a` kleine Texte über
+    4,5 : 1.
 
 ## Logo und Kopfzeile
 

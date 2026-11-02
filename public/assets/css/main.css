@@ -62,7 +62,7 @@
   --c-silver: #b5bfc5;      /* Silbergrau – Linien und Trenner */
 
   /* Abgeleitet für Lesbarkeit (WCAG AA) */
-  --c-blue-ink: #006da3;    /* Links, Buttons: 5,6:1 auf Weiß */
+  --c-blue-ink: #00649a;    /* Links, Buttons: 6,4:1 auf Weiß, 5,2:1 auf --c-grad-top */
   --c-blue-deep: #00517a;   /* Hover, aktiv: 8,5:1 */
   --c-sky-50: #edf5fb;      /* Kacheln hinter Team-Porträts */
   --c-grad-top: #daeaf7;    /* Verlaufsstart Hellblau (60 % Weiß): Praxisblau darauf 3,2:1 */
@@ -539,21 +539,29 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
   margin-top: calc(-1 * var(--header-h));
   padding-top: var(--header-h);
   padding-bottom: var(--space-2xl);
-  /* Zahn-Grafik (dieselbe wie in der Fußzeile) über dem umgedrehten Verlauf
-     von .band--gradient-up. Sie beginnt erst unter der Kopfzeile, damit Logo
-     und Navigation frei stehen. „multiply“ lässt den weißen Auslauf am
-     unteren Rand der Grafik auf dem Hellblau verschwinden. */
-  background-image:
-    url("../img/zahn-hintergrund-1920.webp"),
-    linear-gradient(0deg, var(--c-grad-top) 0%, var(--c-white) 100%);
-  background-image:
-    image-set(url("../img/zahn-hintergrund-1920.avif") type("image/avif"), url("../img/zahn-hintergrund-1920.webp") type("image/webp")),
-    linear-gradient(0deg, var(--c-grad-top) 0%, var(--c-white) 100%);
-  background-repeat: no-repeat;
-  background-position: center var(--header-h), 0 0;
-  background-size: max(100%, 60rem) auto, 100% 100%;
-  background-blend-mode: multiply, normal;
+  position: relative;
 }
+
+/* Zahn-Grafik im Hintergrund: beginnt unter der Kopfzeile, wandert beim
+   Scrollen mit (fest im Fenster) und blendet bis zum Seitenende aus
+   (main.js, 2b). Sie liegt über den Flächen und Verläufen der Abschnitte,
+   aber unter allen Inhalten; deshalb stehen die .wrap-Container eine Ebene
+   höher. Ohne JavaScript und bei „Bewegung reduzieren“ bleibt sie fest oben
+   im Hero. Grafik ohne weißen Auslauf: tools/zahn-schwebend.cjs */
+.intro__tooth {
+  position: absolute;
+  inset: var(--header-h) 0 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("../img/zahn-schwebend-1920.webp");
+  background-image: image-set(url("../img/zahn-schwebend-1920.avif") type("image/avif"), url("../img/zahn-schwebend-1920.webp") type("image/webp"));
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: max(100%, 60rem) auto;
+}
+.intro__tooth.is-floating { position: fixed; }
+main .wrap,
+.site-footer .wrap { position: relative; z-index: 1; }
 .hero { padding-top: var(--space-xl); }
 
 .hero__title { max-width: 13em; }
@@ -1256,6 +1264,7 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
   body { padding: 0; color: #000; }
   .section, .contact, .intro, .legal, .legal__intro { padding-block: 1.5rem; margin-top: 0; background: none; }
   .site-footer { background: none; }
+  .intro__tooth { display: none; }
   a { color: #000; }
 }
 

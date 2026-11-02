@@ -1,6 +1,7 @@
 /*
  * Zahnarztpraxis Theurer – kleine Helfer, kein Framework.
- * 1. Mobile Navigation  2. Kopfzeile beim Scrollen  3. Sprechzeiten-Status
+ * 1. Mobile Navigation  2. Kopfzeile beim Scrollen (2b. Zahn-Grafik)
+ * 3. Sprechzeiten-Status
  *
  * Sprechzeiten, Feiertage und Praxisurlaub werden hier gepflegt.
  * Die Tabelle im HTML (#sprechzeiten) bitte bei Änderungen ebenfalls anpassen.
@@ -125,6 +126,38 @@
       window.clearTimeout(resizeTimer);
       resizeTimer = window.setTimeout(watchReach, 200);
     });
+  }
+
+  /* ---------------------------------------------------------------------
+   * 2b. Zahn-Grafik der Startseite: wandert beim Scrollen mit (fest im
+   *     Fenster) und blendet bis zum Seitenende immer mehr aus.
+   *     Deckkraft = (1 - Fortschritt) hoch TOOTH_FADE. Mit 1,5 halten alle
+   *     Texte an jeder Scrollposition WCAG AA (gemessen bei 390–1440 px);
+   *     bei kleineren Werten fallen blaue Überschriften auf Hellblau unter 3:1.
+   *     Ohne JavaScript und bei „Bewegung reduzieren“ bleibt sie oben im Hero.
+   * ------------------------------------------------------------------ */
+  var TOOTH_FADE = 1.5;
+  var tooth = document.querySelector('[data-tooth]');
+  if (tooth && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    var toothTicking = false;
+
+    var updateTooth = function () {
+      var range = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0;
+      tooth.style.opacity = Math.pow(1 - progress, TOOTH_FADE).toFixed(3);
+      toothTicking = false;
+    };
+    var requestTooth = function () {
+      if (!toothTicking) {
+        toothTicking = true;
+        window.requestAnimationFrame(updateTooth);
+      }
+    };
+
+    tooth.classList.add('is-floating');
+    window.addEventListener('scroll', requestTooth, { passive: true });
+    window.addEventListener('resize', requestTooth);
+    updateTooth();
   }
 
   if (header && 'IntersectionObserver' in window) {
