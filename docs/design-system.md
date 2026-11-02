@@ -38,15 +38,21 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
 - **Flächen im Wechsel:** Verlauf `--c-grad-top` → Weiß (von oben nach unten),
   dazwischen weiße Abschnitte. Der Hero-Verlauf ist umgedreht (oben Weiß,
   unten Hellblau). Reihenfolge der Startseite: Hero + Auf einen
-  Blick (Verlauf) · Frau Theurer (weiß) · Leistungen (Verlauf) · Team (weiß) ·
+  Blick (Verlauf mit Zahn-Grafik) · Frau Theurer (weiß) · Leistungen (Verlauf) · Team (weiß) ·
   Praxis (Verlauf) · Anfahrt (weiß) · Kontakt (Verlauf) · Fußzeile (weiß mit
   Zahn-Grafik). Der Verlaufsstart ist so gewählt, dass Praxisblau darauf noch
   3,2 : 1 erreicht.
 - **Unterseiten** (Impressum, Datenschutz, 404): Der Kopf mit der Überschrift
   hat wie der Hero den umgedrehten Verlauf (oben Weiß, unten Hellblau), der
   Text darunter steht auf Weiß.
-- **Fußzeile:** Zahn-Grafik (`zahn-hintergrund-1920`) im Hintergrund, oben
-  angesetzt, mindestens 60 rem breit.
+- **Zahn-Grafik** (`zahn-hintergrund-1920`, Silbergrau mit 30 % Deckkraft)
+  rahmt die Seite oben und unten, jeweils oben angesetzt, mittig, mindestens
+  60 rem breit:
+  - **Hero** (`.intro`): über dem umgedrehten Verlauf, hinter Kopfzeile und
+    Überschrift. Mischmodus `multiply`, damit der weiße Auslauf am unteren Rand
+    der Grafik auf dem Hellblau keine Kante bildet. Praxisblau erreicht an der
+    dunkelsten Stelle der Grafik noch 3,35 : 1 (AA große Schrift).
+  - **Fußzeile:** auf Weiß.
 
 ## Logo und Kopfzeile
 

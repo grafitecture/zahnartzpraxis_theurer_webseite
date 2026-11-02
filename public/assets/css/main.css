@@ -539,6 +539,19 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
   margin-top: calc(-1 * var(--header-h));
   padding-top: var(--header-h);
   padding-bottom: var(--space-2xl);
+  /* Zahn-Grafik (dieselbe wie in der Fußzeile) oben angesetzt über dem
+     umgedrehten Verlauf von .band--gradient-up. „multiply“ lässt den weißen
+     Auslauf am unteren Rand der Grafik auf dem Hellblau verschwinden. */
+  background-image:
+    url("../img/zahn-hintergrund-1920.webp"),
+    linear-gradient(0deg, var(--c-grad-top) 0%, var(--c-white) 100%);
+  background-image:
+    image-set(url("../img/zahn-hintergrund-1920.avif") type("image/avif"), url("../img/zahn-hintergrund-1920.webp") type("image/webp")),
+    linear-gradient(0deg, var(--c-grad-top) 0%, var(--c-white) 100%);
+  background-repeat: no-repeat;
+  background-position: center top, 0 0;
+  background-size: max(100%, 60rem) auto, 100% 100%;
+  background-blend-mode: multiply, normal;
 }
 .hero { padding-top: var(--space-xl); }
 
