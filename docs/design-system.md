@@ -10,10 +10,12 @@ Schriftgröße. Alle Werte sind als CSS-Variablen in
 | Token | Wert | Rolle | Kontrast auf Weiß |
 |---|---|---|---|
 | `--c-blue` | `#0087cb` | Praxisblau (Marke): große Schrift ab 24 px, Icons, Telefonnummer, Fokusrahmen | 3,9 : 1 |
-| `--c-sky` | `#a3cbeb` | Himmelblau (Marke): Akzentflächen, Hinweislinie | 1,7 : 1 (nur Fläche) |
-| `--c-silver` | `#b5bfc5` | Silbergrau (Marke): Linien, Status „geschlossen“ | 1,9 : 1 (nur Linie) |
+| `--c-sky` | `#a3cbeb` | Himmelblau (Marke): Akzentflächen | 1,7 : 1 (nur Fläche) |
+| `--c-silver` | `#b5bfc5` | Silbergrau (Marke): Status „geschlossen“, Zahn-Grafik | 1,9 : 1 (nur Fläche) |
 | `--c-blue-ink` | `#00649a` | Abgeleitet: Links, Buttons, kleine blaue Schrift | 6,4 : 1 (auf `--c-grad-top` 5,2 : 1) |
 | `--c-blue-deep` | `#00517a` | Abgeleitet: Hover und aktiv | 8,5 : 1 |
+| `--c-line-strong` | `#0087cb` | Dunkle Linien (Praxisblau), immer 1 px | 3,9 : 1 |
+| `--c-line` | `#0087cb` mit 50 % Deckkraft | Helle Linien, immer 1 px | – |
 | `--c-grad-top` | `#daeaf7` | Start der Verlaufsflächen (Himmelblau mit 60 % Weiß) | Praxisblau darauf 3,2 : 1 |
 | `--c-sky-50` | `#edf5fb` | Kacheln hinter den Porträts (Zahnärztin, Team), Bühne hinter dem Teamfoto im Hero | – |
 | `--c-ink` | `#1a2933` | Auszeichnungen, Rollen, Tabellenköpfe | 14,9 : 1 |
@@ -136,6 +138,14 @@ Schriftgröße im Browser erhöhen.
 
 ## Formen und Linien
 
+- **Linien immer 1 px**, nur in zwei Farben: dunkle Linien Praxisblau `#0087cb`
+  (`--c-line-strong`), helle Linien Praxisblau mit 50 % Deckkraft (`--c-line`).
+  Dunkel: Linie unter den Leistungsgruppen, Rahmen des Ghost-Buttons,
+  Hover-Rahmen (Dreierblock, Menü-Button). Hell: alle Trenner (Kopfzeile,
+  Listen, Werdegang, Sprechzeiten, Kontaktwege, Fußzeile), Rahmen des
+  Dreierblocks, der Hinweisboxen, des Menü-Buttons und der Karte, Hinweislinie
+  links neben Notizen. Nicht betroffen: Fokusrahmen (3 px, Barrierefreiheit),
+  Link-Unterstreichungen, Icons, die Karte selbst und das Grafitecture-Feld.
 - Buttons: Pillenform (`--radius-pill`), Mindesthöhe 48 px (Touch)
 - Schnellkontakt-Leiste (mobil, < 1024 px): drei gleich breite Buttons
   Anrufen / WhatsApp / Anfahrt, Icon mittig über dem Text, Rundung `--radius-m`,
@@ -144,8 +154,8 @@ Schriftgröße im Browser erhöhen.
   gleich breite, kompakte Kacheln, bewusst zurückhaltend; die ganze Kachel ist
   ein Link. Aufbau: rundes Symbol (2,5 rem), Bezeichnung klein (`--step-n1`),
   Nummer bzw. Adresse in Tiefblau, Demi (`--step-0`, ab 64em `--step-1`),
-  Hinweis klein (`--step-n1`). Alle drei weiß mit 1 px Linie
-  `--c-chip-line`, Hover Linie `--c-blue-ink` auf `--c-sky-25`, Rundung
+  Hinweis klein (`--step-n1`). Alle drei weiß mit heller Linie
+  `--c-line`, Hover dunkle Linie `--c-line-strong` auf `--c-sky-25`, Rundung
   `--radius-m`. Das Telefon ist nur über sein gefülltes Symbol
   (`--c-blue-ink`) hervorgehoben und zeigt den Live-Status der Sprechzeiten.
   Mobil untereinander, ab `48em` nebeneinander.
@@ -155,8 +165,8 @@ Schriftgröße im Browser erhöhen.
 - Bühne hinter dem Teamfoto im Hero: `--c-sky-50`, beginnt bei 26 % der
   Bildhöhe, oben `--radius-l` (1,75 rem), unten gerade (mobil randlos)
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten
-- Hinweisboxen in Rechtstexten (`.callout`): weiße Fläche, 1 px Linie
-  `--c-chip-line`, Rundung `--radius-m`
+- Hinweisboxen in Rechtstexten (`.callout`): weiße Fläche, helle Linie
+  `--c-line`, Rundung `--radius-m`
 - Fachgesellschaften (`.societies`): Logo (4,5 rem breit, Graustufen, 85 %
   Deckkraft, bei Hover 100 %) links, rechts voller Name (Demi, `--c-ink`) und
   eine Zeile Beschreibung (`--step-n1`, `--c-muted`); die ganze Zeile ist ein

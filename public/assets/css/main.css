@@ -59,17 +59,19 @@
   /* Markenfarben */
   --c-blue: #0087cb;        /* Praxisblau – große Schrift, Icons, Flächen (3,9:1 auf Weiß) */
   --c-sky: #a3cbeb;         /* Himmelblau – Akzentflächen */
-  --c-silver: #b5bfc5;      /* Silbergrau – Linien und Trenner */
+  --c-silver: #b5bfc5;      /* Silbergrau – Status „geschlossen“, Zahn-Grafik */
 
   /* Abgeleitet für Lesbarkeit (WCAG AA) */
   --c-blue-ink: #00649a;    /* Links, Buttons: 6,4:1 auf Weiß, 5,2:1 auf --c-grad-top */
   --c-blue-deep: #00517a;   /* Hover, aktiv: 8,5:1 */
   --c-sky-50: #edf5fb;      /* Kacheln hinter den Porträts, Bühne hinter dem Teamfoto im Hero */
   --c-grad-top: #daeaf7;    /* Verlaufsstart Hellblau (60 % Weiß): Praxisblau darauf 3,2:1 */
-  --c-chip-line: #c8e0f3;   /* Rahmen der Navigationsflächen */
+  --c-chip-line: #c8e0f3;   /* Mouseover-Fläche der Navigation (Verlaufsstart) */
   --c-sky-25: #f6fafd;
   --c-silver-25: #f3f5f6;
-  --c-line: #dfe4e7;        /* feine Linien, aus Silbergrau aufgehellt */
+  /* Linien: immer 1 px, nur diese beiden Farben */
+  --c-line: color-mix(in srgb, var(--c-blue) 50%, transparent); /* helle Linien: Praxisblau mit 50 % Deckkraft */
+  --c-line-strong: var(--c-blue);                              /* dunkle Linien: Praxisblau */
   --c-white: #ffffff;
   --c-ink: #1a2933;         /* Überschriften: 14,9:1 */
   --c-text: #33434d;        /* Fließtext: 10,2:1 */
@@ -268,7 +270,7 @@ strong { font-weight: 600; color: var(--c-ink); }
   gap: 0.6em;
   min-height: 3rem;
   padding: 0.7rem 1.4rem;
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   font: inherit;
   font-weight: 600;
@@ -282,7 +284,7 @@ strong { font-weight: 600; color: var(--c-ink); }
 .button--primary { background: var(--c-blue-ink); color: var(--c-white); }
 .button--primary:hover { background: var(--c-blue-deep); color: var(--c-white); }
 
-.button--ghost { background: transparent; color: var(--c-blue-ink); border-color: currentColor; }
+.button--ghost { background: transparent; color: var(--c-blue-ink); border-color: var(--c-line-strong); }
 .button--ghost:hover { background: var(--c-sky-50); color: var(--c-blue-deep); }
 
 /* Öffnungsstatus */
@@ -365,7 +367,7 @@ body::before {
   gap: 0.5rem;
   min-height: 2.75rem;
   padding: 0.5rem 0.9rem;
-  border: 1.5px solid var(--c-line);
+  border: 1px solid var(--c-line);
   border-radius: var(--radius-pill);
   background: var(--c-white);
   color: var(--c-ink);
@@ -374,7 +376,7 @@ body::before {
   text-decoration: none;
   cursor: pointer;
 }
-.nav__toggle:hover { border-color: var(--c-silver); color: var(--c-ink); }
+.nav__toggle:hover { border-color: var(--c-line-strong); color: var(--c-ink); }
 .nav__toggle .icon { width: 1.25rem; height: 1.25rem; }
 .nav__toggle .icon--close { display: none; }
 .nav[data-open] .nav__toggle .icon--menu { display: none; }
@@ -597,7 +599,7 @@ main .wrap,
   gap: var(--space-xs);
   width: 100%;
   padding: var(--space-xs) var(--space-s);
-  border: 1px solid var(--c-chip-line);
+  border: 1px solid var(--c-line);
   border-radius: var(--radius-m);
   background: var(--c-white);
   color: var(--c-ink);
@@ -605,7 +607,7 @@ main .wrap,
   transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
 .reach__item:hover {
-  border-color: var(--c-blue-ink);
+  border-color: var(--c-line-strong);
   background: var(--c-sky-25);
   color: var(--c-ink);
 }
@@ -782,7 +784,7 @@ main .wrap,
 }
 .service-group h3 {
   padding-bottom: var(--space-xs);
-  border-bottom: 1px solid var(--c-ink);
+  border-bottom: 1px solid var(--c-line-strong);
 }
 
 /* Leistungs-Icons (Sprite-Symbole si-*): keine Linien, nur Flächen mit
@@ -1076,9 +1078,9 @@ main .wrap,
   grid-template-columns: auto 1fr;
   column-gap: var(--space-s);
   padding-block: var(--space-xs);
-  border-top: 1px solid color-mix(in srgb, var(--c-silver) 70%, transparent);
+  border-top: 1px solid var(--c-line);
 }
-.channel:last-child { border-bottom: 1px solid color-mix(in srgb, var(--c-silver) 70%, transparent); }
+.channel:last-child { border-bottom: 1px solid var(--c-line); }
 .channel .icon { grid-row: 1 / span 2; align-self: center; color: var(--c-blue); }
 .channel dt { color: var(--c-muted); font-size: var(--step-n1); font-weight: 600; line-height: 1.4; }
 .channel dd { margin: 0; color: var(--c-ink); font-size: var(--step-1); line-height: 1.4; overflow-wrap: anywhere; }
@@ -1086,7 +1088,7 @@ main .wrap,
 .note {
   margin-top: var(--space-m);
   padding-left: var(--space-s);
-  border-left: 2px solid var(--c-sky);
+  border-left: 1px solid var(--c-line);
   color: var(--c-text);
 }
 
@@ -1100,7 +1102,7 @@ main .wrap,
 .hours th,
 .hours td {
   padding: 0.7rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--c-silver) 70%, transparent);
+  border-bottom: 1px solid var(--c-line);
   text-align: left;
   vertical-align: top;
 }
@@ -1215,7 +1217,7 @@ main .wrap,
 /* Hinweisbox (z. B. „Kurz gesagt“, Widerspruchsrecht) und Inhaltsverzeichnis */
 .callout {
   padding: var(--space-m);
-  border: 1px solid var(--c-chip-line);
+  border: 1px solid var(--c-line);
   border-radius: var(--radius-m);
   background: var(--c-white);
 }
