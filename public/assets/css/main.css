@@ -64,9 +64,8 @@
   /* Abgeleitet für Lesbarkeit (WCAG AA) */
   --c-blue-ink: #00649a;    /* Links, Buttons: 6,4:1 auf Weiß, 5,2:1 auf --c-grad-top */
   --c-blue-deep: #00517a;   /* Hover, aktiv: 8,5:1 */
-  --c-sky-50: #edf5fb;      /* Kacheln hinter Team-Porträts */
+  --c-sky-50: #edf5fb;      /* Kacheln hinter den Porträts, Bühne hinter dem Teamfoto im Hero */
   --c-grad-top: #daeaf7;    /* Verlaufsstart Hellblau (60 % Weiß): Praxisblau darauf 3,2:1 */
-  --c-stage: #d6e8f6;       /* Bühne hinter dem Porträt der Zahnärztin */
   --c-chip-line: #c8e0f3;   /* Rahmen der Navigationsflächen */
   --c-sky-25: #f6fafd;
   --c-silver-25: #f3f5f6;
@@ -542,15 +541,15 @@ body { padding-bottom: calc(4.875rem + env(safe-area-inset-bottom, 0px)); }
   position: relative;
 }
 
-/* Zahn-Grafik im Hintergrund: beginnt unter der Kopfzeile, wandert beim
-   Scrollen mit (fest im Fenster) und blendet bis zum Seitenende aus
-   (main.js, 2b). Sie liegt über den Flächen und Verläufen der Abschnitte,
-   aber unter allen Inhalten; deshalb stehen die .wrap-Container eine Ebene
-   höher. Ohne JavaScript und bei „Bewegung reduzieren“ bleibt sie fest oben
-   im Hero. Grafik ohne weißen Auslauf: tools/zahn-schwebend.cjs */
+/* Zahn-Grafik im Hintergrund: beginnt 2,5 rem (40 px) unter der
+   Kopfzeile, wandert beim Scrollen mit (fest im Fenster) und blendet bis
+   zum Seitenende aus (main.js, 2b). Sie liegt über den Flächen und
+   Verläufen der Abschnitte, aber unter allen Inhalten; deshalb stehen die
+   .wrap-Container eine Ebene höher. Ohne JavaScript und bei „Bewegung
+   reduzieren“ bleibt sie fest oben im Hero. Grafik ohne weißen Auslauf: tools/zahn-schwebend.cjs */
 .intro__tooth {
   position: absolute;
-  inset: var(--header-h) 0 0;
+  inset: calc(var(--header-h) + 2.5rem) 0 0;
   z-index: 0;
   pointer-events: none;
   background-image: url("../img/zahn-schwebend-1920.webp");
@@ -675,7 +674,7 @@ main .wrap,
   position: absolute;
   inset: 26% 0 0;
   z-index: -1;
-  background: var(--c-white);
+  background: var(--c-sky-50);
   border-radius: var(--radius-l) var(--radius-l) 0 0;
 }
 .stage img { width: 100%; }
@@ -728,19 +727,13 @@ main .wrap,
   gap: var(--space-xl);
   align-items: center;
 }
+/* Porträt auf vollflächiger Kachel wie die Teambilder */
 .dentist__photo {
-  position: relative;
   margin: 0;
   max-width: 28rem;
-  isolation: isolate;
-}
-.dentist__photo::before {
-  content: "";
-  position: absolute;
-  inset: 18% 0 0;
-  z-index: -1;
-  background: var(--c-stage);
-  border-radius: var(--radius-l) var(--radius-l) 0 0;
+  border-radius: var(--radius-m);
+  background: var(--c-sky-50);
+  overflow: hidden;
 }
 .dentist__photo img { width: 100%; }
 

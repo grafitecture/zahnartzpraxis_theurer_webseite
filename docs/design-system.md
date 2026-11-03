@@ -15,8 +15,7 @@ Schriftgröße. Alle Werte sind als CSS-Variablen in
 | `--c-blue-ink` | `#00649a` | Abgeleitet: Links, Buttons, kleine blaue Schrift | 6,4 : 1 (auf `--c-grad-top` 5,2 : 1) |
 | `--c-blue-deep` | `#00517a` | Abgeleitet: Hover und aktiv | 8,5 : 1 |
 | `--c-grad-top` | `#daeaf7` | Start der Verlaufsflächen (Himmelblau mit 60 % Weiß) | Praxisblau darauf 3,2 : 1 |
-| `--c-stage` | `#d6e8f6` | Bühnen hinter freigestellten Fotos (Hero, Zahnärztin) | – |
-| `--c-sky-50` | `#edf5fb` | Kacheln hinter den Team-Porträts | – |
+| `--c-sky-50` | `#edf5fb` | Kacheln hinter den Porträts (Zahnärztin, Team), Bühne hinter dem Teamfoto im Hero | – |
 | `--c-ink` | `#1a2933` | Auszeichnungen, Rollen, Tabellenköpfe | 14,9 : 1 |
 | `--c-text` | `#33434d` | Fließtext | 10,2 : 1 |
 | `--c-muted` | `#56646d` | Nebeninformationen | 6,1 : 1 |
@@ -50,8 +49,9 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
 - **Zahn-Grafik** (Silbergrau mit höchstens 30 % Deckkraft), mittig,
   mindestens 60 rem breit:
   - **Startseite, mitwandernd** (`.intro__tooth`, `zahn-schwebend-1920`):
-    beginnt unter der Kopfzeile (um `--header-h` versetzt), bleibt beim
-    Scrollen fest im Fenster und blendet bis zum Seitenende aus: Deckkraft
+    beginnt 2,5 rem (40 px) unter der Kopfzeile (um `--header-h` + 2,5 rem
+    versetzt), bleibt beim Scrollen fest im Fenster und blendet bis zum
+    Seitenende aus: Deckkraft
     = (1 − Scrollfortschritt)^1,5 (`TOOTH_FADE` in `main.js`). Sie liegt
     über den Flächen und Verläufen der Abschnitte, aber hinter allen
     Inhalten (`main .wrap` und `.site-footer .wrap` mit `z-index: 1`).
@@ -63,7 +63,9 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
   - Kontrast: an jeder Scrollposition gemessen (390, 768, 1024, 1440 px),
     alle Texte halten WCAG AA. Die Kurve 1,5 hält blaue Überschriften auf
     `--c-grad-top` über 3 : 1, das Tiefblau `#00649a` kleine Texte über
-    4,5 : 1.
+    4,5 : 1. Nachmessung 03.11.2026 nach der Verschiebung um 40 px:
+    unverändert gegenüber vorher; knappste Stelle ist die Überschrift
+    „Leistungen“ bei 768–1024 px mit 2,99 : 1 (vorher ebenso).
 
 ## Logo und Kopfzeile
 
@@ -148,7 +150,10 @@ Schriftgröße im Browser erhöhen.
   (`--c-blue-ink`) hervorgehoben und zeigt den Live-Status der Sprechzeiten.
   Mobil untereinander, ab `48em` nebeneinander.
 - Fotos: `--radius-m` (0,875 rem)
-- Bühnen hinter freigestellten Porträts: oben `--radius-l` (1,75 rem), unten gerade
+- Porträts (Frau Theurer, Team): vollflächige Kachel `--c-sky-50` hinter dem
+  freigestellten Foto, Rundung `--radius-m` an allen Ecken
+- Bühne hinter dem Teamfoto im Hero: `--c-sky-50`, beginnt bei 26 % der
+  Bildhöhe, oben `--radius-l` (1,75 rem), unten gerade (mobil randlos)
 - Gliederung über feine Linien (`--c-line`), nicht über Karten mit Schatten
 - Hinweisboxen in Rechtstexten (`.callout`): weiße Fläche, 1 px Linie
   `--c-chip-line`, Rundung `--radius-m`
@@ -159,8 +164,9 @@ Schriftgröße im Browser erhöhen.
 
 ## Bildsprache
 
-Freigestellte Porträts von Frau Theurer und dem Team stehen auf einer
-himmelblauen Bühne (`--c-sky-50`); die Köpfe ragen über deren Oberkante.
+Freigestellte Porträts von Frau Theurer und dem Team stehen auf
+vollflächigen hellblauen Kacheln (`--c-sky-50`). Das Teamfoto im Hero steht
+auf einer Bühne in derselben Farbe; die Köpfe ragen über deren Oberkante.
 Praxisfotos hell, ohne Filter. Die Anfahrtskarte ist eine eigene Grafik in den
 Hausfarben (Daten: OpenStreetMap).
 
