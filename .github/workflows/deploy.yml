@@ -24,3 +24,4 @@ jobs:
             --exclude-from='.rsyncignore' \
             -e "ssh -p ${{ secrets.SFTP_PORT }} -i ~/.ssh/deploy_key" \
             ./ ${{ secrets.SFTP_USER }}@${{ secrets.SFTP_HOST }}:/home/zatheurer/public_html/
+            
