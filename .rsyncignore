@@ -1,0 +1,6 @@
+.git/
+.github/
+.rsyncignore
+public/.well-known/
+cgi-bin/
+error_log
