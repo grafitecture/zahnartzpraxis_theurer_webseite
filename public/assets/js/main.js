@@ -90,7 +90,9 @@
     if (open) nav.setAttribute('data-open', '');
     else nav.removeAttribute('data-open');
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.lastChild.textContent = ' ' + (open ? TEXT.close : TEXT.menu);
+    // Sichtbar ist nur das Symbol; die Bezeichnung hören Screenreader
+    var label = toggle.querySelector('.nav__toggle-label');
+    if (label) label.textContent = open ? TEXT.close : TEXT.menu;
   }
 
   if (toggle && menu) {

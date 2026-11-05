@@ -361,12 +361,17 @@ body::before {
 .brand img,
 .footer__logo { height: var(--logo-h); width: auto; }
 
+/* Menü-Button: nur das Hamburger-Symbol in einem Kreis; die Bezeichnung
+   „Menü“/„Schließen“ steht unsichtbar für Screenreader (.nav__toggle-label) */
 .nav__toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.5rem 0.9rem;
+  justify-content: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   border: 1px solid var(--c-line);
   border-radius: var(--radius-pill);
   background: var(--c-white);
@@ -479,7 +484,6 @@ body::before {
   .header__inner { gap: var(--space-2xs); }
   .lang-switch { margin-right: 0; padding-inline: 0.35rem; }
   .lang-switch .icon { display: none; }
-  .nav__toggle { padding-inline: 0.75rem; }
 }
 
 @media (min-width: 64em) {

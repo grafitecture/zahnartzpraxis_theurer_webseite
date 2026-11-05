@@ -97,6 +97,12 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
   Globus, engere Abstände. In der Fußzeile zusätzlich als letzter Punkt
   „English“ bzw. „Deutsch“. Screenreader hören „EN – English version“ bzw.
   „DE – Deutsche Fassung“ in der jeweiligen Sprache (`lang`, `hreflang`).
+- **Menü-Button** (mobil, unter `64em`; seit 05.11.2026 ohne Wort): nur das
+  Hamburger-Symbol (`#i-menu`, 1,25 rem), geöffnet das Schließen-Kreuz
+  (`#i-close`), in einem weißen Kreis von 2,75 rem (44 px, Touch) mit heller
+  Linie `--c-line`, bei Mouseover dunkle Linie `--c-line-strong`. Die
+  Bezeichnung „Menü“/„Schließen“ bzw. „Menu“/„Close“ steht unsichtbar für
+  Screenreader (`.nav__toggle-label`, Text aus `TEXT` in `main.js`).
 
 ## Schrift
 
