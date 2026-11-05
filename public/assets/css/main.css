@@ -438,6 +438,65 @@ body::before {
 
 .header__phone { display: none; }
 
+/* Sprachumschalter: ein leiser Link auf die jeweils andere Sprache
+   („EN“ auf deutschen, „DE“ auf englischen Seiten) mit Globus in Praxisblau.
+   Steht im Quelltext direkt nach dem Logo (Screenreader finden ihn zuerst)
+   und ist in der Kopfzeile immer sichtbar: mobil vor dem Menü-Button,
+   am Desktop vor der Navigation, dort durch eine helle Linie abgesetzt.
+   Wie die Navigationspunkte ohne Rahmen; Fläche nur bei Mouseover. */
+.lang-switch {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 0.3rem;
+  min-height: 2.75rem;
+  margin-right: calc(var(--space-2xs) - var(--space-m)); /* mobil näher an den Menü-Button */
+  padding: 0.3rem 0.55rem;
+  border-radius: 2px;
+  color: var(--c-ink);
+  font-size: var(--step-0);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.lang-switch .icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: var(--c-blue);
+  stroke-width: 1.5;
+}
+.lang-switch:hover {
+  background: linear-gradient(180deg, var(--c-chip-line) 0%, var(--c-sky-50) 100%);
+  color: var(--c-blue-deep);
+}
+/* Sehr schmale Displays (unter 360 px): nur das Kürzel, engere Abstände,
+   damit Logo, Umschalter und Menü-Button in eine Zeile passen */
+@media (max-width: 22.49em) {
+  .header__inner { gap: var(--space-2xs); }
+  .lang-switch { margin-right: 0; padding-inline: 0.35rem; }
+  .lang-switch .icon { display: none; }
+  .nav__toggle { padding-inline: 0.75rem; }
+}
+
+@media (min-width: 64em) {
+  .lang-switch {
+    min-height: 2.25rem;
+    margin-right: 0;
+  }
+  .lang-switch::after {
+    content: "";
+    position: absolute;
+    top: 0.45rem;
+    bottom: 0.45rem;
+    right: calc(-0.5 * var(--space-m));
+    border-right: 1px solid var(--c-line);
+  }
+}
+
 @media (min-width: 64em) {
   .nav__toggle { display: none; }
   .nav__menu,
@@ -1121,6 +1180,7 @@ main .wrap,
   font-weight: 600;
   vertical-align: 0.1em;
 }
+.hours tr.is-today th:lang(en)::after { content: "Today"; }
 .hours-block .status { margin-top: var(--space-s); }
 
 .emergency {

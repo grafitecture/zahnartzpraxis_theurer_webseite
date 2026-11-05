@@ -5,6 +5,7 @@ Neue Website der Zahnarztpraxis Désirée Theurer, Schützenstraße 2, 21726 Old
 
 Statisches HTML, CSS und JavaScript ohne Framework und ohne Build-Schritt.
 Keine Cookies, keine externen Dienste, keine Einwilligungsabfrage nötig.
+Zweisprachig: Deutsch unter `/`, Englisch unter `/en/`.
 
 ## Aufbau
 
@@ -13,7 +14,10 @@ public/                    Web-Root (wird von Vercel ausgeliefert)
   index.html               Startseite (One-Pager)
   impressum/index.html     Impressum
   datenschutz/index.html   Datenschutzerklärung
-  404.html                 Fehlerseite
+  en/index.html            Startseite Englisch
+  en/legal-notice/         Impressum Englisch (Übersetzung, deutsche Fassung verbindlich)
+  en/privacy/              Datenschutzerklärung Englisch (dto.)
+  404.html                 Fehlerseite (Deutsch mit englischem Block, für beide Sprachen)
   assets/css/main.css      Gesamtes Styling inkl. Design-Tokens
   assets/js/main.js        Navigation, Sprechzeiten-Status, Feiertage
   assets/img/              Optimierte Bilder (AVIF + WebP)
@@ -32,6 +36,35 @@ Fußzeile. Auf dem Smartphone gibt es zusätzlich eine feste Leiste mit
 „Anrufen“, „WhatsApp“ und „Anfahrt“. Sie und der Telefon-Button der Kopfzeile
 erscheinen erst, wenn der Dreierblock aus dem Bild scrollt, damit die Nummer
 nie doppelt zu sehen ist.
+
+## Zwei Sprachen
+
+| Deutsch | Englisch |
+| --- | --- |
+| `/` | `/en/` |
+| `/impressum/` | `/en/legal-notice/` |
+| `/datenschutz/` | `/en/privacy/` |
+
+- **Sprachumschalter:** In der Kopfzeile jeder Seite steht direkt nach dem
+  Logo ein leiser Link auf die andere Sprache („EN“ bzw. „DE“ mit Globus),
+  in der Fußzeile zusätzlich „English“ bzw. „Deutsch“. Er führt immer auf
+  das Gegenstück der aktuellen Seite. Auf der Startseite nimmt `main.js`
+  den Abschnitt mit (z. B. `/#anfahrt` → `/en/#directions`, Zuordnung in
+  `ANCHORS`). Keine automatische Weiterleitung nach Browsersprache, nichts
+  wird gespeichert.
+- **Anker auf Englisch:** `#dentist`, `#services`, `#team`, `#careers`,
+  `#practice`, `#directions`, `#contact`, `#hours`. Der versteckte Hinweis
+  für externe Links heißt auf allen Seiten `#hinweis-neues-fenster`
+  (Text auf Englisch „opens in a new window“).
+- **Telefonnummern** stehen auf den englischen Seiten international
+  (+49 4144 6639, +49 151 420 82774, Fax +49 4144 6730).
+- **Rechtstexte:** Die englischen Fassungen sind Übersetzungen; ein Hinweis
+  oben verweist auf die verbindliche deutsche Fassung. Wer Impressum oder
+  Datenschutzerklärung ändert, ändert beide Sprachen.
+- **SEO:** Jede Seite nennt ihr Gegenstück per `hreflang` (x-default =
+  Deutsch), die `sitemap.xml` ebenso.
+- `tools/check_site.py` prüft zusätzlich: `<html lang>` passend zum Ordner,
+  `hreflang`-Paare in beide Richtungen, Sprachumschalter vorhanden.
 
 ## Lokal ansehen
 
@@ -88,18 +121,24 @@ E-Mail-Einträge nicht ändern, sonst kommt keine E-Mail mehr an.
 
 ## Pflege
 
+**Texte immer in beiden Sprachen ändern:** `index.html` und
+`en/index.html` haben dasselbe Markup; nur Texte, Anker und Pfade
+(`../assets/…`) unterscheiden sich.
+
 **Sprechzeiten, Feiertage, Urlaub** – `public/assets/js/main.js`, ganz oben:
 
-- `HOURS`: Zeiten je Wochentag. Die Tabelle in `index.html` (`#sprechzeiten`)
-  bei Änderungen ebenfalls anpassen.
+- `HOURS`: Zeiten je Wochentag. Die Tabellen in `index.html` (`#sprechzeiten`)
+  und `en/index.html` (`#hours`) bei Änderungen ebenfalls anpassen.
 - `CLOSURES`: Praxisurlaub und Brückentage, z. B.
-  `{ from: '2026-12-24', to: '2027-01-01', label: 'Praxisurlaub' }`.
+  `{ from: '2026-12-24', to: '2027-01-01', label: 'Praxisurlaub', labelEn: 'Practice holiday' }`.
   Der Status („Jetzt geöffnet“, „Mittagspause“ …) berücksichtigt das
   automatisch, ebenso alle gesetzlichen Feiertage in Niedersachsen.
+  Alle Status-Texte stehen zweisprachig in `TEXT`; welche gilt, entscheidet
+  `<html lang>`.
 
-**Team** – in `index.html` je Person ein `<li class="member">`. Neue Porträts
-freigestellt (PNG/WebP mit Transparenz) in `tools/images.cjs` eintragen und
-neu erzeugen.
+**Team** – in `index.html` und `en/index.html` je Person ein
+`<li class="member">`. Neue Porträts freigestellt (PNG/WebP mit Transparenz)
+in `tools/images.cjs` eintragen und neu erzeugen.
 
 **Bilder** – `node tools/images.cjs <ordner-mit-originalen>` (benötigt `sharp`).
 Die Originale der alten Website liegen im Branch `legacy-import`.
@@ -110,16 +149,20 @@ Wie stark sie beim Scrollen ausblendet, steuert `TOOTH_FADE` in `main.js`.
 
 **Karte** – `python3 tools/map/build_map.py && python3 tools/inject_map.py`.
 Die Karte wird aus OpenStreetMap-Daten (`tools/map/osm-umgebung.json`) selbst
-gezeichnet und direkt in die Seite eingebettet.
+gezeichnet und direkt in beide Startseiten eingebettet; `inject_map.py`
+übersetzt dabei Titel, Beschreibung und Beschriftungen für `en/index.html`
+(Straßennamen bleiben deutsch). Neue Beschriftungen in `MAP_EN` ergänzen.
 
-**Prüfen** – `python3 tools/check_site.py` (Tags, IDs, Links, Anker, alt-Texte).
+**Prüfen** – `python3 tools/check_site.py` (Tags, IDs, Links, Anker, alt-Texte,
+Sprachfassungen).
 
 **Grafitecture-Feld** – ganz unten in Impressum und Datenschutz steht das
 Feld der Agentur (Lime-Fläche, Logo, „Marken mit KI.“, Link auf
 https://www.grafitecture.de/ in neuem Fenster). Es kommt unverändert aus dem
 Kit `kit/grafitecture-credit/` (Kit v1.2, Original im Repo
 `grafitecture/lannee_webseite`): das Markup ist der Inhalt von
-`snippet.de.html` (letztes Element von `.prose`), das CSS ist als Abschnitt 10
+`snippet.de.html` bzw. auf den englischen Seiten `snippet.en.html`
+(letztes Element von `.prose`), das CSS ist als Abschnitt 10
 an `public/assets/css/main.css` angehängt. **Ausnahme vom Designsystem:**
 Farben (#dafd55, #435960, Weiß) und Größe des Feldes gehören Grafitecture und
 folgen nicht den Tokens der Praxis. Nichts daran anpassen; bei einer neuen

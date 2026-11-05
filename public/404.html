@@ -23,6 +23,7 @@
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.7-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 15.3 12 21 12 21Z"/><circle cx="12" cy="9.8" r="2.3"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.2 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.2-3.6-8.5s1.2-6.2 3.6-8.5Z"/></symbol>
   </svg>
 
   <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -34,6 +35,10 @@
           <source type="image/avif" srcset="/assets/img/logo-zahnarztpraxis-theurer-280.avif 280w, /assets/img/logo-zahnarztpraxis-theurer-560.avif 560w" sizes="(min-width: 90em) 11.5rem, 9.5rem">
           <img src="/assets/img/logo-zahnarztpraxis-theurer-560.webp" srcset="/assets/img/logo-zahnarztpraxis-theurer-280.webp 280w, /assets/img/logo-zahnarztpraxis-theurer-560.webp 560w" sizes="(min-width: 90em) 11.5rem, 9.5rem" width="777" height="405" alt="Zahnarztpraxis Theurer">
         </picture>
+      </a>
+      <a class="lang-switch" href="/en/" hreflang="en" lang="en" data-lang-switch>
+        <svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>
+        EN<span class="visually-hidden"> – English version</span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
         <a class="nav__toggle" href="#seitennavigation" aria-controls="nav-menu">
@@ -72,6 +77,16 @@
           <li><a href="/#anfahrt">Anfahrt und Parken</a></li>
           <li><a href="/">Zur Startseite</a></li>
         </ul>
+        <!-- Englisch: eine 404-Seite für beide Sprachen -->
+        <section class="not-found-en" lang="en" aria-labelledby="not-found-en">
+          <h2 id="not-found-en">Page not found</h2>
+          <p>This page does not exist. Perhaps the link is out of date.</p>
+          <ul>
+            <li><a href="/en/#contact">Phone and opening hours</a></li>
+            <li><a href="/en/#directions">Directions and parking</a></li>
+            <li><a href="/en/">English home page</a></li>
+          </ul>
+        </section>
       </div>
     </div>
   </main>
@@ -103,6 +118,7 @@
         <li><a href="/#kontakt">Kontakt</a></li>
         <li><a href="/impressum/">Impressum</a></li>
         <li><a href="/datenschutz/">Datenschutz</a></li>
+        <li><a href="/en/" hreflang="en" lang="en" data-lang-switch>English</a></li>
       </ul>
     </nav>
     <div class="wrap">

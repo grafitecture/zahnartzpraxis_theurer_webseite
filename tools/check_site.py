@@ -5,6 +5,9 @@ Prüft alle HTML-Dateien in public/ auf:
 - doppelte IDs
 - Bilder ohne alt-Attribut
 - interne Links und Dateiverweise, die ins Leere gehen (inkl. #Anker)
+- Zweisprachigkeit: <html lang> passt zum Ordner (en/ = Englisch, sonst
+  Deutsch), jede Sprachfassung (hreflang) existiert und verweist zurück,
+  jede Seite hat den Sprachumschalter
 
 Aufruf:  python3 tools/check_site.py
 """
@@ -27,10 +30,19 @@ class Page(HTMLParser):
         self.errors: list[str] = []
         self.ids: dict[str, int] = {}
         self.refs: list[tuple[str, str, int]] = []
+        self.lang: str | None = None
+        self.alternates: dict[str, str] = {}
+        self.has_switch = False
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         line = self.getpos()[0]
+        if tag == "html":
+            self.lang = a.get("lang")
+        if tag == "link" and a.get("rel") == "alternate" and a.get("hreflang"):
+            self.alternates[a["hreflang"]] = a.get("href", "")
+        if tag == "a" and "lang-switch" in (a.get("class") or "").split():
+            self.has_switch = True
         if "id" in a:
             if a["id"] in self.ids:
                 self.errors.append(f"Zeile {line}: doppelte ID '{a['id']}'")
@@ -84,6 +96,38 @@ def resolve(page_path: Path, url: str) -> tuple[Path | None, str]:
     return target.resolve(), parts.fragment
 
 
+SITE = "https://www.zahnarztpraxis-theurer.de"
+
+
+def check_languages(parsed: dict[Path, Page]) -> None:
+    for p, page in parsed.items():
+        rel = p.relative_to(ROOT.resolve())
+        expected = "en" if rel.parts[0] == "en" else "de"
+        if p.name == "404.html":
+            expected = "de"  # eine Fehlerseite für beide Sprachen, mit englischem Block
+        if page.lang != expected:
+            page.errors.append(f"<html lang='{page.lang}'> – erwartet '{expected}'")
+        if not page.has_switch:
+            page.errors.append("Sprachumschalter (.lang-switch) fehlt in der Kopfzeile")
+        if p.name == "404.html":
+            continue
+        if set(page.alternates) != {"de", "en", "x-default"}:
+            page.errors.append(f"hreflang unvollständig: {sorted(page.alternates)}")
+            continue
+        own = f"{SITE}/{rel.parent.as_posix()}/".replace(f"{SITE}/./", f"{SITE}/")
+        if page.alternates.get(expected) != own:
+            page.errors.append(f"hreflang='{expected}' zeigt nicht auf die Seite selbst ({own})")
+        for lang, url in page.alternates.items():
+            if not url.startswith(SITE + "/"):
+                page.errors.append(f"hreflang='{lang}': unerwartete Adresse {url}")
+                continue
+            target = (ROOT / url[len(SITE) + 1:] / "index.html").resolve()
+            if target not in parsed:
+                page.errors.append(f"hreflang='{lang}' zeigt auf fehlende Seite {url}")
+            elif lang in ("de", "en") and parsed[target].alternates.get(expected) != own:
+                page.errors.append(f"hreflang='{lang}': {url} verweist nicht zurück auf diese Seite")
+
+
 def main() -> int:
     pages = sorted(ROOT.rglob("*.html"))
     parsed: dict[Path, Page] = {}
@@ -95,6 +139,7 @@ def main() -> int:
         for tag, line in page.stack:
             page.errors.append(f"Zeile {line}: <{tag}> nicht geschlossen")
         parsed[p.resolve()] = page
+    check_languages(parsed)
     for p, page in parsed.items():
         for key, url, line in page.refs:
             if url.startswith(("mailto:", "tel:")):

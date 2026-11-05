@@ -19,22 +19,31 @@ Designsystem: `docs/design-system.md`.
 
 ## Konventionen
 
-- Sprache der Seite und der Commits: Deutsch
+- Website zweisprachig: Deutsch unter `public/`, Englisch unter `public/en/`
+  (`index.html`, `legal-notice/`, `privacy/`). **Jede inhaltliche Änderung in
+  beiden Fassungen machen**; die englischen Rechtstexte sind Übersetzungen,
+  die deutsche Fassung ist verbindlich. Sprachumschalter (`.lang-switch`,
+  Kopfzeile direkt nach dem Logo, plus Fußzeile) und `hreflang` auf jeder
+  Seite; Abschnitts-Anker DE ↔ EN in `ANCHORS` in `main.js`
+- Sprache der Commits und der Doku: Deutsch
 - Farben, Typo-Skala, Abstände und Breakpoints nur über die Tokens in
   `public/assets/css/main.css` ändern und `docs/design-system.md` mitpflegen
-- Sprechzeiten, Feiertage, Praxisurlaub: `public/assets/js/main.js` (HOURS, CLOSURES)
-  und die Tabelle `#sprechzeiten` in `public/index.html`
-- Karte: `python3 tools/map/build_map.py && python3 tools/inject_map.py`
+- Sprechzeiten, Feiertage, Praxisurlaub: `public/assets/js/main.js` (HOURS, CLOSURES,
+  Texte in TEXT) und die Tabellen `#sprechzeiten` in `public/index.html` und
+  `#hours` in `public/en/index.html`
+- Karte: `python3 tools/map/build_map.py && python3 tools/inject_map.py` (setzt
+  sie in beide Startseiten ein, englische Beschriftung über `MAP_EN`)
 - Keine externen Dienste, Cookies oder Tracker einbinden (Datenschutz, CSP in `vercel.json`)
 - Externe Links immer in neuem Fenster: `target="_blank" rel="noopener"
   aria-describedby="hinweis-neues-fenster"` (der versteckte Hinweistext steht
   direkt nach `<body>` jeder Seite; das Grafitecture-Feld bringt seinen eigenen mit)
 - **Grafitecture-Feld** (Lime-Fläche mit Logo, „Marken mit KI.“, Link auf
   `https://www.grafitecture.de/` in neuem Fenster): steht ganz unten in
-  Impressum und Datenschutz, als letztes Element von `.prose` direkt vor der
-  Fußzeile. Quelle ist das Kit `kit/grafitecture-credit/` (README dort,
-  Original in `grafitecture/lannee_webseite`): Markup = Inhalt von
-  `snippet.de.html`, CSS = Abschnitt 10 am Ende von `main.css`, beides
+  Impressum und Datenschutz (und in Legal notice und Privacy), als letztes
+  Element von `.prose` direkt vor der Fußzeile. Quelle ist das Kit
+  `kit/grafitecture-credit/` (README dort, Original in
+  `grafitecture/lannee_webseite`): Markup = Inhalt von `snippet.de.html`
+  bzw. `snippet.en.html`, CSS = Abschnitt 10 am Ende von `main.css`, beides
   unverändert. Farben (#dafd55, #435960, Weiß) und Größe des Feldes gehören
   der Agentur und sind die **einzige Ausnahme** von „Farben nur über die
   Tokens“; am Feld nichts an das Designsystem der Praxis anpassen.

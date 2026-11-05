@@ -1,10 +1,12 @@
 /*
  * Zahnarztpraxis Theurer – kleine Helfer, kein Framework.
  * 1. Mobile Navigation  2. Kopfzeile beim Scrollen (2b. Zahn-Grafik)
- * 3. Sprechzeiten-Status
+ * 3. Sprechzeiten-Status  4. Sprachumschalter
  *
  * Sprechzeiten, Feiertage und Praxisurlaub werden hier gepflegt.
- * Die Tabelle im HTML (#sprechzeiten) bitte bei Änderungen ebenfalls anpassen.
+ * Die Tabellen im HTML (#sprechzeiten in index.html, #hours in en/index.html)
+ * bitte bei Änderungen ebenfalls anpassen.
+ * Alle Texte stehen zweisprachig in TEXT; die Sprache kommt aus <html lang>.
  */
 (function () {
   'use strict';
@@ -23,10 +25,58 @@
   };
 
   // Praxisurlaub und Brückentage, jeweils von–bis (inklusive), Format JJJJ-MM-TT.
-  // Beispiel: { from: '2026-12-24', to: '2027-01-01', label: 'Praxisurlaub' }
+  // label erscheint auf den deutschen Seiten, labelEn auf den englischen.
+  // Beispiel: { from: '2026-12-24', to: '2027-01-01', label: 'Praxisurlaub', labelEn: 'Practice holiday' }
   var CLOSURES = [];
 
-  var DAY_NAMES = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+  /* ---------------------------------------------------------------------
+   * Texte (Deutsch / Englisch)
+   * ------------------------------------------------------------------ */
+  var LANG = document.documentElement.lang === 'en' ? 'en' : 'de';
+  var TEXT = {
+    de: {
+      days: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+      menu: 'Menü', close: 'Schließen',
+      byAppointment: 'nach Vereinbarung',
+      and: ' und ', clock: ' Uhr',
+      tomorrow: 'morgen', onDay: 'am ',
+      reopens: function (when, time) { return when + ' ab ' + time + ' Uhr wieder geöffnet'; },
+      closed: 'Geschlossen', closedToday: 'Heute geschlossen', closedForToday: 'Für heute geschlossen',
+      practiceClosed: 'Praxis geschlossen',
+      todayByAppointment: function (t) { return 'Heute Termine ' + t + '. Rufen Sie uns gern an.'; },
+      opensAt: function (time) { return 'Öffnet heute um ' + time + ' Uhr'; },
+      lunch: function (time) { return 'Mittagspause, ab ' + time + ' Uhr wieder geöffnet'; },
+      openUntil: function (time) { return 'Jetzt geöffnet, bis ' + time + ' Uhr'; },
+      today: 'Heute, ',
+      holidays: {
+        newYear: 'Neujahr', goodFriday: 'Karfreitag', easterMonday: 'Ostermontag', labour: 'Tag der Arbeit',
+        ascension: 'Christi Himmelfahrt', whitMonday: 'Pfingstmontag', unity: 'Tag der Deutschen Einheit',
+        reformation: 'Reformationstag', xmas1: '1. Weihnachtstag', xmas2: '2. Weihnachtstag'
+      }
+    },
+    en: {
+      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      menu: 'Menu', close: 'Close',
+      byAppointment: 'by appointment',
+      and: ' and ', clock: '',
+      tomorrow: 'tomorrow', onDay: 'on ',
+      reopens: function (when, time) { return 'open again ' + when + ' from ' + time; },
+      closed: 'Closed', closedToday: 'Closed today', closedForToday: 'Closed for today',
+      practiceClosed: 'practice closed',
+      todayByAppointment: function () { return 'Today by appointment only. Feel free to call us.'; },
+      opensAt: function (time) { return 'Opens today at ' + time; },
+      lunch: function (time) { return 'Lunch break, open again from ' + time; },
+      openUntil: function (time) { return 'Open now, until ' + time; },
+      today: 'Today, ',
+      holidays: {
+        newYear: 'New Year’s Day', goodFriday: 'Good Friday', easterMonday: 'Easter Monday', labour: 'Labour Day',
+        ascension: 'Ascension Day', whitMonday: 'Whit Monday', unity: 'Day of German Unity',
+        reformation: 'Reformation Day', xmas1: 'Christmas Day', xmas2: 'Boxing Day'
+      }
+    }
+  }[LANG];
+
+  var DAY_NAMES = TEXT.days;
 
   /* ---------------------------------------------------------------------
    * 1. Mobile Navigation (ohne JavaScript führt „Menü“ zur Seitennavigation im Fuß)
@@ -40,7 +90,7 @@
     if (open) nav.setAttribute('data-open', '');
     else nav.removeAttribute('data-open');
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.lastChild.textContent = open ? ' Schließen' : ' Menü';
+    toggle.lastChild.textContent = ' ' + (open ? TEXT.close : TEXT.menu);
   }
 
   if (toggle && menu) {
@@ -212,18 +262,18 @@
   var holidayCache = {};
   function holidays(year) {
     if (holidayCache[year]) return holidayCache[year];
-    var e = easterSunday(year), list = {};
+    var e = easterSunday(year), list = {}, h = TEXT.holidays;
     function rel(n, name) { var t = addDays(year, e.m, e.d, n); list[dateKey(t.y, t.m, t.d)] = name; }
-    list[year + '-01-01'] = 'Neujahr';
-    rel(-2, 'Karfreitag');
-    rel(1, 'Ostermontag');
-    list[year + '-05-01'] = 'Tag der Arbeit';
-    rel(39, 'Christi Himmelfahrt');
-    rel(50, 'Pfingstmontag');
-    list[year + '-10-03'] = 'Tag der Deutschen Einheit';
-    list[year + '-10-31'] = 'Reformationstag';
-    list[year + '-12-25'] = '1. Weihnachtstag';
-    list[year + '-12-26'] = '2. Weihnachtstag';
+    list[year + '-01-01'] = h.newYear;
+    rel(-2, h.goodFriday);
+    rel(1, h.easterMonday);
+    list[year + '-05-01'] = h.labour;
+    rel(39, h.ascension);
+    rel(50, h.whitMonday);
+    list[year + '-10-03'] = h.unity;
+    list[year + '-10-31'] = h.reformation;
+    list[year + '-12-25'] = h.xmas1;
+    list[year + '-12-26'] = h.xmas2;
     holidayCache[year] = list;
     return list;
   }
@@ -233,7 +283,9 @@
     var h = holidays(y)[key];
     if (h) return h;
     for (var i = 0; i < CLOSURES.length; i++) {
-      if (key >= CLOSURES[i].from && key <= CLOSURES[i].to) return CLOSURES[i].label || 'Praxis geschlossen';
+      if (key >= CLOSURES[i].from && key <= CLOSURES[i].to) {
+        return (LANG === 'en' ? CLOSURES[i].labelEn : CLOSURES[i].label) || TEXT.practiceClosed;
+      }
     }
     return null;
   }
@@ -241,7 +293,7 @@
   function toMinutes(hhmm) { var p = hhmm.split(':'); return (+p[0]) * 60 + (+p[1]); }
   function formatTime(hhmm) { var p = hhmm.split(':'); return (+p[0]) + ':' + p[1]; }
   function formatRanges(ranges) {
-    return ranges.map(function (r) { return formatTime(r[0]) + '–' + formatTime(r[1]); }).join(' und ') + ' Uhr';
+    return ranges.map(function (r) { return formatTime(r[0]) + '–' + formatTime(r[1]); }).join(TEXT.and) + TEXT.clock;
   }
 
   function nextOpening(now, today) {
@@ -249,8 +301,8 @@
       var t = addDays(now.y, now.m, now.d, n);
       var ranges = HOURS[t.dow];
       if (!Array.isArray(ranges) || !ranges.length || closedReason(t.y, t.m, t.d)) continue;
-      var when = n === 1 ? 'morgen' : 'am ' + DAY_NAMES[t.dow];
-      return when + ' ab ' + formatTime(ranges[0][0]) + ' Uhr wieder geöffnet';
+      var when = n === 1 ? TEXT.tomorrow : TEXT.onDay + DAY_NAMES[t.dow];
+      return TEXT.reopens(when, formatTime(ranges[0][0]));
     }
     return null;
   }
@@ -267,19 +319,21 @@
     var result = { day: DAY_NAMES[dow], dow: dow, hours: '', state: 'closed', text: '' };
 
     if (reason) {
-      result.hours = 'Geschlossen (' + reason + ')';
-      result.text = 'Heute geschlossen (' + reason + ')' + nextText;
+      result.hours = TEXT.closed + ' (' + reason + ')';
+      result.text = TEXT.closedToday + ' (' + reason + ')' + nextText;
       return result;
     }
     if (typeof ranges === 'string') {
-      result.hours = ranges.charAt(0).toUpperCase() + ranges.slice(1);
+      // Freitag: „nach Vereinbarung“ (in HOURS deutsch gepflegt, Anzeige je Sprache)
+      var byApp = TEXT.byAppointment;
+      result.hours = byApp.charAt(0).toUpperCase() + byApp.slice(1);
       result.state = 'soon';
-      result.text = 'Heute Termine ' + ranges + '. Rufen Sie uns gern an.';
+      result.text = TEXT.todayByAppointment(byApp);
       return result;
     }
     if (!ranges.length) {
-      result.hours = 'Geschlossen';
-      result.text = 'Heute geschlossen' + nextText;
+      result.hours = TEXT.closed;
+      result.text = TEXT.closedToday + nextText;
       return result;
     }
 
@@ -289,17 +343,17 @@
       if (now.minutes < from) {
         result.state = 'soon';
         result.text = i === 0
-          ? 'Öffnet heute um ' + formatTime(ranges[i][0]) + ' Uhr'
-          : 'Mittagspause, ab ' + formatTime(ranges[i][0]) + ' Uhr wieder geöffnet';
+          ? TEXT.opensAt(formatTime(ranges[i][0]))
+          : TEXT.lunch(formatTime(ranges[i][0]));
         return result;
       }
       if (now.minutes < to) {
         result.state = 'open';
-        result.text = 'Jetzt geöffnet, bis ' + formatTime(ranges[i][1]) + ' Uhr';
+        result.text = TEXT.openUntil(formatTime(ranges[i][1]));
         return result;
       }
     }
-    result.text = 'Für heute geschlossen' + nextText;
+    result.text = TEXT.closedForToday + nextText;
     return result;
   }
 
@@ -316,7 +370,7 @@
     var label = document.querySelector('[data-today-label]');
     var hours = document.querySelector('[data-today-hours]');
     if (label && hours) {
-      label.textContent = 'Heute, ' + s.day;
+      label.textContent = TEXT.today + s.day;
       hours.textContent = s.hours;
     }
 
@@ -329,5 +383,35 @@
   setInterval(renderStatus, 60 * 1000);
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'visible') renderStatus();
+  });
+
+  /* ---------------------------------------------------------------------
+   * 4. Sprachumschalter: Wer auf der Startseite mitten in einem Abschnitt
+   *    die Sprache wechselt, landet im selben Abschnitt der anderen Sprache
+   *    (z. B. /#anfahrt → /en/#directions). Ohne JavaScript führt der Link
+   *    einfach auf den Seitenanfang. Nichts wird gespeichert (keine Cookies).
+   * ------------------------------------------------------------------ */
+  var ANCHORS = {
+    zahnaerztin: 'dentist', leistungen: 'services', team: 'team', karriere: 'careers',
+    praxis: 'practice', anfahrt: 'directions', kontakt: 'contact', sprechzeiten: 'hours'
+  };
+  var anchorMap = ANCHORS;
+  if (LANG === 'en') {
+    anchorMap = {};
+    Object.keys(ANCHORS).forEach(function (k) { anchorMap[ANCHORS[k]] = k; });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-lang-switch]'), function (link) {
+    link.addEventListener('click', function () {
+      var limit = (header ? header.offsetHeight : 0) + 32;
+      var best = null, bestTop = -Infinity;
+      Object.keys(anchorMap).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var top = el.getBoundingClientRect().top;
+        if (top <= limit && top > bestTop) { best = id; bestTop = top; }
+      });
+      link.hash = best ? '#' + anchorMap[best] : '';
+    });
   });
 })();

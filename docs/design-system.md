@@ -85,6 +85,18 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
   Rahmen. Eine Fläche mit Verlauf (Rundung 2 px) erscheint nur bei
   Mouseover (`#c8e0f3` → `#edf5fb`) und beim aktiven Punkt
   (Himmelblau `#a3cbeb` → `#daeaf7`).
+- **Sprachumschalter** (`.lang-switch`, eingeführt 05.11.2026): ein leiser
+  Link auf die andere Sprache – „EN“ auf deutschen, „DE“ auf englischen
+  Seiten – mit Globus-Symbol (`#i-globe`, 1,125 rem, Praxisblau, Strich
+  1,5). Schrift wie die Navigationspunkte (16 px, Gewicht 500, `--c-ink`,
+  Laufweite 0,04 em), ohne Rahmen; Fläche nur bei Mouseover wie in der
+  Navigation. Immer in der Kopfzeile sichtbar, im Quelltext direkt nach dem
+  Logo: mobil vor dem Menü-Button (Abstand `--space-2xs`, Höhe 2,75 rem),
+  ab `64em` vor der Navigation, abgesetzt durch eine helle Linie
+  (`--c-line`, 1 px, halbe Höhe). Unter `22.5em` (360 px) nur das Kürzel ohne
+  Globus, engere Abstände. In der Fußzeile zusätzlich als letzter Punkt
+  „English“ bzw. „Deutsch“. Screenreader hören „EN – English version“ bzw.
+  „DE – Deutsche Fassung“ in der jeweiligen Sprache (`lang`, `hreflang`).
 
 ## Schrift
 
@@ -132,7 +144,7 @@ Schriftgröße im Browser erhöhen.
 | Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
 | `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster, Dreierblock nebeneinander | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
-| `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, 12-Spalten-Raster, Team vierspaltig | Logo, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (~ 810 von 960 px) |
+| `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, 12-Spalten-Raster, Team vierspaltig | Logo, Sprachumschalter, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (gemessen mit Source Sans 3: rund 290 von 960 px frei; Englisch kürzer) |
 | `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
 
@@ -204,4 +216,8 @@ Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
   (im Hero über den Dreierblock, sonst über die Schnellkontakt-Leiste)
 - Externe Links öffnen immer in einem neuen Fenster (`target="_blank"
   rel="noopener"`); Screenreader hören über `aria-describedby` den Hinweis
-  „öffnet in neuem Fenster“ (versteckter Text `#hinweis-neues-fenster` je Seite)
+  „öffnet in neuem Fenster“ bzw. „opens in a new window“ (versteckter Text
+  `#hinweis-neues-fenster` je Seite)
+- Zwei Sprachen (`/` Deutsch, `/en/` Englisch): jede Seite mit `lang`,
+  `hreflang` und Sprachumschalter; keine automatische Weiterleitung nach
+  Browsersprache, nichts wird gespeichert
