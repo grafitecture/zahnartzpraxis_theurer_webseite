@@ -27,7 +27,19 @@
   // Praxisurlaub und Brückentage, jeweils von–bis (inklusive), Format JJJJ-MM-TT.
   // label erscheint auf den deutschen Seiten, labelEn auf den englischen.
   // Beispiel: { from: '2026-12-24', to: '2027-01-01', label: 'Praxisurlaub', labelEn: 'Practice holiday' }
-  var CLOSURES = [];
+  // Stand 23.11.2026 (Mail S. Lipnicki): voraussichtlich, abhängig vom zahnärztlichen
+  // Notdienstplan 2027 – bei Änderungen hier nachziehen.
+  var CLOSURES = [
+    { from: '2026-12-23', to: '2027-01-08', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-02-01', to: '2027-02-02', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-03-22', to: '2027-04-02', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-05-07', to: '2027-05-07', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-05-18', to: '2027-05-18', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-06-16', to: '2027-06-18', label: 'Fortbildung', labelEn: 'Training' },
+    { from: '2027-07-29', to: '2027-08-20', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-10-22', to: '2027-10-29', label: 'Praxisurlaub', labelEn: 'Practice holiday' },
+    { from: '2027-12-23', to: '2028-01-07', label: 'Praxisurlaub', labelEn: 'Practice holiday' }
+  ];
 
   /* ---------------------------------------------------------------------
    * Texte (Deutsch / Englisch)
@@ -40,6 +52,8 @@
       byAppointment: 'nach Vereinbarung',
       and: ' und ', clock: ' Uhr',
       tomorrow: 'morgen', onDay: 'am ',
+      months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+      onDate: function (day, d, month) { return 'am ' + day + ', ' + d + '. ' + month + ','; },
       reopens: function (when, time) { return when + ' ab ' + time + ' Uhr wieder geöffnet'; },
       closed: 'Geschlossen', closedToday: 'Heute geschlossen', closedForToday: 'Für heute geschlossen',
       practiceClosed: 'Praxis geschlossen',
@@ -60,6 +74,8 @@
       byAppointment: 'by appointment',
       and: ' and ', clock: '',
       tomorrow: 'tomorrow', onDay: 'on ',
+      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      onDate: function (day, d, month) { return 'on ' + day + ', ' + d + ' ' + month; },
       reopens: function (when, time) { return 'open again ' + when + ' from ' + time; },
       closed: 'Closed', closedToday: 'Closed today', closedForToday: 'Closed for today',
       practiceClosed: 'practice closed',
@@ -299,11 +315,14 @@
   }
 
   function nextOpening(now, today) {
-    for (var n = 1; n <= 21; n++) {
+    for (var n = 1; n <= 35; n++) { // reicht auch über den Sommerurlaub (über 3 Wochen)
       var t = addDays(now.y, now.m, now.d, n);
       var ranges = HOURS[t.dow];
       if (!Array.isArray(ranges) || !ranges.length || closedReason(t.y, t.m, t.d)) continue;
-      var when = n === 1 ? TEXT.tomorrow : TEXT.onDay + DAY_NAMES[t.dow];
+      // Ab einer Woche Abstand mit Datum, sonst wäre „am Montag“ bei Praxisurlaub missverständlich
+      var when = n === 1 ? TEXT.tomorrow
+        : n < 7 ? TEXT.onDay + DAY_NAMES[t.dow]
+        : TEXT.onDate(DAY_NAMES[t.dow], t.d, TEXT.months[t.m - 1]);
       return TEXT.reopens(when, formatTime(ranges[0][0]));
     }
     return null;
