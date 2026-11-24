@@ -117,7 +117,7 @@ deutsche Wörter wie „Zahngesundheit“ auch auf kleine Displays.
 
 | Stufe | Element | 360 px | ab 1440 px | CSS |
 |---|---|---|---|---|
-| `--step-6` | h1 | 2,986 rem | 5,61 rem | `clamp(2.986rem, 2.111rem + 3.887vw, 5.61rem)` |
+| `--step-6` | h1 | 2,986 rem | 5,61 rem (`--step-6-max`) | `clamp(2.986rem, 2.111rem + 3.887vw, var(--step-6-max))` |
 | `--step-5` | h2 | 2,488 rem | 4,209 rem | `clamp(2.488rem, 1.914rem + 2.55vw, 4.209rem)` |
 | `--step-4` | h3 | 2,074 rem | 3,157 rem | `clamp(2.074rem, 1.713rem + 1.604vw, 3.157rem)` |
 | `--step-3` | h4 | 1,728 rem | 2,369 rem | `clamp(1.728rem, 1.514rem + 0.9496vw, 2.369rem)` |
@@ -130,6 +130,11 @@ deutsche Wörter wie „Zahngesundheit“ auch auf kleine Displays.
 Kleine Stufen werden auf dem Smartphone größer statt kleiner: 12 px sind am
 Desktop vertretbar, auf dem Handy für ältere Patienten nicht. `xs` ist
 definiert, wird für lesbare Inhalte aber bewusst nicht eingesetzt.
+
+Ausnahme Hero-Überschrift auf dem Smartphone (unter `48em`): immer so groß
+wie möglich, `min(var(--step-6-max), 14.5cqi)`. Das längste Wort
+„Zahngesundheit,“ (6,68 em) füllt die Breite der Spalte; mehr als 5,61 rem
+wird es nie. Die englische Fassung hat dieselbe Größe.
 
 Semantik und Optik sind getrennt: `.t-h1` … `.t-h6` geben jedem Element die
 passende Größe, ohne die Überschriften-Hierarchie zu verbiegen.
@@ -210,8 +215,14 @@ entsteht aus Lücken zwischen den Flächen. Größe 4 rem, ab `64em` 4,5 rem,
 (`#si-…`); die Verlaufsstopps bekommen ihre Farben über Klassen
 (`.si-stop-*`) aus den Tokens, weil die CSP keine Inline-Styles erlaubt.
 
-Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos direkt unter der
-Überschrift, vor dem Einleitungstext; ab `48em` unter Text und Dreierblock.
+Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos und unten im
+ersten Bildschirm, direkt auf der Schnellkontakt-Leiste; darüber nur die
+Überschrift (oben). Überschrift und Teamfoto zusammen sind eine
+Bildschirmhöhe (`100svh`) minus Kopfzeile, Abstand oben und Leiste
+(`--action-bar-h`, 4,875 rem); den freien Platz nimmt die Überschrift-Zeile.
+Dreierblock und Einleitungstext folgen erst beim Scrollen (in dieser
+Reihenfolge); sobald der Dreierblock im Bild ist, taucht die Leiste ab.
+Ab `48em` unverändert: Überschrift, Text und Dreierblock, darunter das Teamfoto.
 
 ## Barrierefreiheit
 
