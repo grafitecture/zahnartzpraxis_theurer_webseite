@@ -217,7 +217,7 @@ entsteht aus Lücken zwischen den Flächen. Größe 4 rem, ab `64em` 4,5 rem,
 
 Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos und unten im
 ersten Bildschirm, direkt auf der Schnellkontakt-Leiste; darüber nur die
-Überschrift (oben). Überschrift und Teamfoto zusammen sind eine
+Überschrift. Überschrift und Teamfoto zusammen sind eine
 Bildschirmhöhe (`100svh`) minus Kopfzeile, Abstand oben und Leiste
 (`--action-bar-h`, 4,875 rem); den freien Platz nimmt die Überschrift-Zeile,
 die Überschrift steht darin senkrecht mittig.
