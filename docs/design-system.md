@@ -219,7 +219,8 @@ Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos und unten im
 ersten Bildschirm, direkt auf der Schnellkontakt-Leiste; darüber nur die
 Überschrift (oben). Überschrift und Teamfoto zusammen sind eine
 Bildschirmhöhe (`100svh`) minus Kopfzeile, Abstand oben und Leiste
-(`--action-bar-h`, 4,875 rem); den freien Platz nimmt die Überschrift-Zeile.
+(`--action-bar-h`, 4,875 rem); den freien Platz nimmt die Überschrift-Zeile,
+die Überschrift steht darin senkrecht mittig.
 Dreierblock und Einleitungstext folgen erst beim Scrollen (in dieser
 Reihenfolge); sobald der Dreierblock im Bild ist, taucht die Leiste ab.
 Ab `48em` unverändert: Überschrift, Text und Dreierblock, darunter das Teamfoto.

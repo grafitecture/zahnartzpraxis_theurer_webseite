@@ -771,7 +771,7 @@ main .wrap,
   .hero__title {
     grid-row: 1;
     grid-column: 1;
-    align-self: start;
+    align-self: center; /* mittig im freien Raum über dem Teamfoto (große Handys) */
     /* So groß wie möglich: das längste Wort „Zahngesundheit,“ (6,68 em)
        füllt die Breite, höchstens --step-6-max (ohne Container-Einheiten
        bleibt --step-6) */
