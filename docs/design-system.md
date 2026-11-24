@@ -223,6 +223,25 @@ Bildschirmhöhe (`100svh`) minus Kopfzeile, Abstand oben und Leiste
 die Überschrift steht darin senkrecht mittig.
 Dreierblock und Einleitungstext folgen erst beim Scrollen (in dieser
 Reihenfolge); sobald der Dreierblock im Bild ist, taucht die Leiste ab.
+Ist der Bildschirm hoch genug, steht der Einleitungstext schon im ersten
+Bildschirm zwischen Überschrift und Teamfoto (Abstand `--space-m`); die
+Überschrift mit Text steht dann gemeinsam mittig. Schwellen (Bildschirmhöhe
+ab der der Text oben steht; gemessen mit Source Sans 3 am 24.11.2026, je
+Breitenband am breitesten Ende + 8 px Reserve):
+
+| Breite | Deutsch | Englisch |
+|---|---|---|
+| unter 375 px | 721 px | 653 px |
+| 375–393 px | 717 px | 664 px |
+| 394–414 px | 738 px | 682 px |
+| 415–430 px | 753 px | 695 px |
+| 431–480 px | 803 px | 737 px |
+| 481–600 px | 921 px | 837 px |
+| 601–767 px | 1015 px | 935 px |
+
+Faustregel Deutsch: Höhe ≥ Breite + 316 px (unter 375 px + 347 px, dort hat
+der Text vier Zeilen). Bei Änderungen an Überschrift, Einleitung, Teamfoto
+oder Abständen neu messen.
 Ab `48em` unverändert: Überschrift, Text und Dreierblock, darunter das Teamfoto.
 
 ## Barrierefreiheit
