@@ -245,7 +245,28 @@ bzw. 346 px). Beispiele (Deutsch, gemessen mit Source Sans 3 am 25.11.2026):
 390 × 664 px Form A mit 48 px, 375 × 548 px Form B mit 34 px,
 430 × 746 px Form A mit 56 px (volle Größe). Bei Änderungen an Überschrift,
 Einleitung, Teamfoto oder Abständen die Werte in `main.css` prüfen.
-Ab `48em` unverändert: Überschrift, Text und Dreierblock, darunter das Teamfoto.
+
+Ab `48em` (Tablet, Desktop) stehen Überschrift, Einleitungstext, Teamfoto und
+darunter der Dreierblock **immer** zusammen im ersten Bildschirm (seit
+25.11.2026; vorher: Dreierblock über dem Teamfoto, Foto erst beim Scrollen).
+Das Raster ist mindestens `100svh` minus Kopfzeile und Abstände hoch; das
+Teamfoto bekommt die übrige Höhe (Zeile `1fr`, Abbildung als
+Größen-Container), höchstens seine natürliche Größe (Spaltenbreite ×
+550/1600). Wird es niedriger, wird es zuerst unten beschnitten (bis 62 % der
+Bildhöhe sichtbar, Ausschnitt `object-position: 50% 20%`, die Köpfe bleiben
+ganz), erst dann schmaler; es steht mittig auf der hellblauen Bühne, die
+immer über die volle Breite geht (Oberkante auf 26 % der unbeschnittenen
+Bildhöhe). Auf hohen Bildschirmen (z. B. Tablet hochkant) steht das Foto in
+natürlicher Größe mittig zwischen Text und Dreierblock.
+Auf flachen Bildschirmen schrumpfen Überschrift und Abstände mit:
+Überschrift `min(var(--step-6), 9svh)`, Abstand oben
+`clamp(var(--space-s), 4svh, var(--space-xl))`, Abstände dazwischen und
+unten `clamp(var(--space-s), 3.5svh, var(--space-l))`; unter 720 px Höhe
+(`44.99em`) haben die Kacheln des Dreierblocks weniger Innenabstand
+(`--space-xs`). Beispiele (gemessen am 25.11.2026): 1440 × 790 px Foto
+992 × 211 px, 1366 × 625 px 561 × 120 px, 1920 × 950 px 1200 × 313 px.
+Passt ab etwa 580 px Bildschirmhöhe; darunter ragt der Dreierblock knapp
+unter den Rand. Ohne `svh`/Container-Einheiten bleibt die alte Reihenfolge.
 
 ## Barrierefreiheit
 
