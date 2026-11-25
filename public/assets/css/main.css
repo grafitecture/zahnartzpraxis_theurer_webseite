@@ -747,75 +747,105 @@ main .wrap,
 .stage img { width: 100%; }
 
 @media (max-width: 47.99em) {
-  /* Smartphone: Der erste Bildschirm zeigt die Überschrift und das randlose
-     Teamfoto (unten), das direkt auf der Schnellkontakt-Leiste aufsetzt.
-     Dreierblock und Einleitungstext folgen erst beim Scrollen; ist der
-     Bildschirm hoch genug, steht der Einleitungstext schon zwischen
-     Überschrift und Teamfoto (siehe unten).
-     Raster: Luft | Überschrift | Einleitung oben | Luft | Teamfoto |
-     Dreierblock | Einleitung unten. Der Platzhalter ::before über den Zeilen
-     1–5 ist eine Bildschirmhöhe (100svh) minus Kopfzeile, Abstand oben und
-     Leiste hoch; den freien Platz teilen sich die beiden Luft-Zeilen, so
-     steht die Überschrift (mit Text) senkrecht mittig. */
+  /* Smartphone: Der erste Bildschirm zeigt immer Überschrift, Einleitungstext
+     und das randlose Teamfoto, das unten direkt auf der Schnellkontakt-Leiste
+     aufsetzt. Der Dreierblock folgt beim Scrollen.
+     Raster: Luft | Überschrift | Einleitung | Luft | Teamfoto | Dreierblock.
+     Der Platzhalter ::before über den Zeilen 1–5 ist eine Bildschirmhöhe
+     (100svh) minus Kopfzeile, Abstand oben und Leiste hoch; den freien Platz
+     teilen sich die beiden Luft-Zeilen, so stehen Überschrift und Text
+     gemeinsam senkrecht mittig. Die Größe der Überschrift steht unten. */
+  .hero {
+    --hero-pad: var(--space-m);
+    /* Bildschirmhöhe, die nicht für den ersten Bildschirm der Startseite zur
+       Verfügung steht: Kopfzeile, Abstand oben, Leiste, Sicherheitsabstand */
+    --hero-chrome: calc(var(--header-h) + var(--hero-pad) + var(--action-bar-h) + env(safe-area-inset-bottom, 0px));
+    padding-top: var(--hero-pad);
+  }
   .hero > .wrap {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 1fr auto auto 1fr auto auto auto;
+    grid-template-rows: 1fr auto auto 1fr auto auto;
     container-type: inline-size;
   }
   .hero > .wrap::before {
     content: "";
     grid-row: 1 / 6;
     grid-column: 1;
-    min-height: calc(100vh - var(--header-h) - var(--space-xl) - var(--action-bar-h) - env(safe-area-inset-bottom, 0px));
-    min-height: calc(100svh - var(--header-h) - var(--space-xl) - var(--action-bar-h) - env(safe-area-inset-bottom, 0px));
+    min-height: calc(100vh - var(--hero-chrome));
+    min-height: calc(100svh - var(--hero-chrome));
   }
   .hero__intro { display: contents; }
   .hero__title {
     grid-row: 2;
     grid-column: 1;
-    /* So groß wie möglich: das längste Wort „Zahngesundheit,“ (6,68 em)
-       füllt die Breite, höchstens --step-6-max (ohne Container-Einheiten
-       bleibt --step-6) */
+    /* Ohne svh oder Container-Einheiten: so groß wie die Breite erlaubt
+       (ohne Container-Einheiten bleibt --step-6) */
     font-size: min(var(--step-6-max), 14.5cqi);
   }
+  /* Deutsch: jede Hälfte („Für Ihre Zahngesundheit,“ | „hier bei uns in
+     Oldendorf.“) bricht für sich um, nie am weichen Trennstrich. Sonst
+     wählt der Zeilenausgleich „Für Ihre Zahn-/gesundheit,“. Läuft ein Wort
+     doch einmal über (breitere Schrift), bricht es notfalls im Wort. */
+  .hero__title:lang(de) {
+    hyphens: none;
+    -webkit-hyphens: none;
+    overflow-wrap: break-word;
+  }
+  .hero__title:lang(de) span { display: block; }
+  .hero__lead { grid-row: 3; grid-column: 1; margin-top: var(--space-m); }
   .hero .stage {
     grid-row: 5;
     grid-column: 1;
-    margin-top: var(--space-l);
+    margin-top: var(--space-m);
     margin-left: calc(-1 * max(var(--gutter), env(safe-area-inset-left, 0px)));
     margin-right: calc(-1 * max(var(--gutter), env(safe-area-inset-right, 0px)));
   }
   .hero .stage::before { border-radius: 0; }
   .reach { grid-row: 6; grid-column: 1; margin-top: var(--space-l); }
-  .hero__lead { grid-row: 7; grid-column: 1; margin-top: var(--space-l); }
 }
 
-/* Smartphone mit hohem Bildschirm: Passt der Einleitungstext zusätzlich in
-   den ersten Bildschirm, steht er zwischen Überschrift und Teamfoto (Zeile 3).
-   Schwelle je Breitenband = benötigte Bildschirmhöhe am breitesten Ende des
-   Bandes + 8 px Reserve, gemessen mit Source Sans 3 am 24.11.2026.
-   Faustregel Deutsch: Höhe ≥ Breite + 316 px (unter 375 px Breite + 347 px,
-   weil der Text dort vier Zeilen hat). Englisch braucht wegen der kürzeren
-   Überschrift etwa 55 px weniger und hat eigene Schwellen.
-   Bei Änderungen an Überschrift, Text, Teamfoto oder Abständen neu messen. */
-@media (max-width: 23.43em) and (min-height: 45.0625em),
-       (min-width: 23.4375em) and (max-width: 24.62em) and (min-height: 44.8125em),
-       (min-width: 24.625em) and (max-width: 25.93em) and (min-height: 46.125em),
-       (min-width: 25.9375em) and (max-width: 26.93em) and (min-height: 47.0625em),
-       (min-width: 26.9375em) and (max-width: 30.06em) and (min-height: 50.1875em),
-       (min-width: 30.0625em) and (max-width: 37.56em) and (min-height: 57.5625em),
-       (min-width: 37.5625em) and (max-width: 47.99em) and (min-height: 63.4375em) {
-  .hero__lead { grid-row: 3; margin-top: var(--space-m); }
-}
-@media (max-width: 23.43em) and (min-height: 40.8125em),
-       (min-width: 23.4375em) and (max-width: 24.62em) and (min-height: 41.5em),
-       (min-width: 24.625em) and (max-width: 25.93em) and (min-height: 42.625em),
-       (min-width: 25.9375em) and (max-width: 26.93em) and (min-height: 43.4375em),
-       (min-width: 26.9375em) and (max-width: 30.06em) and (min-height: 46.0625em),
-       (min-width: 30.0625em) and (max-width: 37.56em) and (min-height: 52.3125em),
-       (min-width: 37.5625em) and (max-width: 47.99em) and (min-height: 58.4375em) {
-  :lang(en) .hero__lead { grid-row: 3; margin-top: var(--space-m); }
+/* Hero-Überschrift auf dem Smartphone: so groß wie möglich, aber nur so groß,
+   dass Überschrift, Einleitung und Teamfoto zusammen in den ersten
+   Bildschirm passen. Freie Höhe für die Überschrift = Bildschirmhöhe minus
+   Kopfzeile, Abstände, Leiste, Einleitung (Zeilen × 1,5 × --step-1) und
+   Teamfoto (volle Breite, Seitenverhältnis 1600 : 550).
+   Zwei Formen, die größere gewinnt:
+   A  Volle Breite: „Zahngesundheit,“ füllt die Spalte (14,5cqi, höchstens
+      --step-6-max). Deutsch 4 Zeilen, Englisch 3 Zeilen; wird kleiner, wenn
+      die Höhe nicht reicht.
+   B  Zwei Zeilen: „Für Ihre Zahngesundheit,“ / „hier bei uns in Oldendorf.“
+      (je 9,61 em) bzw. „For your dental health,“ / „right here in
+      Oldendorf.“ (8,84 em), höchstens so groß, dass die längere Zeile passt.
+   Untergrenze --step-3 (nur Querformat, dort passt das Teamfoto nie).
+   Gemessen mit Source Sans 3 am 25.11.2026; bei Änderungen an Überschrift,
+   Einleitung, Teamfoto oder Abständen die Werte prüfen
+   (docs/design-system.md). */
+@supports (height: 1svh) and (width: 1cqi) {
+  @media (max-width: 47.99em) {
+    .hero > .wrap {
+      --hero-lead-lines: 3;
+      --hero-free: calc(100svh - var(--hero-chrome) - var(--hero-lead-lines) * 1.5 * var(--step-1) - 2 * var(--space-m) - 34.375vw);
+    }
+    .hero__title {
+      --hero-a-lines: 4;
+      --hero-b-em: 9.75;
+      font-size: max(
+        var(--step-3),
+        min(var(--step-6-max), 14.5cqi, var(--hero-free) / (var(--hero-a-lines) * 1.04)),
+        min(100cqi / var(--hero-b-em), var(--hero-free) / (2 * 1.04))
+      );
+    }
+    .hero__title:lang(en) { --hero-a-lines: 3; --hero-b-em: 9; }
+  }
+  /* Schmale Handys: Einleitung vierzeilig (gemessen: Deutsch unter 369 px,
+     Englisch unter 346 px; hier mit Reserve) */
+  @media (max-width: 23.43em) {
+    .hero > .wrap:lang(de) { --hero-lead-lines: 4; }
+  }
+  @media (max-width: 22.49em) {
+    .hero > .wrap:lang(en) { --hero-lead-lines: 4; }
+  }
 }
 
 /* Auf einen Blick */

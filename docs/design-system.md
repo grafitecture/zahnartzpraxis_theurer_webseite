@@ -131,10 +131,12 @@ Kleine Stufen werden auf dem Smartphone größer statt kleiner: 12 px sind am
 Desktop vertretbar, auf dem Handy für ältere Patienten nicht. `xs` ist
 definiert, wird für lesbare Inhalte aber bewusst nicht eingesetzt.
 
-Ausnahme Hero-Überschrift auf dem Smartphone (unter `48em`): immer so groß
-wie möglich, `min(var(--step-6-max), 14.5cqi)`. Das längste Wort
-„Zahngesundheit,“ (6,68 em) füllt die Breite der Spalte; mehr als 5,61 rem
-wird es nie. Die englische Fassung hat dieselbe Größe.
+Ausnahme Hero-Überschrift auf dem Smartphone (unter `48em`): so groß wie
+möglich, aber nie größer, als Überschrift, Einleitungstext und Teamfoto
+zusammen in den ersten Bildschirm passen (Details unter „Teamfoto im Hero“).
+Bei genug Höhe füllt das längste Wort „Zahngesundheit,“ (6,53 em) die Breite
+der Spalte (`14.5cqi`, höchstens `--step-6-max`, 5,61 rem), die englische
+Fassung hat dann dieselbe Größe.
 
 Semantik und Optik sind getrennt: `.t-h1` … `.t-h6` geben jedem Element die
 passende Größe, ohne die Überschriften-Hierarchie zu verbiegen.
@@ -216,32 +218,33 @@ entsteht aus Lücken zwischen den Flächen. Größe 4 rem, ab `64em` 4,5 rem,
 (`.si-stop-*`) aus den Tokens, weil die CSP keine Inline-Styles erlaubt.
 
 Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos und unten im
-ersten Bildschirm, direkt auf der Schnellkontakt-Leiste; darüber nur die
-Überschrift. Überschrift und Teamfoto zusammen sind eine
-Bildschirmhöhe (`100svh`) minus Kopfzeile, Abstand oben und Leiste
-(`--action-bar-h`, 4,875 rem); den freien Platz nimmt die Überschrift-Zeile,
-die Überschrift steht darin senkrecht mittig.
-Dreierblock und Einleitungstext folgen erst beim Scrollen (in dieser
-Reihenfolge); sobald der Dreierblock im Bild ist, taucht die Leiste ab.
-Ist der Bildschirm hoch genug, steht der Einleitungstext schon im ersten
-Bildschirm zwischen Überschrift und Teamfoto (Abstand `--space-m`); die
-Überschrift mit Text steht dann gemeinsam mittig. Schwellen (Bildschirmhöhe
-ab der der Text oben steht; gemessen mit Source Sans 3 am 24.11.2026, je
-Breitenband am breitesten Ende + 8 px Reserve):
+ersten Bildschirm, direkt auf der Schnellkontakt-Leiste. Darüber stehen
+**immer** die Überschrift und der Einleitungstext (Abstand `--space-m`),
+gemeinsam senkrecht mittig im freien Raum. Der Dreierblock folgt beim
+Scrollen; sobald er im Bild ist, taucht die Leiste ab.
 
-| Breite | Deutsch | Englisch |
-|---|---|---|
-| unter 375 px | 721 px | 653 px |
-| 375–393 px | 717 px | 664 px |
-| 394–414 px | 738 px | 682 px |
-| 415–430 px | 753 px | 695 px |
-| 431–480 px | 803 px | 737 px |
-| 481–600 px | 921 px | 837 px |
-| 601–767 px | 1015 px | 935 px |
+Der erste Bildschirm ist `100svh` minus Kopfzeile, Abstand oben
+(`--space-m`) und Leiste (`--action-bar-h`, 4,875 rem). Abstände darin:
+Überschrift → Text `--space-m`, Text → Teamfoto mindestens `--space-m`.
+Die Überschrift bekommt die Höhe, die nach Text und Teamfoto übrig bleibt
+(rein in CSS, `@supports` mit `svh` und `cqi`). Zwei Formen, die größere
+gewinnt:
 
-Faustregel Deutsch: Höhe ≥ Breite + 316 px (unter 375 px + 347 px, dort hat
-der Text vier Zeilen). Bei Änderungen an Überschrift, Einleitung, Teamfoto
-oder Abständen neu messen.
+| Form | Deutsch | Englisch | Größe |
+|---|---|---|---|
+| A volle Breite | 4 Zeilen: „Für Ihre / Zahngesundheit, / hier bei uns / in Oldendorf.“ | 3 Zeilen: „For your dental / health, right here / in Oldendorf.“ | `14.5cqi`, kleiner wenn die Höhe nicht reicht |
+| B zwei Zeilen | „Für Ihre Zahngesundheit, / hier bei uns in Oldendorf.“ | „For your dental health, / right here in Oldendorf.“ | höchstens Spalte ÷ 9,75 (DE) bzw. ÷ 9 (EN) |
+
+Untergrenze `--step-3`; sie greift nur, wenn nicht einmal Text und Teamfoto
+in den Bildschirm passen (Querformat, sehr flache Fenster). Deutsch bricht
+jede Hälfte für sich um (`span` als Block) und nie am weichen Trennstrich
+(`hyphens: none`), sonst entstünde „Für Ihre Zahn-/gesundheit,“.
+Gerechnet wird mit der Zeilenzahl des Einleitungstextes: 3 Zeilen, unter
+375 px (Deutsch) bzw. 360 px (Englisch) 4 Zeilen (gemessen: unter 369 px
+bzw. 346 px). Beispiele (Deutsch, gemessen mit Source Sans 3 am 25.11.2026):
+390 × 664 px Form A mit 48 px, 375 × 548 px Form B mit 34 px,
+430 × 746 px Form A mit 56 px (volle Größe). Bei Änderungen an Überschrift,
+Einleitung, Teamfoto oder Abständen die Werte in `main.css` prüfen.
 Ab `48em` unverändert: Überschrift, Text und Dreierblock, darunter das Teamfoto.
 
 ## Barrierefreiheit
