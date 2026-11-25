@@ -28,14 +28,17 @@ tools/                     Werkzeuge für Bilder, Karte und Prüfung (nicht onli
 vercel.json                Auslieferung, Sicherheits-Header, Caching
 ```
 
-Seitenaufbau der Startseite: Kopfzeile · Hero mit Dreierblock (Telefon mit
-Live-Status, WhatsApp, Anfahrt) · Auf einen Blick
+Seitenaufbau der Startseite: Kopfzeile · Hero (Überschrift, Einleitung,
+Teamfoto und drei Call to Actions Telefon / WhatsApp / Anfahrt; zusammen mit
+der Kopfzeile genau ein Bildschirm hoch) · Auf einen Blick
 (Adresse, heutige Zeiten, Parken, Bus) · Frau Theurer · Leistungen und
 Kompetenz · Team · Praxisräume · Anfahrt mit Karte · Kontakt und Sprechzeiten ·
-Fußzeile. Auf dem Smartphone gibt es zusätzlich eine feste Leiste mit
-„Anrufen“, „WhatsApp“ und „Anfahrt“. Sie und der Telefon-Button der Kopfzeile
-erscheinen erst, wenn der Dreierblock aus dem Bild scrollt, damit die Nummer
-nie doppelt zu sehen ist.
+Fußzeile. Mobil und auf dem Tablet (unter 1024 px) sind die Call to Actions
+die Buttons der festen Leiste unten („Anrufen“, „WhatsApp“, „Anfahrt“, immer
+sichtbar). Am Desktop stehen sie als Dreierblock (Telefon mit Live-Status,
+WhatsApp, Anfahrt) im Hero; der Telefon-Button der Kopfzeile erscheint erst,
+wenn der Dreierblock aus dem Bild scrollt, damit die Nummer nie doppelt zu
+sehen ist.
 
 ## Zwei Sprachen
 

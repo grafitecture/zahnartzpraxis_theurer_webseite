@@ -540,7 +540,7 @@ body::before {
   }
 }
 
-/* Schnellkontakt-Leiste (mobil) */
+/* Schnellkontakt-Leiste (mobil und Tablet, unter 64em) */
 .action-bar {
   position: fixed;
   left: 0;
@@ -577,13 +577,9 @@ body::before {
 }
 .action-bar a:first-child { background: var(--c-blue-ink); color: var(--c-white); }
 
-/* Solange der Dreierblock im Hero im Bild ist, taucht die Leiste ab (main.js) */
-.action-bar { transition: transform 0.3s var(--ease), visibility 0s; }
-.reach-in-view .action-bar {
-  transform: translateY(100%);
-  visibility: hidden;
-  transition: transform 0.3s var(--ease), visibility 0s 0.3s;
-}
+/* Die Leiste ist mobil und auf dem Tablet (unter 64em) immer sichtbar: Sie
+   ist dort die Button-Version der drei Call to Actions im Hero; den
+   Dreierblock (Kacheln) gibt es nur am Desktop, wo die Leiste entfällt. */
 .action-bar .icon { width: 1.4rem; height: 1.4rem; flex: none; }
 
 body { padding-bottom: calc(var(--action-bar-h) + env(safe-area-inset-bottom, 0px)); }
@@ -746,15 +742,18 @@ main .wrap,
 }
 .stage img { width: 100%; }
 
-@media (max-width: 47.99em) {
-  /* Smartphone: Der erste Bildschirm zeigt immer Überschrift, Einleitungstext
-     und das randlose Teamfoto, das unten direkt auf der Schnellkontakt-Leiste
-     aufsetzt. Der Dreierblock folgt beim Scrollen.
-     Raster: Luft | Überschrift | Einleitung | Luft | Teamfoto | Dreierblock.
-     Der Platzhalter ::before über den Zeilen 1–5 ist eine Bildschirmhöhe
-     (100svh) minus Kopfzeile, Abstand oben und Leiste hoch; den freien Platz
-     teilen sich die beiden Luft-Zeilen, so stehen Überschrift und Text
-     gemeinsam senkrecht mittig. Die Größe der Überschrift steht unten. */
+/* Mobil und Handheld (unter 64em: Smartphone und Tablet): Die drei Call to
+   Actions stehen als Buttons in der Schnellkontakt-Leiste, die hier immer
+   sichtbar ist; den Dreierblock (Kacheln) gibt es nur am Desktop.
+   Der erste Bildschirm zeigt Kopfzeile, Überschrift, Einleitungstext und das
+   randlose Teamfoto, das unten direkt auf der Leiste aufsetzt. Zusammen
+   füllen sie genau die Bildschirmhöhe (100svh).
+   Raster: Luft | Überschrift | Einleitung | Luft | Teamfoto. Den freien
+   Platz teilen sich die beiden Luft-Zeilen, so stehen Überschrift und Text
+   gemeinsam senkrecht mittig. Die Größe der Überschrift steht unten. */
+@media (max-width: 63.99em) {
+  .reach-title,
+  .reach { display: none; }
   .hero {
     --hero-pad: var(--space-m);
     /* Bildschirmhöhe, die nicht für den ersten Bildschirm der Startseite zur
@@ -765,24 +764,13 @@ main .wrap,
   .hero > .wrap {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 1fr auto auto 1fr auto auto;
-    container-type: inline-size;
-  }
-  .hero > .wrap::before {
-    content: "";
-    grid-row: 1 / 6;
-    grid-column: 1;
+    grid-template-rows: 1fr auto auto 1fr auto;
     min-height: calc(100vh - var(--hero-chrome));
     min-height: calc(100svh - var(--hero-chrome));
+    container-type: inline-size;
   }
   .hero__intro { display: contents; }
-  .hero__title {
-    grid-row: 2;
-    grid-column: 1;
-    /* Ohne svh oder Container-Einheiten: so groß wie die Breite erlaubt
-       (ohne Container-Einheiten bleibt --step-6) */
-    font-size: min(var(--step-6-max), 14.5cqi);
-  }
+  .hero__title { grid-row: 2; grid-column: 1; }
   /* Deutsch: jede Hälfte („Für Ihre Zahngesundheit,“ | „hier bei uns in
      Oldendorf.“) bricht für sich um, nie am weichen Trennstrich. Sonst
      wählt der Zeilenausgleich „Für Ihre Zahn-/gesundheit,“. Läuft ein Wort
@@ -802,27 +790,98 @@ main .wrap,
     margin-right: calc(-1 * max(var(--gutter), env(safe-area-inset-right, 0px)));
   }
   .hero .stage::before { border-radius: 0; }
-  .reach { grid-row: 6; grid-column: 1; margin-top: var(--space-l); }
+}
+@media (max-width: 47.99em) {
+  /* Ohne svh oder Container-Einheiten: so groß wie die Breite erlaubt
+     (ohne Container-Einheiten bleibt --step-6) */
+  .hero__title { font-size: min(var(--step-6-max), 14.5cqi); }
+}
+@media (min-width: 48em) and (max-width: 63.99em) {
+  .hero__lead { max-width: 34rem; }
+}
+/* Querformat auf Smartphones (flach, unter 600 px hoch): Überschrift läuft
+   als ein Satz (meist eine Zeile), Abstände enger, damit Überschrift,
+   Einleitung und Teamfoto zwischen Kopfzeile und Leiste passen. */
+@media (max-width: 63.99em) and (orientation: landscape) and (max-height: 37.49em) {
+  .hero { --hero-pad: clamp(var(--space-2xs), 3svh, var(--space-m)); }
+  .hero__title { max-width: none; }
+  .hero__title span,
+  .hero__title:lang(de) span { display: inline; }
+  .hero__lead { margin-top: var(--space-xs); max-width: 34rem; }
+  .hero .stage { margin-top: var(--space-xs); }
 }
 
-/* Hero-Überschrift auf dem Smartphone: so groß wie möglich, aber nur so groß,
-   dass Überschrift, Einleitung und Teamfoto zusammen in den ersten
-   Bildschirm passen. Freie Höhe für die Überschrift = Bildschirmhöhe minus
-   Kopfzeile, Abstände, Leiste, Einleitung (Zeilen × 1,5 × --step-1) und
-   Teamfoto (volle Breite, Seitenverhältnis 1600 : 550).
-   Zwei Formen, die größere gewinnt:
-   A  Volle Breite: „Zahngesundheit,“ füllt die Spalte (14,5cqi, höchstens
-      --step-6-max). Deutsch 4 Zeilen, Englisch 3 Zeilen; wird kleiner, wenn
-      die Höhe nicht reicht.
-   B  Zwei Zeilen: „Für Ihre Zahngesundheit,“ / „hier bei uns in Oldendorf.“
-      (je 9,61 em) bzw. „For your dental health,“ / „right here in
-      Oldendorf.“ (8,84 em), höchstens so groß, dass die längere Zeile passt.
-   Untergrenze --step-3 (nur Querformat, dort passt das Teamfoto nie).
-   Gemessen mit Source Sans 3 am 25.11.2026; bei Änderungen an Überschrift,
-   Einleitung, Teamfoto oder Abständen die Werte prüfen
-   (docs/design-system.md). */
 @supports (height: 1svh) and (width: 1cqi) {
-  @media (max-width: 47.99em) {
+  /* Teamfoto (alle Breiten): bekommt die Höhe, die im ersten Bildschirm
+     übrig bleibt (Abbildung als Größen-Container), höchstens seine
+     natürliche Größe (Breite ÷ 1600 × 550). Wird es niedriger, wird es
+     zuerst unten beschnitten (bis 62 % der Bildhöhe sichtbar, Köpfe bleiben
+     ganz, Ausschnitt bei 20 % von oben), erst dann schmaler; es steht mittig
+     auf der hellblauen Bühne, die immer über die volle Breite geht. */
+  .hero .stage {
+    display: grid;
+    container-type: size;
+  }
+  .hero .stage::before { content: none; }
+  .hero .stage picture {
+    --photo-h: min(100cqh, 100cqw * 550 / 1600);
+    --photo-w: min(100cqw, var(--photo-h) * 1600 / 550 / 0.62);
+    position: relative;
+    display: block;
+    height: var(--photo-h);
+  }
+  /* Bühne: über die volle Breite, Oberkante wie bei .stage::before auf
+     26 % der (unbeschnittenen) Bildhöhe: 0,06 × Bildhöhe + 0,2 × Ausschnitt */
+  .hero .stage picture::before {
+    content: "";
+    position: absolute;
+    inset: calc(0.06 * var(--photo-w) * 550 / 1600 + 0.2 * var(--photo-h)) 0 0;
+    z-index: -1;
+    background: var(--c-sky-50);
+    border-radius: var(--radius-l) var(--radius-l) 0 0;
+  }
+  .hero .stage img {
+    display: block;
+    width: var(--photo-w);
+    height: 100%;
+    margin-inline: auto;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+
+  /* Mobil und Handheld: Das Raster ist genau eine Bildschirmhöhe minus
+     Kopfzeile, Abstand oben und Leiste hoch. Die Teamfoto-Zeile wächst bis
+     zur natürlichen Größe des randlosen Fotos (34,375vw) und schrumpft auf
+     flachen Bildschirmen (Querformat) bis --photo-min; das Foto sitzt immer
+     unten auf der Leiste. */
+  @media (max-width: 63.99em) {
+    .hero > .wrap {
+      --photo-min: 4.5rem;
+      height: calc(100svh - var(--hero-chrome));
+      min-height: 0;
+      grid-template-rows: 1fr auto auto 1fr minmax(calc(var(--photo-min) + var(--space-m)), calc(34.375vw + var(--space-m)));
+    }
+    .hero .stage { align-content: end; }
+    .hero .stage picture::before { border-radius: 0; }
+  }
+
+  /* Hero-Überschrift auf dem Smartphone: so groß wie möglich, aber nur so groß,
+     dass Überschrift, Einleitung und Teamfoto zusammen in den ersten
+     Bildschirm passen. Freie Höhe für die Überschrift = Bildschirmhöhe minus
+     Kopfzeile, Abstände, Leiste, Einleitung (Zeilen × 1,5 × --step-1) und
+     Teamfoto (volle Breite, Seitenverhältnis 1600 : 550).
+     Zwei Formen, die größere gewinnt:
+     A  Volle Breite: „Zahngesundheit,“ füllt die Spalte (14,5cqi, höchstens
+        --step-6-max). Deutsch 4 Zeilen, Englisch 3 Zeilen; wird kleiner, wenn
+        die Höhe nicht reicht.
+     B  Zwei Zeilen: „Für Ihre Zahngesundheit,“ / „hier bei uns in Oldendorf.“
+        (je 9,61 em) bzw. „For your dental health,“ / „right here in
+        Oldendorf.“ (8,84 em), höchstens so groß, dass die längere Zeile passt.
+     Untergrenze --step-3 (nur Querformat; dort wird das Teamfoto kleiner).
+     Gemessen mit Source Sans 3 am 25.11.2026; bei Änderungen an Überschrift,
+     Einleitung, Teamfoto oder Abständen die Werte prüfen
+     (docs/design-system.md). */
+  @media (max-width: 63.99em) {
     .hero > .wrap {
       --hero-lead-lines: 3;
       --hero-free: calc(100svh - var(--hero-chrome) - var(--hero-lead-lines) * 1.5 * var(--step-1) - 2 * var(--space-m) - 34.375vw);
@@ -846,20 +905,43 @@ main .wrap,
   @media (max-width: 22.49em) {
     .hero > .wrap:lang(en) { --hero-lead-lines: 4; }
   }
-}
+  /* Tablet (48em bis 64em): nur Form B (zwei Zeilen über die volle Breite,
+     höchstens --step-6-max); Einleitung zweizeilig (34rem breit) */
+  @media (min-width: 48em) and (max-width: 63.99em) {
+    .hero > .wrap { --hero-lead-lines: 2; }
+    .hero__title {
+      font-size: max(
+        var(--step-3),
+        min(var(--step-6-max), 100cqi / var(--hero-b-em), var(--hero-free) / (2 * 1.04))
+      );
+    }
+  }
 
-/* Tablet und Desktop (ab 48em): Überschrift, Einleitung, Teamfoto und
-   darunter der Dreierblock stehen immer zusammen im ersten Bildschirm.
-   Raster: Überschrift | Einleitung | Teamfoto | Dreierblock. Das Raster ist
-   mindestens eine Bildschirmhöhe (100svh) minus Kopfzeile und Abstände oben
-   und unten hoch; das Teamfoto bekommt die übrige Höhe (Zeile 1fr, Abbildung
-   als Größen-Container) und wird höchstens so groß wie die Spalte breit ist.
-   Ist es kleiner, steht es mittig auf der hellblauen Bühne, die immer über
-   die volle Breite geht. Überschrift und Abstände werden auf flachen
-   Bildschirmen kleiner (svh). Ohne svh oder Container-Einheiten bleibt die
-   alte Reihenfolge (Dreierblock über dem Teamfoto). */
-@supports (height: 1svh) and (width: 1cqi) {
-  @media (min-width: 48em) {
+  /* Querformat auf Smartphones: Überschrift höchstens so breit wie die
+     Spalte (ein Satz: Deutsch rund 19,5 em, Englisch 17,5 em) und höchstens
+     8svh; das Teamfoto bekommt den Rest, mindestens 3 rem. */
+  @media (max-width: 63.99em) and (orientation: landscape) and (max-height: 37.49em) {
+    .hero > .wrap {
+      --photo-min: 3rem;
+      grid-template-rows: 1fr auto auto 1fr minmax(calc(var(--photo-min) + var(--space-xs)), calc(34.375vw + var(--space-xs)));
+    }
+    .hero__title,
+    .hero__title:lang(en) {
+      font-size: max(var(--step-1), min(100cqi / var(--hero-line-em), 8svh));
+    }
+    .hero__title { --hero-line-em: 20; }
+    .hero__title:lang(en) { --hero-line-em: 18; }
+  }
+
+  /* Desktop (ab 64em): Überschrift, Einleitung, Teamfoto und darunter der
+     Dreierblock (Kacheln) stehen immer zusammen im ersten Bildschirm.
+     Raster: Überschrift | Einleitung | Teamfoto | Dreierblock. Das Raster ist
+     mindestens eine Bildschirmhöhe (100svh) minus Kopfzeile und Abstände
+     oben und unten hoch; das Teamfoto bekommt die übrige Höhe (Zeile 1fr)
+     und steht darin mittig. Überschrift und Abstände werden auf flachen
+     Bildschirmen kleiner (svh). Ohne svh oder Container-Einheiten bleibt die
+     alte Reihenfolge (Dreierblock über dem Teamfoto). */
+  @media (min-width: 64em) {
     .hero {
       --hero-pad-top: clamp(var(--space-s), 4svh, var(--space-xl));
       --hero-gap: clamp(var(--space-s), 3.5svh, var(--space-l));
@@ -878,46 +960,14 @@ main .wrap,
     .hero .stage {
       grid-row: 3;
       grid-column: 1;
-      display: grid;
       align-content: center;
       margin-top: var(--hero-gap);
-      container-type: size;
-    }
-    .hero .stage::before { content: none; }
-    /* Teamfoto: Höhe = übrige Höhe, höchstens natürliche Höhe (Spalte ÷
-       1600 × 550). Wird es niedriger, wird es zuerst unten beschnitten (bis
-       62 % der Bildhöhe sichtbar, Köpfe bleiben ganz, Ausschnitt bei 20 %
-       von oben), erst dann schmaler. */
-    .hero .stage picture {
-      --photo-h: min(100cqh, 100cqw * 550 / 1600);
-      --photo-w: min(100cqw, var(--photo-h) * 1600 / 550 / 0.62);
-      position: relative;
-      display: block;
-      height: var(--photo-h);
-    }
-    /* Bühne: über die volle Breite, Oberkante wie bei .stage::before auf
-       26 % der (unbeschnittenen) Bildhöhe: 0,06 × Bildhöhe + 0,2 × Ausschnitt */
-    .hero .stage picture::before {
-      content: "";
-      position: absolute;
-      inset: calc(0.06 * var(--photo-w) * 550 / 1600 + 0.2 * var(--photo-h)) 0 0;
-      z-index: -1;
-      background: var(--c-sky-50);
-      border-radius: var(--radius-l) var(--radius-l) 0 0;
-    }
-    .hero .stage img {
-      display: block;
-      width: var(--photo-w);
-      height: 100%;
-      margin-inline: auto;
-      object-fit: cover;
-      object-position: 50% 20%;
     }
     .reach { grid-row: 4; grid-column: 1; margin-top: var(--hero-gap); }
   }
   /* Flache Bildschirme (Laptops um 1366 × 768): Kacheln des Dreierblocks
      etwas flacher, damit dem Teamfoto mehr Höhe bleibt */
-  @media (min-width: 48em) and (max-height: 44.99em) {
+  @media (min-width: 64em) and (max-height: 44.99em) {
     .reach__item { padding-block: var(--space-xs); }
   }
 }

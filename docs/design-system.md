@@ -76,11 +76,12 @@ Weiß; höchstens 25,2 rem breit). Es kommt unverändert aus
 - Die Kopfzeile ist oben transparent und bleibt beim Scrollen immer oben
   angeheftet (dann mit heller, leicht transparenter Fläche und feiner Linie).
   Das Logo schrumpft nie.
-- **Telefonnummer nur einmal im Bild:** Auf der Startseite steht die Nummer im
-  Dreierblock des Hero. Solange er sichtbar ist, sind der Telefon-Button der
-  Kopfzeile (Desktop) und die Schnellkontakt-Leiste (mobil) ausgeblendet; sie
-  erscheinen, sobald der Block aus dem Bild scrollt (Button klappt weich auf,
-  Leiste fährt von unten herein). Unterseiten zeigen den Telefon-Button immer.
+- **Telefonnummer nur einmal im Bild:** Am Desktop (ab `64em`) steht die
+  Nummer auf der Startseite im Dreierblock des Hero. Solange er sichtbar ist,
+  ist der Telefon-Button der Kopfzeile ausgeblendet; er klappt weich auf,
+  sobald der Block aus dem Bild scrollt. Unterseiten zeigen den Telefon-Button
+  immer. Mobil und auf dem Tablet (unter `64em`) gibt es keinen Dreierblock;
+  dort ist die Schnellkontakt-Leiste immer sichtbar (seit 25.11.2026).
 - Navigationspunkte (Kopf- und Fußzeile): 16 px, keine Unterstreichung, kein
   Rahmen. Eine Fläche mit Verlauf (Rundung 2 px) erscheint nur bei
   Mouseover (`#c8e0f3` → `#edf5fb`) und beim aktiven Punkt
@@ -131,8 +132,8 @@ Kleine Stufen werden auf dem Smartphone größer statt kleiner: 12 px sind am
 Desktop vertretbar, auf dem Handy für ältere Patienten nicht. `xs` ist
 definiert, wird für lesbare Inhalte aber bewusst nicht eingesetzt.
 
-Ausnahme Hero-Überschrift auf dem Smartphone (unter `48em`): so groß wie
-möglich, aber nie größer, als Überschrift, Einleitungstext und Teamfoto
+Ausnahme Hero-Überschrift auf Smartphone und Tablet (unter `64em`): so groß
+wie möglich, aber nie größer, als Überschrift, Einleitungstext und Teamfoto
 zusammen in den ersten Bildschirm passen (Details unter „Teamfoto im Hero“).
 Bei genug Höhe füllt das längste Wort „Zahngesundheit,“ (6,53 em) die Breite
 der Spalte (`14.5cqi`, höchstens `--step-6-max`, 5,61 rem), die englische
@@ -154,10 +155,10 @@ Schriftgröße im Browser erhöhen.
 
 | Breakpoint | ≈ px | Was passiert | Warum hier |
 |---|---|---|---|
-| Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten | Smartphones |
+| Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten (immer sichtbar), kein Dreierblock | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
-| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster, Dreierblock nebeneinander | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
-| `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, 12-Spalten-Raster, Team vierspaltig | Logo, Sprachumschalter, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (gemessen mit Source Sans 3: rund 290 von 960 px frei; Englisch kürzer) |
+| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
+| `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, im Hero Dreierblock (Kacheln) statt Buttons, 12-Spalten-Raster, Team vierspaltig | Logo, Sprachumschalter, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (gemessen mit Source Sans 3: rund 290 von 960 px frei; Englisch kürzer) |
 | `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
 
@@ -172,9 +173,13 @@ Schriftgröße im Browser erhöhen.
   links neben Notizen. Nicht betroffen: Fokusrahmen (3 px, Barrierefreiheit),
   Link-Unterstreichungen, Icons, die Karte selbst und das Grafitecture-Feld.
 - Buttons: Pillenform (`--radius-pill`), Mindesthöhe 48 px (Touch)
-- Schnellkontakt-Leiste (mobil, < 1024 px): drei gleich breite Buttons
-  Anrufen / WhatsApp / Anfahrt, Icon mittig über dem Text, Rundung `--radius-m`,
-  Höhe 60 px; „Anrufen“ gefüllt in `--c-blue-ink`, die anderen auf `--c-sky-50`
+- Schnellkontakt-Leiste (mobil und Tablet, < 1024 px): drei gleich breite
+  Buttons Anrufen / WhatsApp / Anfahrt, Icon mittig über dem Text, Rundung
+  `--radius-m`, Höhe 60 px; „Anrufen“ gefüllt in `--c-blue-ink`, die anderen
+  auf `--c-sky-50`. Sie ist die Button-Version der drei Call to Actions des
+  Hero und immer sichtbar (seit 25.11.2026; vorher tauchte sie ab, solange der
+  Dreierblock im Bild war). Ab `48em` stehen die Buttons mittig (höchstens
+  40 rem breit), die Fläche der Leiste geht über die volle Breite.
 - Dreierblock im Hero (`.reach`): Telefon / WhatsApp / Anfahrt als drei
   gleich breite, kompakte Kacheln, bewusst zurückhaltend; die ganze Kachel ist
   ein Link. Aufbau: rundes Symbol (2,5 rem), Bezeichnung klein (`--step-n1`),
@@ -183,7 +188,9 @@ Schriftgröße im Browser erhöhen.
   `--c-line`, Hover dunkle Linie `--c-line-strong` auf `--c-sky-25`, Rundung
   `--radius-m`. Das Telefon ist nur über sein gefülltes Symbol
   (`--c-blue-ink`) hervorgehoben und zeigt den Live-Status der Sprechzeiten.
-  Mobil untereinander, ab `48em` nebeneinander.
+  Nur am Desktop (ab `64em`), dort nebeneinander; darunter ausgeblendet
+  (samt der versteckten Überschrift `.reach-title`), weil dort die
+  Schnellkontakt-Leiste die drei Wege als Buttons zeigt.
 - Fotos: `--radius-m` (0,875 rem)
 - Porträts (Frau Theurer, Team): vollflächige Kachel `--c-sky-50` hinter dem
   freigestellten Foto, Rundung `--radius-m` an allen Ecken
@@ -217,64 +224,85 @@ entsteht aus Lücken zwischen den Flächen. Größe 4 rem, ab `64em` 4,5 rem,
 (`#si-…`); die Verlaufsstopps bekommen ihre Farben über Klassen
 (`.si-stop-*`) aus den Tokens, weil die CSP keine Inline-Styles erlaubt.
 
-Teamfoto im Hero: auf dem Smartphone (unter `48em`) randlos und unten im
-ersten Bildschirm, direkt auf der Schnellkontakt-Leiste. Darüber stehen
-**immer** die Überschrift und der Einleitungstext (Abstand `--space-m`),
-gemeinsam senkrecht mittig im freien Raum. Der Dreierblock folgt beim
-Scrollen; sobald er im Bild ist, taucht die Leiste ab.
+**Hero = genau ein Bildschirm (seit 25.11.2026, Wunsch Martin).** Auf allen
+Geräten füllen Kopfzeile (Logo, Navigation), Überschrift, Einleitungstext,
+Teamfoto und die drei Call to Actions (Telefon, WhatsApp, Anfahrt) zusammen
+den ersten Bildschirm (`100svh`). Mobil und auf dem Tablet (unter `64em`)
+sind die Call to Actions die Buttons der Schnellkontakt-Leiste, am Desktop
+die Kacheln des Dreierblocks.
 
-Der erste Bildschirm ist `100svh` minus Kopfzeile, Abstand oben
-(`--space-m`) und Leiste (`--action-bar-h`, 4,875 rem). Abstände darin:
-Überschrift → Text `--space-m`, Text → Teamfoto mindestens `--space-m`.
+**Smartphone und Tablet (unter `64em`):** Das Teamfoto steht randlos unten im
+ersten Bildschirm, direkt auf der Schnellkontakt-Leiste. Darüber stehen
+Überschrift und Einleitungstext (Abstand `--space-m`), gemeinsam senkrecht
+mittig im freien Raum (Raster: Luft | Überschrift | Einleitung | Luft |
+Teamfoto). Das Raster ist genau `100svh` minus Kopfzeile, Abstand oben
+(`--space-m`) und Leiste (`--action-bar-h`, 4,875 rem, plus
+Sicherheitsabstand unten) hoch. Abstände darin: Überschrift → Text
+`--space-m`, Text → Teamfoto mindestens `--space-m`. Die Teamfoto-Zeile
+wächst bis zur natürlichen Größe des randlosen Fotos (`34.375vw`) und
+schrumpft nur, wenn der Platz nicht reicht (Querformat), wie am Desktop:
+erst unten beschnitten, dann schmaler (siehe unten).
+
 Die Überschrift bekommt die Höhe, die nach Text und Teamfoto übrig bleibt
 (rein in CSS, `@supports` mit `svh` und `cqi`). Zwei Formen, die größere
-gewinnt:
+gewinnt (auf dem Tablet ab `48em` nur Form B):
 
 | Form | Deutsch | Englisch | Größe |
 |---|---|---|---|
 | A volle Breite | 4 Zeilen: „Für Ihre / Zahngesundheit, / hier bei uns / in Oldendorf.“ | 3 Zeilen: „For your dental / health, right here / in Oldendorf.“ | `14.5cqi`, kleiner wenn die Höhe nicht reicht |
-| B zwei Zeilen | „Für Ihre Zahngesundheit, / hier bei uns in Oldendorf.“ | „For your dental health, / right here in Oldendorf.“ | höchstens Spalte ÷ 9,75 (DE) bzw. ÷ 9 (EN) |
+| B zwei Zeilen | „Für Ihre Zahngesundheit, / hier bei uns in Oldendorf.“ | „For your dental health, / right here in Oldendorf.“ | höchstens Spalte ÷ 9,75 (DE) bzw. ÷ 9 (EN), höchstens `--step-6-max` |
 
-Untergrenze `--step-3`; sie greift nur, wenn nicht einmal Text und Teamfoto
-in den Bildschirm passen (Querformat, sehr flache Fenster). Deutsch bricht
-jede Hälfte für sich um (`span` als Block) und nie am weichen Trennstrich
-(`hyphens: none`), sonst entstünde „Für Ihre Zahn-/gesundheit,“.
-Gerechnet wird mit der Zeilenzahl des Einleitungstextes: 3 Zeilen, unter
-375 px (Deutsch) bzw. 360 px (Englisch) 4 Zeilen (gemessen: unter 369 px
-bzw. 346 px). Beispiele (Deutsch, gemessen mit Source Sans 3 am 25.11.2026):
-390 × 664 px Form A mit 48 px, 375 × 548 px Form B mit 34 px,
-430 × 746 px Form A mit 56 px (volle Größe). Bei Änderungen an Überschrift,
-Einleitung, Teamfoto oder Abständen die Werte in `main.css` prüfen.
+Untergrenze `--step-3`. Deutsch bricht jede Hälfte für sich um (`span` als
+Block) und nie am weichen Trennstrich (`hyphens: none`), sonst entstünde
+„Für Ihre Zahn-/gesundheit,“. Gerechnet wird mit der Zeilenzahl des
+Einleitungstextes: Smartphone 3 Zeilen (30 rem breit), unter 375 px (Deutsch)
+bzw. 360 px (Englisch) 4 Zeilen (gemessen: unter 369 px bzw. 346 px);
+Tablet 2 Zeilen (34 rem breit). Beispiele (Deutsch, gemessen mit Source
+Sans 3 am 25.11.2026): 390 × 664 px Form A mit 48 px, 375 × 548 px Form B mit
+34 px, 430 × 746 px Form A mit 56 px (volle Größe), 768 × 1024 px Form B mit
+73 px (Foto 768 × 264 px), 834 × 1194 px Form B mit 80 px, 1023 × 768 px
+Form B mit 41 px. Bei Änderungen an Überschrift, Einleitung, Teamfoto oder
+Abständen die Werte in `main.css` prüfen.
 
-Ab `48em` (Tablet, Desktop) stehen Überschrift, Einleitungstext, Teamfoto und
-darunter der Dreierblock **immer** zusammen im ersten Bildschirm (seit
-25.11.2026; vorher: Dreierblock über dem Teamfoto, Foto erst beim Scrollen).
-Das Raster ist mindestens `100svh` minus Kopfzeile und Abstände hoch; das
-Teamfoto bekommt die übrige Höhe (Zeile `1fr`, Abbildung als
-Größen-Container), höchstens seine natürliche Größe (Spaltenbreite ×
+**Querformat auf dem Smartphone** (unter `64em`, Querformat, unter 600 px
+hoch): Die Überschrift läuft als ein Satz (meist eine Zeile), Größe
+`max(--step-1, min(Spalte ÷ 20 (DE) bzw. ÷ 18 (EN), 8svh))`; Abstand oben
+`clamp(--space-2xs, 3svh, --space-m)`, Abstände zum Text und zum Foto
+`--space-xs`, Einleitung 34 rem breit; das Teamfoto bekommt den Rest
+(mindestens 3 rem, Köpfe ganz). Beispiele: 844 × 390 px Überschrift 31 px,
+Foto 357 × 76 px; 667 × 375 px 30 px, Foto 326 × 69 px. Passt ab etwa
+360 px Bildschirmhöhe; darunter ragt das Foto unter die Leiste.
+
+**Desktop (ab `64em`):** Überschrift, Einleitungstext, Teamfoto und darunter
+der Dreierblock stehen zusammen im ersten Bildschirm. Das Raster ist
+mindestens `100svh` minus Kopfzeile und Abstände hoch; das Teamfoto bekommt
+die übrige Höhe (Zeile `1fr`) und steht darin mittig.
+
+**Teamfoto (alle Breiten):** Die Abbildung ist ein Größen-Container; das
+Foto wird höchstens so groß wie die Spalte breit ist (Spaltenbreite ×
 550/1600). Wird es niedriger, wird es zuerst unten beschnitten (bis 62 % der
 Bildhöhe sichtbar, Ausschnitt `object-position: 50% 20%`, die Köpfe bleiben
 ganz), erst dann schmaler; es steht mittig auf der hellblauen Bühne, die
 immer über die volle Breite geht (Oberkante auf 26 % der unbeschnittenen
-Bildhöhe). Auf hohen Bildschirmen (z. B. Tablet hochkant) steht das Foto in
-natürlicher Größe mittig zwischen Text und Dreierblock.
-Auf flachen Bildschirmen schrumpfen Überschrift und Abstände mit:
+Bildhöhe; unter `64em` randlos ohne Rundung).
+Auf flachen Desktop-Bildschirmen schrumpfen Überschrift und Abstände mit:
 Überschrift `min(var(--step-6), 9svh)`, Abstand oben
 `clamp(var(--space-s), 4svh, var(--space-xl))`, Abstände dazwischen und
 unten `clamp(var(--space-s), 3.5svh, var(--space-l))`; unter 720 px Höhe
 (`44.99em`) haben die Kacheln des Dreierblocks weniger Innenabstand
 (`--space-xs`). Beispiele (gemessen am 25.11.2026): 1440 × 790 px Foto
-992 × 211 px, 1366 × 625 px 561 × 120 px, 1920 × 950 px 1200 × 313 px.
-Passt ab etwa 580 px Bildschirmhöhe; darunter ragt der Dreierblock knapp
-unter den Rand. Ohne `svh`/Container-Einheiten bleibt die alte Reihenfolge.
+992 × 211 px, 1366 × 625 px 561 × 120 px, 1920 × 950 px 1200 × 313 px,
+1024 × 600 px 549 × 117 px. Passt ab etwa 580 px Bildschirmhöhe; darunter
+ragt der Dreierblock knapp unter den Rand. Ohne `svh`/Container-Einheiten
+bleibt die alte Reihenfolge (Desktop: Dreierblock über dem Teamfoto).
 
 ## Barrierefreiheit
 
 - Textkontraste nach WCAG AA (automatisch geprüft, 0 Fehler)
 - sichtbarer Fokusrahmen, Skip-Link, Tastaturbedienung der Navigation
 - Bewegungen nur bei `prefers-reduced-motion: no-preference`
-- Telefon, WhatsApp und Anfahrt auf dem Handy jederzeit mit einem Tipp erreichbar
-  (im Hero über den Dreierblock, sonst über die Schnellkontakt-Leiste)
+- Telefon, WhatsApp und Anfahrt auf Handy und Tablet jederzeit mit einem Tipp
+  erreichbar (Schnellkontakt-Leiste, immer sichtbar)
 - Externe Links öffnen immer in einem neuen Fenster (`target="_blank"
   rel="noopener"`); Screenreader hören über `aria-describedby` den Hinweis
   „öffnet in neuem Fenster“ bzw. „opens in a new window“ (versteckter Text

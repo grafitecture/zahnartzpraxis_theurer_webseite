@@ -164,9 +164,10 @@
 
   /* ---------------------------------------------------------------------
    * 2a. Telefonnummer nur einmal im Bild: Solange der Dreierblock im Hero
-   *     (Telefon, WhatsApp, Anfahrt) sichtbar ist, blenden das Telefon in der
-   *     Kopfzeile (Desktop) und die Schnellkontakt-Leiste (mobil) aus.
-   *     Ohne JavaScript bleiben beide sichtbar.
+   *     (Telefon, WhatsApp, Anfahrt; nur am Desktop ab 64em) sichtbar ist,
+   *     blendet das Telefon in der Kopfzeile aus. Mobil und auf dem Tablet
+   *     ist der Block ausgeblendet und die Schnellkontakt-Leiste immer da.
+   *     Ohne JavaScript bleibt das Telefon in der Kopfzeile sichtbar.
    * ------------------------------------------------------------------ */
   var reach = document.querySelector('[data-reach]');
   if (reach && 'IntersectionObserver' in window) {

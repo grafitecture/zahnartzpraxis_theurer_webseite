@@ -150,9 +150,11 @@
         <h1 class="hero__title" id="hero-title"><span>For your dental health,</span> <span>right here in Oldendorf.</span></h1>
         <div class="hero__intro">
           <p class="lead hero__lead">Dentist Désirée Theurer and her team provide caring treatment with modern technology and short waiting times.</p>
-          <!-- Dreierblock: Telefon, WhatsApp, Anfahrt. Solange er im Bild ist,
-               blenden Kopfzeilen-Telefon und Schnellkontakt-Leiste aus (main.js). -->
-          <h2 class="visually-hidden" id="reach-title">How to reach us</h2>
+          <!-- Dreierblock: Telefon, WhatsApp, Anfahrt – nur am Desktop (ab 64em).
+               Mobil und auf dem Tablet stehen die drei Wege als Buttons in der
+               Schnellkontakt-Leiste. Solange der Block im Bild ist, blendet das
+               Telefon in der Kopfzeile aus (main.js). -->
+          <h2 class="visually-hidden reach-title" id="reach-title">How to reach us</h2>
           <ul class="reach" aria-labelledby="reach-title" data-reach>
             <li>
               <a class="reach__item reach__item--primary" href="tel:+4941446639">
