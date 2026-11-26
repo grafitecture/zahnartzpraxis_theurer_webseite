@@ -4,7 +4,7 @@
   "handle": "zahnarztpraxis_theurer",
   "beitraege": [
     {
-      "datei": "13-kontakt.png", "slug": "kontakt", "typ": "karussell", "url": "https://www.instagram.com/p/DgNS2LoFrXd/",
+      "datei": "13-kontakt.png", "slug": "kontakt", "typ": "karussell", "url": "https://www.instagram.com/p/DgN1c8BFJ6d/",
       "de": { "titel": "So erreichen Sie uns", "alt": "So erreichen Sie uns: Anrufen, WhatsApp und kostenlos parken vor der Tür" },
       "en": { "titel": "How to reach us", "alt": "How to reach us: call, WhatsApp and free parking right outside (post in German)" }
     },
@@ -14,7 +14,7 @@
       "en": { "titel": "This is us", "alt": "This is us: our team of eight (post in German)" }
     },
     {
-      "datei": "01-willkommen.png", "slug": "willkommen", "typ": "karussell", "url": "https://www.instagram.com/p/DgNMaMRFtqa/",
+      "datei": "01-willkommen.png", "slug": "willkommen", "typ": "karussell", "url": "https://www.instagram.com/p/DgN0GBSoBm4/",
       "de": { "titel": "Schön, dass Sie da sind", "alt": "Schön, dass Sie da sind: unsere Praxis in Oldendorf, jetzt auch auf Instagram" },
       "en": { "titel": "Welcome", "alt": "Welcome to our practice in Oldendorf, now also on Instagram (post in German)" }
     },
