@@ -83,6 +83,9 @@
     <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
     <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.2 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.2-3.6-8.5s1.2-6.2 3.6-8.5Z"/></symbol>
     <symbol id="i-aid" viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="13" rx="2.5"/><path d="M9 6.5V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v1.5M12 10v6M9 13h6"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/></symbol>
+    <symbol id="i-stack" viewBox="0 0 24 24"><rect x="7.5" y="3.5" width="13" height="13" rx="2.5"/><path d="M16.5 20.5h-10a3 3 0 0 1-3-3v-10"/></symbol>
+    <symbol id="i-reel" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="m10 8.8 5 3.2-5 3.2Z"/></symbol>
     <!-- Leistungs-Icons: nur Flächen mit Verläufen, Farben über Klassen aus main.css (Tokens) -->
     <defs>
       <linearGradient id="si-g-bg" x1="0" y1="0" x2="0" y2="1">
@@ -494,6 +497,118 @@
             <figcaption>Behandlungszimmer</figcaption>
           </figure>
         </div>
+
+        <!-- Instagram: Vorschaubilder vom eigenen Server, normale Links, keine Einbettung und kein Skript von Meta.
+             Kacheln und Bilder: tools/instagram.cjs mit tools/instagram/beitraege.json -->
+        <section class="insta" id="instagram" aria-labelledby="insta-title">
+          <div class="insta__intro">
+            <h3 class="t-h3" id="insta-title">Mehr Einblicke auf Instagram</h3>
+            <a class="insta__profile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+              <span class="insta__avatar"><img src="assets/img/instagram/profil-160.webp" width="160" height="160" loading="lazy" alt=""></span>
+              <span class="insta__who"><span class="insta__handle">@zahnarztpraxis_theurer</span><span class="insta__name">Zahnarztpraxis Theurer auf Instagram</span></span>
+            </a>
+            <p>Zahnwissen zum Mitnehmen, unser Team und Neues aus der Praxis in Oldendorf.</p>
+            <a class="button button--ghost" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+              <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
+              Auf Instagram folgen
+            </a>
+            <p class="insta__note">Die Vorschaubilder liegen auf unserem Server. Instagram öffnet sich erst, wenn Sie klicken. Mehr dazu in der <a href="datenschutz/#instagram">Datenschutzerklärung</a>.</p>
+          </div>
+          <ul class="insta__grid" aria-label="Die neuesten Beiträge auf Instagram">
+<!-- instagram:start -->
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/kontakt-360.avif 360w, assets/img/instagram/kontakt-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/kontakt-360.webp" srcset="assets/img/instagram/kontakt-360.webp 360w, assets/img/instagram/kontakt-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="So erreichen Sie uns: Anrufen, WhatsApp und kostenlos parken vor der Tür">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">So erreichen Sie uns</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/team-360.avif 360w, assets/img/instagram/team-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/team-360.webp" srcset="assets/img/instagram/team-360.webp 360w, assets/img/instagram/team-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Das sind wir: unser Team, acht Menschen mit einem Ziel, Ihrer Zahngesundheit">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">Das sind wir</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/willkommen-360.avif 360w, assets/img/instagram/willkommen-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/willkommen-360.webp" srcset="assets/img/instagram/willkommen-360.webp 360w, assets/img/instagram/willkommen-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Schön, dass Sie da sind: unsere Praxis in Oldendorf, jetzt auch auf Instagram">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">Schön, dass Sie da sind</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/kinderzahnpasta-360.avif 360w, assets/img/instagram/kinderzahnpasta-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/kinderzahnpasta-360.webp" srcset="assets/img/instagram/kinderzahnpasta-360.webp 360w, assets/img/instagram/kinderzahnpasta-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Zahnwissen: Wie viel Zahnpasta für Kinderzähne, reiskorngroß bis 2 Jahre, erbsengroß bis 6 Jahre">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">Wie viel Zahnpasta fürs Kind?</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/reel-mythen-360.avif 360w, assets/img/instagram/reel-mythen-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/reel-mythen-360.webp" srcset="assets/img/instagram/reel-mythen-360.webp 360w, assets/img/instagram/reel-mythen-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Reel: 3 Zahnputz-Mythen im Check">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-reel"/></svg><span class="visually-hidden">Instagram-Reel (Video)</span></span>
+                <span class="insta__cap" aria-hidden="true">3 Zahnputz-Mythen im Check</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/zwischenraeume-360.avif 360w, assets/img/instagram/zwischenraeume-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/zwischenraeume-360.webp" srcset="assets/img/instagram/zwischenraeume-360.webp 360w, assets/img/instagram/zwischenraeume-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Zahnwissen: Zahnseide oder Zwischenraumbürste, was zwischen Ihre Zähne gehört">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">Zahnseide oder Bürstchen?</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/zahnreinigung-360.avif 360w, assets/img/instagram/zahnreinigung-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/zahnreinigung-360.webp" srcset="assets/img/instagram/zahnreinigung-360.webp 360w, assets/img/instagram/zahnreinigung-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Zahnwissen: Was bei der professionellen Zahnreinigung passiert, in fünf Schritten">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">Professionelle Zahnreinigung</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/reel-team-360.avif 360w, assets/img/instagram/reel-team-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/reel-team-360.webp" srcset="assets/img/instagram/reel-team-360.webp 360w, assets/img/instagram/reel-team-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Reel: Wer ist wer bei uns? Unser Team stellt sich vor">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-reel"/></svg><span class="visually-hidden">Instagram-Reel (Video)</span></span>
+                <span class="insta__cap" aria-hidden="true">Wer ist wer bei uns?</span>
+              </a>
+            </li>
+            <li>
+              <a class="insta__tile" href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
+                <picture>
+                  <source type="image/avif" srcset="assets/img/instagram/zaehneputzen-360.avif 360w, assets/img/instagram/zaehneputzen-720.avif 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw">
+                  <img src="assets/img/instagram/zaehneputzen-360.webp" srcset="assets/img/instagram/zaehneputzen-360.webp 360w, assets/img/instagram/zaehneputzen-720.webp 720w" sizes="(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw" width="720" height="960" loading="lazy" decoding="async" alt="Zahnwissen: Putzen Sie richtig? Fünf Schritte für saubere Zähne">
+                </picture>
+                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg><span class="visually-hidden">Instagram-Beitrag mit mehreren Bildern</span></span>
+                <span class="insta__cap" aria-hidden="true">Putzen Sie richtig?</span>
+              </a>
+            </li>
+<!-- instagram:end -->
+          </ul>
+        </section>
       </div>
     </section>
 
@@ -663,6 +778,7 @@
           <li><a href="tel:+4941446639">Telefon 04144 6639</a></li>
           <li>Fax 04144 6730</li>
           <li><a href="mailto:info@zahnarztpraxis-theurer.de">info@zahnarztpraxis-theurer.de</a></li>
+          <li><a href="https://www.instagram.com/zahnarztpraxis_theurer/" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">Instagram</a></li>
         </ul>
       </div>
     </div>

@@ -1,0 +1,52 @@
+{
+  "_hinweis": "Die 9 Kacheln im Abschnitt #instagram (DE) bzw. #instagram (EN) der Startseite, in der Reihenfolge des Instagram-Rasters (links oben = erste Kachel). url: Link auf den Beitrag; solange leer, führt die Kachel auf das Profil. Nach Änderungen: node tools/instagram.cjs <ordner-mit-titelbildern>",
+  "profil": "https://www.instagram.com/zahnarztpraxis_theurer/",
+  "handle": "zahnarztpraxis_theurer",
+  "beitraege": [
+    {
+      "datei": "13-kontakt.png", "slug": "kontakt", "typ": "karussell", "url": "",
+      "de": { "titel": "So erreichen Sie uns", "alt": "So erreichen Sie uns: Anrufen, WhatsApp und kostenlos parken vor der Tür" },
+      "en": { "titel": "How to reach us", "alt": "How to reach us: call, WhatsApp and free parking right outside (post in German)" }
+    },
+    {
+      "datei": "03-team.png", "slug": "team", "typ": "karussell", "url": "",
+      "de": { "titel": "Das sind wir", "alt": "Das sind wir: unser Team, acht Menschen mit einem Ziel, Ihrer Zahngesundheit" },
+      "en": { "titel": "This is us", "alt": "This is us: our team of eight (post in German)" }
+    },
+    {
+      "datei": "01-willkommen.png", "slug": "willkommen", "typ": "karussell", "url": "",
+      "de": { "titel": "Schön, dass Sie da sind", "alt": "Schön, dass Sie da sind: unsere Praxis in Oldendorf, jetzt auch auf Instagram" },
+      "en": { "titel": "Welcome", "alt": "Welcome to our practice in Oldendorf, now also on Instagram (post in German)" }
+    },
+    {
+      "datei": "12-kinderzahnpasta.png", "slug": "kinderzahnpasta", "typ": "karussell", "url": "",
+      "de": { "titel": "Wie viel Zahnpasta fürs Kind?", "alt": "Zahnwissen: Wie viel Zahnpasta für Kinderzähne, reiskorngroß bis 2 Jahre, erbsengroß bis 6 Jahre" },
+      "en": { "titel": "How much toothpaste for children?", "alt": "Dental tips: how much toothpaste for children's teeth (post in German)" }
+    },
+    {
+      "datei": "11-reel-mythen.png", "slug": "reel-mythen", "typ": "reel", "url": "",
+      "de": { "titel": "3 Zahnputz-Mythen im Check", "alt": "Reel: 3 Zahnputz-Mythen im Check" },
+      "en": { "titel": "3 tooth-brushing myths", "alt": "Reel: 3 tooth-brushing myths checked (in German)" }
+    },
+    {
+      "datei": "10-zwischenraeume.png", "slug": "zwischenraeume", "typ": "karussell", "url": "",
+      "de": { "titel": "Zahnseide oder Bürstchen?", "alt": "Zahnwissen: Zahnseide oder Zwischenraumbürste, was zwischen Ihre Zähne gehört" },
+      "en": { "titel": "Floss or interdental brush?", "alt": "Dental tips: floss or interdental brush (post in German)" }
+    },
+    {
+      "datei": "09-zahnreinigung.png", "slug": "zahnreinigung", "typ": "karussell", "url": "",
+      "de": { "titel": "Professionelle Zahnreinigung", "alt": "Zahnwissen: Was bei der professionellen Zahnreinigung passiert, in fünf Schritten" },
+      "en": { "titel": "Professional teeth cleaning", "alt": "Dental tips: what happens during a professional teeth cleaning (post in German)" }
+    },
+    {
+      "datei": "08-reel-team.png", "slug": "reel-team", "typ": "reel", "url": "",
+      "de": { "titel": "Wer ist wer bei uns?", "alt": "Reel: Wer ist wer bei uns? Unser Team stellt sich vor" },
+      "en": { "titel": "Who's who at our practice?", "alt": "Reel: who's who in our team (in German)" }
+    },
+    {
+      "datei": "07-zaehneputzen.png", "slug": "zaehneputzen", "typ": "karussell", "url": "",
+      "de": { "titel": "Putzen Sie richtig?", "alt": "Zahnwissen: Putzen Sie richtig? Fünf Schritte für saubere Zähne" },
+      "en": { "titel": "Are you brushing right?", "alt": "Dental tips: five steps for clean teeth (post in German)" }
+    }
+  ]
+}

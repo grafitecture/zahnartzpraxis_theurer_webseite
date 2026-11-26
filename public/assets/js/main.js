@@ -415,7 +415,7 @@
    * ------------------------------------------------------------------ */
   var ANCHORS = {
     zahnaerztin: 'dentist', leistungen: 'services', team: 'team', karriere: 'careers',
-    praxis: 'practice', anfahrt: 'directions', kontakt: 'contact', sprechzeiten: 'hours'
+    praxis: 'practice', instagram: 'instagram', anfahrt: 'directions', kontakt: 'contact', sprechzeiten: 'hours'
   };
   var anchorMap = ANCHORS;
   if (LANG === 'en') {

@@ -157,7 +157,7 @@ Schriftgröße im Browser erhöhen.
 |---|---|---|---|
 | Basis | < 480 | einspaltig, Schnellkontakt-Leiste unten (immer sichtbar), kein Dreierblock | Smartphones |
 | `30em` | 480 | „Auf einen Blick“ zweispaltig | ab hier passen zwei kurze Infoblöcke nebeneinander |
-| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
+| `48em` | 768 | Text und Bild nebeneinander, Team zweispaltig, Galerie als Raster, Instagram-Kacheln mit Titel bei Mouseover | Textspalte erreicht ~ 45 Zeichen neben einem Bild |
 | `64em` | 1024 | volle Navigation statt Menü, Schnellkontakt-Leiste entfällt, im Hero Dreierblock (Kacheln) statt Buttons, 12-Spalten-Raster, Team vierspaltig | Logo, Sprachumschalter, fünf Menüpunkte und Telefon-Button passen mit Reserve in eine Zeile (gemessen mit Source Sans 3: rund 290 von 960 px frei; Englisch kürzer) |
 | `80em` | 1280 | Inhalt erreicht seine Maximalbreite (75 rem), Leistungen vierspaltig | darüber wachsen nur noch die Ränder |
 | fluide Skala | 360–1440 | Schrift und Abstände wachsen stufenlos | volle Perfect Fourth auf gängigen Desktop-Breiten |
@@ -295,6 +295,36 @@ unten `clamp(var(--space-s), 3.5svh, var(--space-l))`; unter 720 px Höhe
 1024 × 600 px 549 × 117 px. Passt ab etwa 580 px Bildschirmhöhe; darunter
 ragt der Dreierblock knapp unter den Rand. Ohne `svh`/Container-Einheiten
 bleibt die alte Reihenfolge (Desktop: Dreierblock über dem Teamfoto).
+
+## Instagram-Kacheln und Link-Seite
+
+**Kacheln** (`.insta`, im Abschnitt Praxis der Startseite, Anker `#instagram`):
+Überschrift `.t-h3`, Profil-Chip (rundes Profilbild 3,5 rem mit heller Linie,
+Handle Demi `--c-ink`, Zusatz `--step-n1` `--c-muted`), ein Satz, Ghost-Button
+„Auf Instagram folgen“ mit Kamera-Symbol (`#i-instagram`) und ein kleiner
+Datenschutzhinweis (`--step-n1`, `--c-muted`). Darunter bzw. daneben das Raster:
+3 Spalten, Kacheln im Format 3:4 wie das Instagram-Profilraster, Typ-Symbol
+oben rechts (`#i-stack` Karussell, `#i-reel` Reel) in einem Kreis aus
+`--c-ink` mit 45 % Deckkraft.
+
+| Breite | Raster |
+|---|---|
+| Basis (< 30em) | randlos über die volle Breite wie in der App, Abstand 2 px, keine Rundung, kein Titel |
+| ab `30em` | im Satzspiegel, Abstand `--space-3xs`, Rundung `--radius-s` |
+| ab `48em` | Abstand `--space-2xs`, Rundung `--radius-m`; Titel des Beitrags bei Mouseover und Tastaturfokus (Verlauf aus `--c-ink`, Schrift weiß, Demi) |
+| ab `64em` | 12er-Raster: Text links (4 Spalten, beim Scrollen angeheftet), Kacheln rechts (8 Spalten), Abstand `--space-xs` |
+| ab `80em` | Abstand `--space-s` |
+
+Die Bilder sind eigene Dateien (AVIF/WebP, 360 und 720 px), keine
+Einbettung. Druck: Raster ausgeblendet.
+
+**Link-Seite** (`/instagram/`, `/en/instagram/`): Kopf wie die Rechtstexte
+(Verlauf oben Weiß, unten Hellblau), mittig: Profilbild 5,5 rem, Überschrift,
+Adresse, Live-Status der Sprechzeiten. Darunter höchstens 34 rem breit eine
+Liste von Link-Kacheln (`.linkhub__item`: Symbol in Praxisblau, Titel Demi,
+Unterzeile `--step-n1`, helle Linie, `--radius-m`, Mindesthöhe 4 rem;
+Mouseover dunkle Linie auf `--c-sky-25`). „Anrufen“ ist gefüllt in
+`--c-blue-ink`. Ganz unten Impressum · Datenschutz.
 
 ## Barrierefreiheit
 

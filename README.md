@@ -56,7 +56,7 @@ sehen ist.
   `ANCHORS`). Keine automatische Weiterleitung nach Browsersprache, nichts
   wird gespeichert.
 - **Anker auf Englisch:** `#dentist`, `#services`, `#team`, `#careers`,
-  `#practice`, `#directions`, `#contact`, `#hours`. Der versteckte Hinweis
+  `#practice`, `#instagram` (gleich in beiden Sprachen), `#directions`, `#contact`, `#hours`. Der versteckte Hinweis
   für externe Links heißt auf allen Seiten `#hinweis-neues-fenster`
   (Text auf Englisch „opens in a new window“).
 - **Telefonnummern** stehen auf den englischen Seiten international
@@ -121,6 +121,35 @@ Livegang `www.zahnarztpraxis-theurer.de` (und die Domain ohne `www`) in Vercel
 hinzufügen und bei IONOS nur die Einträge für die Website auf die Werte
 umstellen, die Vercel unter „Domains“ anzeigt. MX- und andere
 E-Mail-Einträge nicht ändern, sonst kommt keine E-Mail mehr an.
+
+## Instagram
+
+Profil: [instagram.com/zahnarztpraxis_theurer](https://www.instagram.com/zahnarztpraxis_theurer/).
+Redaktionsplan, Profiltexte und Designs liegen außerhalb des Repos (Mac:
+`CLAUDE_THEURER/Instagram`, Canva).
+
+- **Kacheln auf der Startseite** (`#instagram` im Abschnitt Praxis, DE und
+  EN): 9 Vorschaubilder in der Reihenfolge des Instagram-Rasters, 3:4 wie das
+  Profilraster. Die Bilder liegen in `public/assets/img/instagram/`, die
+  Kacheln sind normale Links in ein neues Fenster. **Keine Einbettung, kein
+  Skript, keine Verbindung zu Meta beim Seitenaufruf** – deshalb bleibt die
+  Website ohne Cookie-Banner. Bitte nie den Einbettungscode von Instagram
+  verwenden (lädt Skripte und Cookies von Meta, bräuchte eine Einwilligung).
+- **Pflege:** `tools/instagram/beitraege.json` (Reihenfolge, Titel, Alt-Texte
+  DE/EN, Link je Beitrag). Solange `url` leer ist, führt die Kachel aufs
+  Profil. Neue Titelbilder (1080 × 1350 oder Reel-Cover 1080 × 1920) in einen
+  Ordner legen und `node tools/instagram.cjs <ordner>` ausführen; nur Links
+  geändert: `node tools/instagram.cjs` ohne Ordner.
+- **Link-Seite für die Bio:** `/instagram/` (Englisch `/en/instagram/`,
+  `noindex`, nicht in der Sitemap): Anrufen, WhatsApp, Route, Sprechzeiten,
+  Leistungen, Team, Notdienst, Website sowie Impressum und Datenschutz. Damit
+  sind Impressum und Datenschutz vom Profil aus mit zwei Klicks erreichbar;
+  zusätzlich stehen sie als eigene Links in der Bio.
+- **Rechtstexte:** Datenschutzerklärung Abschnitt 6 „Unser Instagram-Auftritt“
+  (`#instagram`, gemeinsame Verantwortlichkeit für Insights nach Art. 26
+  DSGVO, Hinweis keine Gesundheitsdaten per Direktnachricht); Impressum
+  „Geltungsbereich“ (`#social-media`) gilt auch für das Profil. Beides in
+  beiden Sprachen.
 
 ## Pflege
 
