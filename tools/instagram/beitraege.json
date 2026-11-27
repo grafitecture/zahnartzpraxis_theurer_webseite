@@ -19,6 +19,11 @@
       "en": { "titel": "Welcome", "alt": "Welcome to our practice in Oldendorf, now also on Instagram (post in German)" }
     },
     {
+      "datei": "14-vitamin-d.png", "slug": "vitamin-d", "typ": "karussell", "url": "",
+      "de": { "titel": "Vitamin D und Ihre Zähne", "alt": "Zahnwissen: Vitamin D und Ihre Zähne, mit Infos zu Parodontitis, Implantaten und unserem Vitamin-D-Schnelltest" },
+      "en": { "titel": "Vitamin D and your teeth", "alt": "Dental tips: vitamin D and your teeth (post in German)" }
+    },
+    {
       "datei": "12-kinderzahnpasta.png", "slug": "kinderzahnpasta", "typ": "karussell", "url": "https://www.instagram.com/p/DgNSX7glr5a/",
       "de": { "titel": "Wie viel Zahnpasta fürs Kind?", "alt": "Zahnwissen: Wie viel Zahnpasta für Kinderzähne, reiskorngroß bis 2 Jahre, erbsengroß bis 6 Jahre" },
       "en": { "titel": "How much toothpaste for children?", "alt": "Dental tips: how much toothpaste for children's teeth (post in German)" }
@@ -42,11 +47,6 @@
       "datei": "08-reel-team.png", "slug": "reel-team", "typ": "reel", "url": "https://www.instagram.com/reel/DgNQOhHu_Wf/",
       "de": { "titel": "Wer ist wer bei uns?", "alt": "Reel: Wer ist wer bei uns? Unser Team stellt sich vor" },
       "en": { "titel": "Who's who at our practice?", "alt": "Reel: who's who in our team (in German)" }
-    },
-    {
-      "datei": "07-zaehneputzen.png", "slug": "zaehneputzen", "typ": "karussell", "url": "https://www.instagram.com/p/DgNP4JhlnbW/",
-      "de": { "titel": "Putzen Sie richtig?", "alt": "Zahnwissen: Putzen Sie richtig? Fünf Schritte für saubere Zähne" },
-      "en": { "titel": "Are you brushing right?", "alt": "Dental tips: five steps for clean teeth (post in German)" }
     }
   ]
 }
