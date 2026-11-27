@@ -9,6 +9,16 @@
       "en": { "titel": "Caring and modern", "alt": "Caring and modern: dentist Désirée Theurer and her team, with a team photo (post in German)" }
     },
     {
+      "datei": "16-reel-weihnachtsfeier-2026.png", "slug": "reel-weihnachtsfeier-2026", "typ": "reel", "url": "https://www.instagram.com/reel/DgPooa5BfOF/",
+      "de": { "titel": "Unser Weihnachtsabend", "alt": "Reel: Weihnachtsfeier 2026, ein Abend mit unserem Team, mit Gruppenfoto vor einer Theaterkulisse" },
+      "en": { "titel": "Our Christmas evening", "alt": "Reel: Christmas party 2026, an evening with our team, with a group photo in front of a theatre set (video in German)" }
+    },
+    {
+      "datei": "15-weihnachtsfeier-2026.jpg", "slug": "weihnachtsfeier-2026", "typ": "bild", "url": "https://www.instagram.com/p/DgPmvpmFPE8/",
+      "de": { "titel": "Weihnachtsfeier 2026", "alt": "Weihnachtsfeier 2026: unser Team vor der weihnachtlich geschmückten Bühnenkulisse eines Hamburger Theaters" },
+      "en": { "titel": "Christmas party 2026", "alt": "Christmas party 2026: our team in front of a festive theatre stage set in Hamburg (post in German)" }
+    },
+    {
       "datei": "14-vitamin-d.png", "slug": "vitamin-d", "typ": "karussell", "url": "https://www.instagram.com/p/DgPQzmAle-B/",
       "de": { "titel": "Vitamin D und Ihre Zähne", "alt": "Zahnwissen: Vitamin D und Ihre Zähne, mit Infos zu Parodontitis, Implantaten und unserem Vitamin-D-Schnelltest" },
       "en": { "titel": "Vitamin D and your teeth", "alt": "Dental tips: vitamin D and your teeth (post in German)" }
@@ -37,16 +47,6 @@
       "datei": "leistungen.png", "slug": "leistungen", "typ": "karussell", "url": "https://www.instagram.com/p/DgNOwz7ltSy/",
       "de": { "titel": "Von der Vorsorge bis zum Zahnersatz", "alt": "Unsere Leistungen: von der Vorsorge bis zum Zahnersatz, mit Symbolen für Vorsorge, Zähne erhalten, Zahnersatz und Ästhetik" },
       "en": { "titel": "From check-ups to dentures", "alt": "Our services: from check-ups to dentures (post in German)" }
-    },
-    {
-      "datei": "10-zwischenraeume.png", "slug": "zwischenraeume", "typ": "karussell", "url": "https://www.instagram.com/p/DgNRLJJFvum/",
-      "de": { "titel": "Zahnseide oder Bürstchen?", "alt": "Zahnwissen: Zahnseide oder Zwischenraumbürste, was zwischen Ihre Zähne gehört" },
-      "en": { "titel": "Floss or interdental brush?", "alt": "Dental tips: floss or interdental brush (post in German)" }
-    },
-    {
-      "datei": "13-kontakt.png", "slug": "kontakt", "typ": "karussell", "url": "https://www.instagram.com/p/DgN1c8BFJ6d/",
-      "de": { "titel": "So erreichen Sie uns", "alt": "So erreichen Sie uns: Anrufen, WhatsApp und kostenlos parken vor der Tür" },
-      "en": { "titel": "How to reach us", "alt": "How to reach us: call, WhatsApp and free parking right outside (post in German)" }
     }
   ]
 }
