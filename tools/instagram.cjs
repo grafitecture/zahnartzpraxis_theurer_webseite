@@ -13,8 +13,13 @@
  *   - schreibt AVIF + WebP in 360 und 720 px Breite nach public/assets/img/instagram/
  *   - setzt die Kacheln zwischen <!-- instagram:start --> und <!-- instagram:end -->
  *     in public/index.html und public/en/index.html ein
+ *   - Beiträge, deren Titelbild nicht im Ordner liegt, werden übersprungen; ihre
+ *     vorhandenen Kachelbilder bleiben. So reicht es, nur neue Titelbilder in den
+ *     Ordner zu legen.
  * Ohne Ordner-Argument werden nur die Kacheln (HTML) neu gesetzt, z. B. nachdem
  * in beitraege.json die Links auf die einzelnen Beiträge eingetragen wurden.
+ * typ: "karussell" (Symbol mehrere Bilder), "reel" (Symbol Video) oder "bild"
+ * (Einzelbild, ohne Symbol – wie im Profilraster von Instagram).
  * Benötigt "sharp" (npm i sharp).
  */
 const fs = require('fs');
@@ -28,8 +33,8 @@ const WIDTHS = [360, 720];
 const SIZES = '(min-width: 80em) 16rem, (min-width: 64em) 20vw, 31vw';
 
 const T = {
-  de: { types: { karussell: 'Instagram-Beitrag mit mehreren Bildern', reel: 'Instagram-Reel (Video)' }, pre: '' },
-  en: { types: { karussell: 'Instagram post with several images', reel: 'Instagram reel (video)' }, pre: '../' },
+  de: { types: { karussell: 'Instagram-Beitrag mit mehreren Bildern', reel: 'Instagram-Reel (Video)', bild: 'Instagram-Beitrag' }, pre: '' },
+  en: { types: { karussell: 'Instagram post with several images', reel: 'Instagram reel (video)', bild: 'Instagram post' }, pre: '../' },
 };
 
 async function images() {
@@ -37,6 +42,7 @@ async function images() {
   fs.mkdirSync(OUT, { recursive: true });
   for (const b of DATA.beitraege) {
     const input = path.join(SRC, b.datei);
+    if (!fs.existsSync(input)) { console.log(`${b.slug}: kein Titelbild im Ordner, Kachelbilder bleiben`); continue; }
     const { width, height } = await sharp(input).metadata();
     // 3:4-Ausschnitt aus der Mitte (wie das Profilraster)
     let w = width, h = Math.round(width * 4 / 3);
@@ -62,13 +68,16 @@ function tiles(lang) {
     const t = b[lang];
     const href = b.url || DATA.profil;
     const icon = b.typ === 'reel' ? 'i-reel' : 'i-stack';
+    const badge = b.typ === 'bild'
+      ? `<span class="visually-hidden">${types.bild}</span>`
+      : `<span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#${icon}"/></svg><span class="visually-hidden">${types[b.typ]}</span></span>`;
     return `            <li>
               <a class="insta__tile" href="${esc(href)}" target="_blank" rel="noopener" aria-describedby="hinweis-neues-fenster">
                 <picture>
                   <source type="image/avif" srcset="${img(b.slug, 'avif')}" sizes="${SIZES}">
                   <img src="${pre}assets/img/instagram/${b.slug}-360.webp" srcset="${img(b.slug, 'webp')}" sizes="${SIZES}" width="720" height="960" loading="lazy" decoding="async" alt="${esc(t.alt)}">
                 </picture>
-                <span class="insta__badge"><svg class="icon" aria-hidden="true"><use href="#${icon}"/></svg><span class="visually-hidden">${types[b.typ]}</span></span>
+                ${badge}
                 <span class="insta__cap" aria-hidden="true">${esc(t.titel)}</span>
               </a>
             </li>`;
